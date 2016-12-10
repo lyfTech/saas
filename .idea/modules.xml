@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cms/saas-cms.iml" filepath="$PROJECT_DIR$/cms/saas-cms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/saas-common.iml" filepath="$PROJECT_DIR$/common/saas-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dao/saas-dao.iml" filepath="$PROJECT_DIR$/dao/saas-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/saas-service.iml" filepath="$PROJECT_DIR$/service/saas-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/saas-web.iml" filepath="$PROJECT_DIR$/web/saas-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/saas.parent.iml" filepath="$PROJECT_DIR$/saas.parent.iml" />
+    </modules>
+  </component>
+</project>

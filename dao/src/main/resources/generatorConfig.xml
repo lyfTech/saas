@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <!--⾃自定义插件⼆，⽤用来⽣生成逻辑层代码-->
+        <plugin type="org.saas.common.mybatis.LogicGeneratorPlugin">
+            <!--当前实体需要继承的⽗父类，默认使⽤用当前值-->
+            <property name="primaryKeyClass" value="java.lang.Long" />
+        </plugin>
+
+        <!-- 取消注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://qdm107936212.my3w.com:3306/qdm107936212_db"
+                        userId="qdm107936212"
+                        password="lhyyfn623">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- generate Model -->
+        <javaModelGenerator targetPackage="org.saas.dao.domain" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- generate xml -->
+        <sqlMapGenerator targetPackage="org.saas.dao.persistence" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- generate Mapper -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="org.saas.dao.mapper" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table schema="" tableName="sys_perm" domainObjectName="SysPerm"></table>
+        <!--<table schema="" tableName="sys_role" domainObjectName="SysRole"></table>-->
+        <!--<table schema="" tableName="sys_user" domainObjectName="SysUser"></table>-->
+
+
+    </context>
+</generatorConfiguration>

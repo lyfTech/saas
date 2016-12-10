@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="saas-cms" />
+        <module name="saas-common" />
+        <module name="saas-dao" />
+        <module name="saas-service" />
+        <module name="saas-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="saas-cms" target="1.5" />
+      <module name="saas-common" target="1.8" />
+      <module name="saas-dao" target="1.5" />
+      <module name="saas-service" target="1.5" />
+      <module name="saas-web" target="1.5" />
+      <module name="saas.parent" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
