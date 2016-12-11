@@ -3,6 +3,7 @@ package org.saas.service.system;
 import org.saas.dao.domain.SysUser;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface SysUserService {
@@ -12,5 +13,9 @@ public interface SysUserService {
     SysUser getUserByName(String userName);
 
     List<SysUser> getAllUserInfo(int offset, int limit);
+
+    Set<String> getRolesByName(String userName);
+
+    Set<String> getPremsByName(String userName);
 
 }

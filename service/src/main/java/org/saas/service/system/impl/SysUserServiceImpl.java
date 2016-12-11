@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
+
+
 
     @Resource
     private SysUserMapper userMapper;
@@ -46,5 +49,13 @@ public class SysUserServiceImpl implements SysUserService {
             return users;
         }
         return null;
+    }
+
+    public Set<String> getRolesByName(String userName) {
+        return userMapper.selectRoleByUserName(userName);
+    }
+
+    public Set<String> getPremsByName(String userName) {
+        return userMapper.selectPremByUserName(userName);
     }
 }
