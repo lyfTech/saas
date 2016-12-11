@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring/spring-context.xml"})
 public class TestMybatis {
 
     public static final Logger logger = LoggerFactory.getLogger(TestMybatis.class);
