@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_name, "password", real_name, mobile, email, department_id, "status", is_delete, 
+    id, user_name, `password`, real_name, mobile, email, department_id, `status`, is_delete,
     salt, creator, create_time, modifier, modify_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.saas.dao.domain.SysUserExample" >
@@ -110,9 +110,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.saas.dao.domain.SysUser" >
-    insert into sys_user (id, user_name, "password", 
+    insert into sys_user (id, user_name, `password`,
       real_name, mobile, email, 
-      department_id, "status", is_delete, 
+      department_id, `status`, is_delete,
       salt, creator, create_time, 
       modifier, modify_time)
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
@@ -131,7 +131,7 @@
         user_name,
       </if>
       <if test="password != null" >
-        "password",
+        `password`,
       </if>
       <if test="realName != null" >
         real_name,
@@ -146,7 +146,7 @@
         department_id,
       </if>
       <if test="status != null" >
-        "status",
+        `status`,
       </if>
       <if test="isDelete != null" >
         is_delete,
@@ -228,7 +228,7 @@
         user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null" >
-        "password" = #{record.password,jdbcType=VARCHAR},
+        `password` = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.realName != null" >
         real_name = #{record.realName,jdbcType=VARCHAR},
@@ -243,7 +243,7 @@
         department_id = #{record.departmentId,jdbcType=BIGINT},
       </if>
       <if test="record.status != null" >
-        "status" = #{record.status,jdbcType=INTEGER},
+        `status` = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -272,12 +272,12 @@
     update sys_user
     set id = #{record.id,jdbcType=BIGINT},
       user_name = #{record.userName,jdbcType=VARCHAR},
-      "password" = #{record.password,jdbcType=VARCHAR},
+      `password` = #{record.password,jdbcType=VARCHAR},
       real_name = #{record.realName,jdbcType=VARCHAR},
       mobile = #{record.mobile,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       department_id = #{record.departmentId,jdbcType=BIGINT},
-      "status" = #{record.status,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=INTEGER},
       is_delete = #{record.isDelete,jdbcType=INTEGER},
       salt = #{record.salt,jdbcType=VARCHAR},
       creator = #{record.creator,jdbcType=BIGINT},
@@ -295,7 +295,7 @@
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        "password" = #{password,jdbcType=VARCHAR},
+        `password` = #{password,jdbcType=VARCHAR},
       </if>
       <if test="realName != null" >
         real_name = #{realName,jdbcType=VARCHAR},
@@ -310,7 +310,7 @@
         department_id = #{departmentId,jdbcType=BIGINT},
       </if>
       <if test="status != null" >
-        "status" = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -336,12 +336,12 @@
   <update id="updateByPrimaryKey" parameterType="org.saas.dao.domain.SysUser" >
     update sys_user
     set user_name = #{userName,jdbcType=VARCHAR},
-      "password" = #{password,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       department_id = #{departmentId,jdbcType=BIGINT},
-      "status" = #{status,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
       is_delete = #{isDelete,jdbcType=INTEGER},
       salt = #{salt,jdbcType=VARCHAR},
       creator = #{creator,jdbcType=BIGINT},

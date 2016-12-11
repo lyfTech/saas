@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, "name", code, parent_id, url, icon, sort, "status", "type", description, creator, 
+    id, `name`, code, parent_id, url, icon, sort, `status`, `type`, description, creator,
     create_time, modifier, modify_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.saas.dao.domain.SysPermExample" >
@@ -110,9 +110,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.saas.dao.domain.SysPerm" >
-    insert into sys_perm (id, "name", code, 
+    insert into sys_perm (id, `name`, code,
       parent_id, url, icon, 
-      sort, "status", "type", 
+      sort, `status`, `type`,
       description, creator, create_time, 
       modifier, modify_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
@@ -128,7 +128,7 @@
         id,
       </if>
       <if test="name != null" >
-        "name",
+        `name`,
       </if>
       <if test="code != null" >
         code,
@@ -146,10 +146,10 @@
         sort,
       </if>
       <if test="status != null" >
-        "status",
+        `status`,
       </if>
       <if test="type != null" >
-        "type",
+        `type`,
       </if>
       <if test="description != null" >
         description,
@@ -225,7 +225,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.name != null" >
-        "name" = #{record.name,jdbcType=VARCHAR},
+        `name` = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.code != null" >
         code = #{record.code,jdbcType=VARCHAR},
@@ -243,10 +243,10 @@
         sort = #{record.sort,jdbcType=INTEGER},
       </if>
       <if test="record.status != null" >
-        "status" = #{record.status,jdbcType=INTEGER},
+        `status` = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.type != null" >
-        "type" = #{record.type,jdbcType=INTEGER},
+        `type` = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
@@ -271,14 +271,14 @@
   <update id="updateByExample" parameterType="map" >
     update sys_perm
     set id = #{record.id,jdbcType=BIGINT},
-      "name" = #{record.name,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       parent_id = #{record.parentId,jdbcType=BIGINT},
       url = #{record.url,jdbcType=VARCHAR},
       icon = #{record.icon,jdbcType=VARCHAR},
       sort = #{record.sort,jdbcType=INTEGER},
-      "status" = #{record.status,jdbcType=INTEGER},
-      "type" = #{record.type,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=INTEGER},
       description = #{record.description,jdbcType=VARCHAR},
       creator = #{record.creator,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -292,7 +292,7 @@
     update sys_perm
     <set >
       <if test="name != null" >
-        "name" = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="code != null" >
         code = #{code,jdbcType=VARCHAR},
@@ -310,10 +310,10 @@
         sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
-        "status" = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
-        "type" = #{type,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=INTEGER},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
@@ -335,14 +335,14 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.saas.dao.domain.SysPerm" >
     update sys_perm
-    set "name" = #{name,jdbcType=VARCHAR},
+    set `name` = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
       url = #{url,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
-      "status" = #{status,jdbcType=INTEGER},
-      "type" = #{type,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
       creator = #{creator,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
