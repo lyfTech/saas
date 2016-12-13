@@ -1,6 +1,8 @@
 package org.saas.service.system.impl;
 
 import org.apache.ibatis.session.RowBounds;
+import org.saas.common.dto.KeyValueDto;
+import org.saas.common.utils.EndecryptUtils;
 import org.saas.common.utils.StringUtils;
 import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
@@ -17,9 +20,10 @@ import java.util.Set;
 public class SysUserServiceImpl implements SysUserService {
 
 
-
     @Resource
     private SysUserMapper userMapper;
+    @Autowired
+    private PasswordHelper passwordHelper;
 
 
     public SysUser getUserById(Long userId) {
@@ -57,5 +61,30 @@ public class SysUserServiceImpl implements SysUserService {
 
     public Set<String> getPremsByName(String userName) {
         return userMapper.selectPremByUserName(userName);
+    }
+
+    /**
+     * 添加用户
+     * @param sysUser
+     * @return
+     */
+    public int addUser(SysUser sysUser) {
+        try {
+//            KeyValueDto dto = EndecryptUtils.md5Password(sysUser.getUserName(), sysUser.getPassword());
+//            sysUser.setPassword(dto.getKey());
+//            sysUser.setSalt(dto.getValue());
+            passwordHelper.encryptPassword(sysUser);
+            sysUser.setStatus(0);
+            sysUser.setIsDelete(0);
+            sysUser.setCreateTime(Calendar.getInstance().getTime());
+            sysUser.setCreator(1L);// TODO: 2016/12/13 将来要改成当前登录用户的id
+            sysUser.setModifyTime(Calendar.getInstance().getTime());
+            sysUser.setModifier(1L);// TODO: 2016/12/13 将来要改成当前登录用户的id
+            int i = userMapper.insert(sysUser);
+            return i;
+        } catch (Exception e) {
+
+        }
+        return 0;
     }
 }

@@ -18,4 +18,6 @@ public interface SysUserService {
 
     Set<String> getPremsByName(String userName);
 
+    int addUser(SysUser sysUser);
+
 }

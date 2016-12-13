@@ -34,6 +34,13 @@ public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public SysUser() {}
+
+    public SysUser(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }
