@@ -37,9 +37,6 @@ public class UserRealm extends AuthorizingRealm {
     // 验证当前登录的用户，获取认证信息
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String)token.getPrincipal();
-//        UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-//        String username = upToken.getUsername();
-        System.out.println("<-- 系统用户 -->验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
         SysUser user = userService.getUserByName(username);
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
@@ -56,7 +53,6 @@ public class UserRealm extends AuthorizingRealm {
                 ByteSource.Util.bytes(user.getUserName()+user.getSalt()),//salt=username+salt
                 getName()  //realm name
         );
-        logger.info("用户{}验证成功", authenticationInfo.getPrincipals());
         return authenticationInfo;
     }
 
