@@ -1,5 +1,6 @@
 package org.saas.service.system;
 
+import org.saas.common.BaseResponseHandle;
 import org.saas.dao.domain.SysUser;
 
 import java.util.List;
@@ -18,6 +19,6 @@ public interface SysUserService {
 
     Set<String> getPremsByName(String userName);
 
-    int addUser(SysUser sysUser);
+    BaseResponseHandle addUser(SysUser sysUser);
 
 }

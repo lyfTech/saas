@@ -1,6 +1,7 @@
 package org.saas.service.system.impl;
 
 import org.apache.ibatis.session.RowBounds;
+import org.saas.common.BaseResponseHandle;
 import org.saas.common.dto.KeyValueDto;
 import org.saas.common.utils.EndecryptUtils;
 import org.saas.common.utils.StringUtils;
@@ -8,6 +9,8 @@ import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
 import org.saas.dao.mapper.SysUserMapper;
 import org.saas.service.system.SysUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +21,7 @@ import java.util.Set;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
-
+    private static final Logger logger = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
     @Resource
     private SysUserMapper userMapper;
@@ -68,11 +71,13 @@ public class SysUserServiceImpl implements SysUserService {
      * @param sysUser
      * @return
      */
-    public int addUser(SysUser sysUser) {
+    public BaseResponseHandle addUser(SysUser sysUser) {
+        BaseResponseHandle handle = new BaseResponseHandle();
         try {
-//            KeyValueDto dto = EndecryptUtils.md5Password(sysUser.getUserName(), sysUser.getPassword());
-//            sysUser.setPassword(dto.getKey());
-//            sysUser.setSalt(dto.getValue());
+            SysUser user = getUserByName(sysUser.getUserName());
+            if (user != null){
+                handle.setErrorMessage("用户已经存在");
+            }
             passwordHelper.encryptPassword(sysUser);
             sysUser.setStatus(0);
             sysUser.setIsDelete(0);
@@ -81,10 +86,14 @@ public class SysUserServiceImpl implements SysUserService {
             sysUser.setModifyTime(Calendar.getInstance().getTime());
             sysUser.setModifier(1L);// TODO: 2016/12/13 将来要改成当前登录用户的id
             int i = userMapper.insert(sysUser);
-            return i;
+            if (i > 0){
+                handle.setMessage("用户添加成功");
+                logger.info("用户{}添加成功：", sysUser.getUserName());
+            }
         } catch (Exception e) {
-
+            handle.setErrorMessage("用户添加失败");
+            logger.error("用户添加失败，失败信息："+e.getMessage());
         }
-        return 0;
+        return handle;
     }
 }

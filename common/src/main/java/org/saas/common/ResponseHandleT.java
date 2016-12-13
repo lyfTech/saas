@@ -1,4 +1,4 @@
-package org.saas.cms.handle;
+package org.saas.common;
 
 import java.util.ArrayList;
 import java.util.List;

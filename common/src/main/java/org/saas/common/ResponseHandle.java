@@ -1,4 +1,4 @@
-package org.saas.cms.handle;
+package org.saas.common;
 
 import java.io.Serializable;
 

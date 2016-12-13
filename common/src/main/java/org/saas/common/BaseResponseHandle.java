@@ -1,7 +1,6 @@
-package org.saas.cms.handle;
+package org.saas.common;
 
-
-import org.saas.cms.enums.ResponseStatus;
+import org.saas.common.enums.ResponseStatus;
 
 import java.io.Serializable;
 

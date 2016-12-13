@@ -1,4 +1,4 @@
-package org.saas.cms.handle;
+package org.saas.common;
 
 /**
  * 返回单个DTO
