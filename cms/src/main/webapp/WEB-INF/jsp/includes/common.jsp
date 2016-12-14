@@ -8,7 +8,7 @@
 
 <script src="${ctx}/static/js/jquery.min.js?v=2.1.4"></script>
 <script src="${ctx}/static/js/bootstrap.min.js?v=3.3.6"></script>
-<script src="${ctx}/static/js/plugins/layer/layer.min.js"></script>
+<script src="${ctx}/static/js/plugins/layer/layer.js"></script>
 <script src="${ctx}/static/js/content.min.js?v=1.0.0"></script>
 <script src="${ctx}/static/js/demo/layer-demo.min.js"></script>
 <script src="${ctx}/static/js/jquery.cookie.js"></script>

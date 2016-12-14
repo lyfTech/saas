@@ -51,7 +51,6 @@
     });
 
     function login() {
-        alert(1);
         $.ajax({
             url: $loginForm.attr("action"),
             type: "POST",
