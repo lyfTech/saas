@@ -98,7 +98,7 @@
                 /unauthorized = anon
                 /login = authc
                 /logout = logout
-                /admin/** = user
+                /index/** = user
                 /** = anon
             </value>
         </property>

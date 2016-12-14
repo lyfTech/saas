@@ -16,14 +16,14 @@
 </head>
 <body class="gray-bg">
 
-<div class="middle-box text-center loginscreen  animated pulse">
+<div class="middle-box text-center loginscreen  animated">
     <div>
         <div>
             <h1 class="logo-name">MEI</h1>
         </div>
         <h3>欢迎使用</h3>
 
-        <form id="loginForm" class="m-t" role="form" action="${ctx}/login" method="post">
+        <form id="loginForm" class="m-t" role="form" action="${ctx}/doLogin" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="用户名" id="userName" name="userName" autofoucus required="true" title="请输入用户名">
             </div>
@@ -51,6 +51,7 @@
     });
 
     function login() {
+        alert(1);
         $.ajax({
             url: $loginForm.attr("action"),
             type: "POST",

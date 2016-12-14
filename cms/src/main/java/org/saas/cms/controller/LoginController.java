@@ -31,16 +31,21 @@ public class LoginController {
 
     @RequestMapping(value = "/")
     public String index(){
+        return "forward:index";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(){
         Subject currentUser = SecurityUtils.getSubject();
         if (currentUser.isAuthenticated()){
-            return "admin";
+            return "redirect:index";
         }
         return "login";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "doLogin", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> login(HttpServletRequest request, @RequestParam(value = "username") String userName, @RequestParam String password) {
+    public Map<String, Object> doLogin(HttpServletRequest request, @RequestParam(value = "username") String userName, @RequestParam String password) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
             map.put("content", "请输入正确的用户名和密码");
@@ -59,7 +64,7 @@ public class LoginController {
             currentUser.login(token);
             map.put("type","success");
             //获取登录前的Url
-            String url = "/cms/admin";
+            String url = "/cms/index";
             SavedRequest savedRequest = WebUtils.getSavedRequest(request);
             if (savedRequest != null) url = savedRequest.getRequestUrl();
             map.put("redirectUrl", url);
