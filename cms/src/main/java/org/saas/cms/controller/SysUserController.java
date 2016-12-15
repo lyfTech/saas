@@ -26,7 +26,7 @@ public class SysUserController {
     @Autowired
     private SysUserService userService;
 
-    @RequiresPermissions({ "user/list" })
+    @RequiresPermissions({ "user:list" })
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String index() {
         return "user/list";

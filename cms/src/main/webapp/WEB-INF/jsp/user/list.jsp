@@ -69,8 +69,8 @@
 <script type="application/javascript">
     $(function(){
         $("#exampleTableEvents").bootstrapTable({
-//            method: 'post',
-            url: "${ctx}/system/user/query",
+            method: 'post',
+            url: "${ctx}/user/list",
             search: !0,
             pagination: !0,
             showRefresh: !0,

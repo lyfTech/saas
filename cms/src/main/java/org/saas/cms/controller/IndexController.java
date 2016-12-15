@@ -28,7 +28,7 @@ public class IndexController {
     public String index(Model model){
         Subject currentUser = SecurityUtils.getSubject();
         if (currentUser.isAuthenticated()){
-            List<SysPerm> userPerm = permService.getUserPerm("root");
+            List<SysPerm> userPerm = permService.getUserPerm((String) currentUser.getPrincipal());
             model.addAttribute("menu", userPerm);
             return "index-h-ui";
         }
