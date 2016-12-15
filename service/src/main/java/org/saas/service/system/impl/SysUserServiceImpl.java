@@ -1,9 +1,9 @@
 package org.saas.service.system.impl;
 
 import org.apache.ibatis.session.RowBounds;
-import org.saas.common.BaseResponseHandle;
-import org.saas.common.dto.KeyValueDto;
-import org.saas.common.utils.EndecryptUtils;
+import org.saas.common.mybatis.Page;
+import org.saas.common.handle.BaseResponseHandle;
+import org.saas.common.mybatis.PageRequest;
 import org.saas.common.utils.StringUtils;
 import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
@@ -48,14 +48,11 @@ public class SysUserServiceImpl implements SysUserService {
         return null;
     }
 
-    public List<SysUser> getAllUserInfo(int offset, int limit) {
-        SysUserExample example = new SysUserExample();
-        RowBounds rowBounds = new RowBounds(offset, limit);
-        List<SysUser> users = userMapper.selectByExampleWithRowbounds(example, rowBounds);
-        if (users != null && users.size() > 0) {
-            return users;
-        }
-        return null;
+    public Page<SysUser> getAllUserInfo(SysUserExample example, PageRequest pageRequest) {
+        List<SysUser> users = userMapper.selectByExampleWithRowbounds(example, pageRequest.getRowBounds());
+        int i = userMapper.countByExample(example);
+        Page<SysUser> page = new Page<SysUser>(users, pageRequest, i);
+        return page;
     }
 
     public Set<String> getRolesByName(String userName) {

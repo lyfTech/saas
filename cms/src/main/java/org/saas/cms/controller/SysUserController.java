@@ -1,15 +1,21 @@
 package org.saas.cms.controller;
 
 import org.apache.commons.lang3.StringUtils;
-import org.saas.common.BaseResponseHandle;
-import org.saas.common.ResponseHandle;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.saas.common.mybatis.Page;
+import org.saas.common.handle.BaseResponseHandle;
+import org.saas.common.handle.ResponseHandle;
+import org.saas.common.mybatis.PageRequest;
 import org.saas.dao.domain.SysUser;
+import org.saas.dao.domain.SysUserExample;
 import org.saas.service.system.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 @Controller
@@ -20,7 +26,21 @@ public class SysUserController {
     @Autowired
     private SysUserService userService;
 
-    @RequestMapping(value = "/registe", method = RequestMethod.GET)
+    @RequiresPermissions({ "user/list" })
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String index() {
+        return "user/list";
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.POST)
+    public Page<SysUser> list(Map map){
+        SysUserExample example = new SysUserExample();
+        PageRequest pageRequest = new PageRequest(1,1);
+        Page<SysUser> page = userService.getAllUserInfo(example, pageRequest);
+        return page;
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     @ResponseBody
     public BaseResponseHandle registe(@RequestParam String userName, @RequestParam String password) {
         BaseResponseHandle handle = new BaseResponseHandle();

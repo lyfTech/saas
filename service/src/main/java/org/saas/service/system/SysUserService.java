@@ -1,7 +1,10 @@
 package org.saas.service.system;
 
-import org.saas.common.BaseResponseHandle;
+import org.saas.common.mybatis.Page;
+import org.saas.common.handle.BaseResponseHandle;
+import org.saas.common.mybatis.PageRequest;
 import org.saas.dao.domain.SysUser;
+import org.saas.dao.domain.SysUserExample;
 
 import java.util.List;
 import java.util.Set;
@@ -13,7 +16,7 @@ public interface SysUserService {
 
     SysUser getUserByName(String userName);
 
-    List<SysUser> getAllUserInfo(int offset, int limit);
+    Page<SysUser> getAllUserInfo(SysUserExample example, PageRequest pageRequest);
 
     Set<String> getRolesByName(String userName);
 

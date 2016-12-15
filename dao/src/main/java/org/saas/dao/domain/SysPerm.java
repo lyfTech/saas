@@ -2,6 +2,7 @@ package org.saas.dao.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class SysPerm implements Serializable {
     private Long id;
@@ -31,6 +32,11 @@ public class SysPerm implements Serializable {
     private String modifier;
 
     private Date modifyTime;
+
+    /**
+     * 用来获取子菜单
+     */
+    private List<SysPerm> childs;
 
     private static final long serialVersionUID = 1L;
 
@@ -144,5 +150,13 @@ public class SysPerm implements Serializable {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public List<SysPerm> getChilds() {
+        return childs;
+    }
+
+    public void setChilds(List<SysPerm> childs) {
+        this.childs = childs;
     }
 }
