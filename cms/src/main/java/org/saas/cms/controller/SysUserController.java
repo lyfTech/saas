@@ -1,10 +1,11 @@
 package org.saas.cms.controller;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.saas.common.mybatis.Page;
 import org.saas.common.handle.BaseResponseHandle;
 import org.saas.common.handle.ResponseHandle;
+import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
 import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
@@ -33,11 +34,27 @@ public class SysUserController {
     }
 
     @RequestMapping(value = "list", method = RequestMethod.POST)
-    public Page<SysUser> list(Map map){
+    @ResponseBody
+    public Page<SysUser> list(@RequestBody Map map){
+        int offset = MapUtils.getIntValue(map, "offset");
+        int limit = MapUtils.getIntValue(map, "limit");
+        String userName = MapUtils.getString(map, "username");
         SysUserExample example = new SysUserExample();
-        PageRequest pageRequest = new PageRequest(1,1);
+        if (StringUtils.isNotBlank(userName)){
+            example.createCriteria().andUserNameLike("%"+userName+"%");
+            example.or().andRealNameLike("%"+userName+"%");
+            example.or().andMobileLike("%"+userName+"%");
+            example.or().andEmailLike("%"+userName+"%");
+        }
+        PageRequest pageRequest = new PageRequest(offset,limit);
         Page<SysUser> page = userService.getAllUserInfo(example, pageRequest);
         return page;
+    }
+
+    @RequestMapping(value = "/changeState", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle changeState(@RequestParam Long id) {
+        return userService.changeState(id);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)

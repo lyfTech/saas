@@ -2,12 +2,16 @@ package org.saas.cms.realm;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
+import org.saas.common.enums.ConsantEnums;
 import org.saas.common.utils.StringUtils;
 import org.saas.dao.domain.SysUser;
 import org.saas.service.system.SysUserService;
@@ -31,6 +35,10 @@ public class UserRealm extends AuthorizingRealm {
         authorizationInfo.setRoles(userService.getRolesByName(username));
         authorizationInfo.setStringPermissions(userService.getPremsByName(username));
         logger.info("用户{}设置权限成功", username);
+        SysUser user = userService.getUserByName(username);
+        Subject currentUser = SecurityUtils.getSubject();
+        Session session = currentUser.getSession();
+        session.setAttribute(ConsantEnums.CURRENT_USERINFO.getKey(), user);
         return authorizationInfo;
     }
 
@@ -41,7 +49,7 @@ public class UserRealm extends AuthorizingRealm {
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
-        if(user.getStatus() == 2) {
+        if(user.getStatus() == 1) {
             throw new LockedAccountException(); //帐号锁定
         }
 

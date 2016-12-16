@@ -21,7 +21,7 @@ public class Page<T> implements Serializable {
 
 
     public Page(List<T> rows, PageRequest pageRequest, Integer total) {
-        rows.addAll(rows);
+        this.rows.addAll(rows);
         this.total = total;
         this.pageRequest = pageRequest;
     }

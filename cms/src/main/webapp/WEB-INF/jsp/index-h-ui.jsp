@@ -19,7 +19,6 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/static/js/plugins/Hui-iconfont/1.0.7/iconfont.css" />
-<%--<link rel="stylesheet" type="text/css" href="${ctx}/static/js/plugins/iCheck/icheck.css" />--%>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="${ctx}/static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
@@ -53,7 +52,7 @@
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="#">个人信息</a></li>
                             <li><a href="#">切换账户</a></li>
-                            <li><a href="#">退出</a></li>
+                            <li><a href="${ctx}/logout">退出</a></li>
                         </ul>
                     </li>
                     <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -102,7 +101,7 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" src="https://baidu.com"></iframe>
+            <iframe scrolling="yes" frameborder="0" src="${ctx}/user/list"></iframe>
         </div>
     </div>
 </section>

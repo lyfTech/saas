@@ -24,4 +24,7 @@ public interface SysUserService {
 
     BaseResponseHandle addUser(SysUser sysUser);
 
+    BaseResponseHandle changeState(Long id);
+
+    SysUser currentUserInfo();
 }
