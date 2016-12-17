@@ -57,7 +57,13 @@ public class SysUserController {
         return userService.changeState(id);
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequiresPermissions({ "user:add" })
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String add() {
+        return "user/add";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle registe(@RequestParam String userName, @RequestParam String password) {
         BaseResponseHandle handle = new BaseResponseHandle();

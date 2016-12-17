@@ -22,7 +22,7 @@
             <%--</div>--%>
         </div>
         <div id="tableEventsToolbar">
-            <a href="javascript:;" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe607;</i> 新增用户</a>
+            <a href="javascript:;" onclick="cmsUserList.openAddUserModal()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe607;</i> 新增用户</a>
             <a href="javascript:;" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
         </div>
         <table id="exampleTableEvents" data-height="490" data-mobile-responsive="true"></table>
@@ -34,6 +34,9 @@
         url: {
             changeState: function () {
                 return "${ctx}/user/changeState";
+            },
+            toAddUser: function () {
+                return "${ctx}/user/add";
             }
         },
         changeUserState: function (id, msg) {
@@ -55,6 +58,23 @@
                     }
                 });
             });
+        },
+        openModal: function (url) {
+            layer.open({
+                type: 2,
+                title: '新增用户',
+                area: ['500px', '400px'],
+                fixed: false, //不固定
+                shadeClose: true,
+                maxmin: true,
+                content: url,
+                success: function(layero, index) {
+                    layer.iframeAuto(index);
+                }
+            });
+        },
+        openAddUserModal: function () {
+            cmsUserList.openModal(cmsUserList.url.toAddUser());
         }
     };
 

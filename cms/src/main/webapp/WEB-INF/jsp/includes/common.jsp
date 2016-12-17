@@ -1,7 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<link rel="shortcut icon" href="${ctx}/static/img/favicon.ico">
-<link href="${ctx}/static/css/style.min.css?v=4.1.0" rel="stylesheet">
+<%--<link href="${ctx}/static/css/style.min.css?v=4.1.0" rel="stylesheet">--%>
+
+<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/iCheck/1.0.2/skins/square/_all.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="${ctx}/static/js/html5.js"></script>
 <script type="text/javascript" src="${ctx}static/lib/respond.min.js"></script>
@@ -17,37 +21,25 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 
-<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="http://cdn.bootcss.com/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet">
-<link href="http://cdn.bootcss.com/iCheck/1.0.2/skins/square/_all.css" rel="stylesheet">
-
 <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/layer/3.0/layer.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="http://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+<script src="http://cdn.bootcss.com/iCheck/1.0.2/icheck.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-table/1.11.0/bootstrap-table.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="http://cdn.bootcss.com/pace/1.0.1/pace.min.js"></script>
-<script src="http://cdn.bootcss.com/iCheck/1.0.2/icheck.min.js"></script>
-<script type="text/javascript" src="${ctx}/static/h-ui/js/H-ui.js"></script>
-<script type="text/javascript" src="${ctx}/static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<%--<script type="text/javascript" src="${ctx}/static/h-ui/js/H-ui.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/static/h-ui.admin/js/H-ui.admin.js"></script>--%>
 <script src="${ctx}/static/js/plugins/layer/laydate/laydate.js"/>
-<style>
-    .fixed-nav .slimScrollDiv #side-menu {
-        padding-bottom: 60px;
-        position: relative
-    }
-
-    .slimScrollDiv > * {
-        overflow: hidden
-    }
-</style>
 <script type="application/javascript">
     $(document).ready(function(){
         $('input[type=checkbox],input[type=radio]').iCheck({
-            checkboxClass: 'icheckbox_square_blur',
+            checkboxClass: 'icheckbox_square_blue',
             radioClass: 'iradio_square_blue',
             increaseArea: '20%' // optional
         });
