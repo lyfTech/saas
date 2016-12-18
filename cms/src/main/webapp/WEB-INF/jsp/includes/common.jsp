@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<%--<link href="${ctx}/static/css/style.min.css?v=4.1.0" rel="stylesheet">--%>
+<link href="${ctx}/static/css/style.min.css?v=4.1.0" rel="stylesheet">
 
 <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 
-<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/layer/3.0/layer.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
@@ -33,6 +33,7 @@
 <script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 <script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery.form/3.49/jquery.form.min.js"></script>
 <%--<script type="text/javascript" src="${ctx}/static/h-ui/js/H-ui.js"></script>--%>
 <%--<script type="text/javascript" src="${ctx}/static/h-ui.admin/js/H-ui.admin.js"></script>--%>
 <script src="${ctx}/static/js/plugins/layer/laydate/laydate.js"/>

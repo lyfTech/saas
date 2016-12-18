@@ -81,7 +81,6 @@ public class SysUserServiceImpl implements SysUserService {
                 handle.setErrorMessage("用户已经存在");
             }
             passwordHelper.encryptPassword(sysUser);
-            sysUser.setStatus(0);
             sysUser.setIsDelete(0);
             sysUser.setCreateTime(Calendar.getInstance().getTime());
             sysUser.setCreator(currentUserInfo().getId());

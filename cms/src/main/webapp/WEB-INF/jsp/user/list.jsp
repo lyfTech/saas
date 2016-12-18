@@ -9,8 +9,7 @@
 </head>
 <body class="white-bg">
 <nav class="breadcrumb">
-    <i class="Hui-iconfont">&#xe67f;</i> 首页
-    <span class="c-gray en">&gt;</span> 管理员管理
+    <i class="Hui-iconfont">&#xe67f;</i> 管理员管理
     <span class="c-gray en">&gt;</span> 管理员列表
 </nav>
 <div class="page-container">
@@ -25,7 +24,7 @@
             <a href="javascript:;" onclick="cmsUserList.openAddUserModal()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe607;</i> 新增用户</a>
             <a href="javascript:;" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
         </div>
-        <table id="exampleTableEvents" data-height="490" data-mobile-responsive="true"></table>
+        <table id="exampleTableEvents" data-mobile-responsive="true"></table>
     </div>
 </div>
 <script type="application/javascript" src="${ctx}/static/js/plugins.js"></script>
@@ -63,10 +62,9 @@
             layer.open({
                 type: 2,
                 title: '新增用户',
-                area: ['500px', '400px'],
+                area: ['500px', '450px'],
                 fixed: false, //不固定
                 shadeClose: true,
-                maxmin: true,
                 content: url,
                 success: function(layero, index) {
                     layer.iframeAuto(index);

@@ -63,16 +63,19 @@ public class SysUserController {
         return "user/add";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/doAdd", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseHandle registe(@RequestParam String userName, @RequestParam String password) {
+    public BaseResponseHandle doAdd(@RequestBody Map map) {
+        SysUser user = new SysUser();
         BaseResponseHandle handle = new BaseResponseHandle();
-        if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
-            handle.setErrorMessage("请输入正确的用户名和密码");
+        if (StringUtils.isBlank(user.getUserName()) || StringUtils.isBlank(user.getPassword())) {
+            handle.setErrorMessage("请输入正确的用户名和初始密码");
             return handle;
         }
-        SysUser user = new SysUser(userName, password);
         handle = userService.addUser(user);
+        if (handle.getIsSuccess()){
+            handle.setMessage("新增用户成功");
+        }
         return handle;
     }
 
