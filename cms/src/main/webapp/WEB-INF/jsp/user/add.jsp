@@ -136,7 +136,6 @@
                 url: addUser.url.addUser(),
                 type: 'post',
                 dataType: 'json',
-//                contentType: 'application/json;charset=UTF-8',
                 beforeSubmit: function (formData, jqForm, options) {
                     console.log(JSON.stringify(options.data));
                     layer.load();

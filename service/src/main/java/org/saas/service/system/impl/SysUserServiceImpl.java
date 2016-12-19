@@ -127,4 +127,37 @@ public class SysUserServiceImpl implements SysUserService {
         return null;
     }
 
+    public BaseResponseHandle updateUser(SysUser user) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        try {
+            user.setModifyTime(Calendar.getInstance().getTime());
+            user.setModifier(currentUserInfo().getId());
+            int i = userMapper.updateByPrimaryKey(user);
+            if (i < 1) {
+                handle.setErrorMessage("用户更新失败");
+            }
+        } catch (Exception e) {
+            handle.setErrorMessage("用户更新异常");
+            logger.error("用户更新异常", e.getMessage());
+        }
+        return handle;
+    }
+
+    public BaseResponseHandle resetPassword(Long id) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        SysUser user = userMapper.selectByPrimaryKey(id);
+        if (user != null) {
+            user.setPassword("123456");
+            passwordHelper.encryptPassword(user);
+            int i = userMapper.updateByPrimaryKey(user);
+            if (i < 1) {
+                handle.setErrorMessage("重置失败");
+                logger.error("用户id={}重置密码失败", user.getId());
+            } else {
+                logger.info("用户id={}重置密码成功", user.getId());
+            }
+        }
+        return handle;
+    }
+
 }

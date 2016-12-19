@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Map;
 
 
@@ -103,5 +104,44 @@ public class SysUserController {
         return "user/edit";
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle edit(@ModelAttribute SysUser user) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (user.getId() == null) {
+            handle.setErrorMessage("数据异常");
+            return handle;
+        }
+        SingleResponseHandleT<SysUser> handleT = userService.getUserById(user.getId());
+        if (handleT.getIsSuccess()) {
+            SysUser s = handleT.getResult();
+            s.setRealName(user.getRealName());
+            s.setStatus(user.getStatus());
+            s.setDepartmentId(user.getDepartmentId());
+            s.setMobile(user.getMobile());
+            s.setEmail(user.getEmail());
+            handle = userService.updateUser(s);
+            if (handle.getIsSuccess()) {
+                handle.setMessage("修改用户成功");
+            }
+        } else {
+            handle.setErrorMessage("用户不存在");
+        }
+        return handle;
+    }
+
+    @RequestMapping(value = "/resetpwd", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle resetpwd(Model model, @RequestParam(value = "ids[]") Integer[] ids) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (ids != null && ids.length > 0) {
+            for (Integer id : ids) {
+                userService.resetPassword(Long.valueOf(id));
+            }
+        } else {
+            handle.setErrorMessage("参数异常");
+        }
+        return handle;
+    }
 
 }

@@ -28,4 +28,8 @@ public interface SysUserService {
     BaseResponseHandle changeState(Long id);
 
     SysUser currentUserInfo();
+
+    BaseResponseHandle updateUser(SysUser user);
+
+    BaseResponseHandle resetPassword(Long id);
 }

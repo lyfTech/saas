@@ -23,9 +23,11 @@
         </div>
         <div id="tableEventsToolbar">
             <shiro:hasPermission name="user:add">
-                <a href="javascript:;" onclick="cmsUserList.openAddUserModal()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe607;</i> 新增用户</a>
+                <a href="javascript:;" onclick="cmsUserList.openAddUserModal()" class="btn btn-primary radius"
+                   title="新增用户"><i class="Hui-iconfont">&#xe607;</i></a>
             </shiro:hasPermission>
-            <a href="javascript:;" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+            <a href="javascript:;" onclick="cmsUserList.resetPwd()" class="btn btn-danger radius" title="批量重置密码"><i
+                    class="Hui-iconfont">&#xe6bc;</i></a>
         </div>
         <table id="exampleTableEvents" data-mobile-responsive="true"></table>
     </div>
@@ -41,7 +43,10 @@
                 return "${ctx}/user/add";
             },
             toEditUser: function (id) {
-                return "${ctx}/user/edit/"+id;
+                return "${ctx}/user/edit/" + id;
+            },
+            resetPwd: function () {
+                return "${ctx}/user/resetpwd";
             }
         },
         changeUserState: function (id, msg) {
@@ -51,37 +56,73 @@
                 $.ajax({
                     type: "post",
                     url: cmsUserList.url.changeState(),
-                    data: {id:id},
+                    data: {id: id},
                     async: false,
                     success: function (data) {
                         if (data && data["isSuccess"]) {
                             layer.msg(msg + "用户成功", {icon: 6});
-                        }else {
-                            layer.msg(msg + "用户失败["+data["message"]+"]", {icon: 5});
+                        } else {
+                            layer.msg(msg + "用户失败[" + data["message"] + "]", {icon: 5});
                         }
                         $("#exampleTableEvents").bootstrapTable("refresh");
                     }
                 });
             });
         },
-        openModal: function (url) {
+        getSelectIds: function (rows) {
+            if (rows == null && rows.length < 1){
+                return "";
+            }
+            var ids = new Array();
+            $.each(rows, function(index, item){
+                ids.push(item.id);
+            });
+            console.log(JSON.stringify(ids));
+            return ids;
+        },
+        openModal: function (url, title) {
             layer.open({
                 type: 2,
-                title: '新增用户',
+                title: title,
                 area: ['500px', '450px'],
                 fixed: false, //不固定
                 shadeClose: true,
                 content: url,
-                success: function(layero, index) {
+                success: function (layero, index) {
                     layer.iframeAuto(index);
                 }
             });
         },
         openAddUserModal: function () {
-            cmsUserList.openModal(cmsUserList.url.toAddUser());
+            cmsUserList.openModal(cmsUserList.url.toAddUser(), '新增用户');
         },
         openEditUserModal: function (id) {
-            cmsUserList.openModal(cmsUserList.url.toEditUser(id));
+            cmsUserList.openModal(cmsUserList.url.toEditUser(id), '修改用户信息');
+        },
+        resetPwd: function () {
+            var rows = $("#exampleTableEvents").bootstrapTable("getSelections");
+            if (rows.length < 1) {
+                layer.msg('请选择一条数据', {icon: 7});
+                return false;
+            }
+            layer.confirm('您确定要重置选中用户的密码吗？', {
+                btn: ['确定', '再想想']
+            }, function () {
+                $.ajax({
+                    type: "post",
+                    url: cmsUserList.url.resetPwd(),
+                    data: {ids: cmsUserList.getSelectIds(rows)},
+                    async: false,
+                    success: function (data) {
+                        if (data && data["isSuccess"]) {
+                            layer.msg("重置用户密码成功", {icon: 6});
+                        } else {
+                            layer.msg("重置用户密码成功[" + data["message"] + "]", {icon: 5});
+                        }
+                        $("#exampleTableEvents").bootstrapTable("refresh");
+                    }
+                });
+            });
         }
     };
 
@@ -116,7 +157,7 @@
             },
             dataType: "json",
             columns: [{
-                radio: 'true'
+                checkbox: 'true'
             }, {
                 field: 'userName',
                 align: 'center',
@@ -146,9 +187,9 @@
                 title: '账号状态',
                 align: 'center',
                 formatter: function (value, row) {
-                    var context = '<span class="label label-danger" style="cursor: pointer" title="点击激活用户" onclick="cmsUserList.changeUserState('+row.id+', \'激活\')">冻结</span>';
-                    if (value == 0){
-                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结用户" onclick="cmsUserList.changeUserState('+row.id+', \'冻结\')">激活</span>';
+                    var context = '<span class="label label-danger" style="cursor: pointer" title="点击激活用户" onclick="cmsUserList.changeUserState(' + row.id + ', \'激活\')">冻结</span>';
+                    if (value == 0) {
+                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结用户" onclick="cmsUserList.changeUserState(' + row.id + ', \'冻结\')">激活</span>';
                     }
                     return context;
                 }
@@ -163,8 +204,9 @@
                 title: '操作',
                 align: 'center',
                 formatter: function (value, row, index) {
-                    var a = '<a style="text-decoration:none" onclick="" href="javascript:;" title="分配角色"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
-                    a += '<a style="text-decoration:none" onclick="cmsUserList.openEditUserModal(\''+row.id+'\')" href="javascript:;" title="编辑用户信息"><i class="Hui-iconfont">&#xe602;</i></a>';
+                    var a = '';
+                    a += '<a style="text-decoration:none" onclick="" href="javascript:;" title="分配角色"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
+                    a += '<a style="text-decoration:none" onclick="cmsUserList.openEditUserModal(\'' + row.id + '\')" href="javascript:;" title="编辑用户信息"><i class="Hui-iconfont">&#xe602;</i></a>';
                     return a;
                 }
             }
