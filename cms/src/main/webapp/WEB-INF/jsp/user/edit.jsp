@@ -14,7 +14,7 @@
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">用户名：<span class="c-red">*</span></label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="请输入登录用户名" id="userName" name="userName" value="${user.userName}" readonly/>
+                <input type="text" class="input-text" placeholder="请输入登录用户名" id="userName" name="userName" value="${user.userName}" disabled/>
             </div>
         </div>
         <div class="row cl">
