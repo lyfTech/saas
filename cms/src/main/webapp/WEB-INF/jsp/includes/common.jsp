@@ -2,7 +2,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <link href="${ctx}/static/css/style.min.css?v=4.1.0" rel="stylesheet">
 
-<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="http://cdn.bootcss.com/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet">
 <link href="http://cdn.bootcss.com/iCheck/1.0.2/skins/square/_all.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 <![endif]-->
 
 <script src="http://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/layer/3.0/layer.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="http://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>

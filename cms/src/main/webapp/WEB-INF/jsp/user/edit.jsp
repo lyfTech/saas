@@ -10,34 +10,28 @@
 <body class="">
 <article class="page-container">
     <form class="form form-horizontal" id="form-user-add">
+        <input type="hidden" id="id" name="id" value="${user.id}"/>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">用户名：<span class="c-red">*</span></label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="请输入登录用户名" id="userName" name="userName"/>
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">初始密码：<span class="c-red">*</span></label>
-            <div class="formControls col-xs-9 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" placeholder="请输入密码" id="password"
-                       name="password"/>
+                <input type="text" class="input-text" placeholder="请输入登录用户名" id="userName" name="userName" value="${user.userName}" readonly/>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">真实姓名：</label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="请输入真实姓名" id="realName" name="realName"/>
+                <input type="text" class="input-text" placeholder="请输入真实姓名" id="realName" name="realName" value="${user.realName}"/>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">账号状态：<span class="c-red">*</span></label>
             <div class="formControls col-xs-9 col-sm-9">
                 <div class="radio-box i-checks">
-                    <input name="status" type="radio" id="sex-1" value="0" checked>
+                    <input name="status" type="radio" id="sex-1" value="0" <c:if test="${user.status == 0}">checked</c:if>>
                     <label for="sex-1">激活</label>
                 </div>
                 <div class="radio-box i-checks">
-                    <input type="radio" id="sex-2" name="status" value="1">
+                    <input type="radio" id="sex-2" name="status" value="1" <c:if test="${user.status == 1}">checked</c:if>>
                     <label for="sex-2">冻结</label>
                 </div>
             </div>
@@ -46,28 +40,33 @@
             <label class="form-label col-xs-3 col-sm-3">职能部门：</label>
             <div class="formControls col-xs-9 col-sm-9">
                 <span class="select-box">
-			        <select class="select" id="departmentId" name="departmentId" size="1"></select>
+			        <select class="select" id="departmentId" name="departmentId" size="1">
+                        <option value="">请选择</option>
+                        <c:forEach items="${depts}" var="item">
+                            <option value="${item.id}" <c:if test="${user.departmentId == item.id}">selected</c:if>>${item.name}</option>
+                        </c:forEach>
+                    </select>
 			    </span>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">手机号码：</label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="18888888888" id="mobile" name="mobile">
+                <input type="text" class="input-text" placeholder="18888888888" id="mobile" name="mobile" value="${user.mobile}">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">邮箱：</label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="abc@zyx.com" name="email" id="email">
+                <input type="text" class="input-text" placeholder="abc@zyx.com" name="email" id="email" value="${user.email}">
             </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="submit" value="&nbsp;保存&nbsp;"
-                       onclick="addUser.validateForm()">
+                       onclick="editUser.validateForm()">
                 <input class="btn btn-default radius" type="button" value="&nbsp;取消&nbsp;&nbsp;"
-                       onclick="addUser.closeWin()">
+                       onclick="editUser.closeWin()">
             </div>
         </div>
     </form>
@@ -78,45 +77,18 @@
 
     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 
-    var addUser = {
+    var editUser = {
         url: {
             getDepatment: function () {
                 return "${ctx}/dept/getAll";
             },
-            addUser: function () {
-                return "${ctx}/user/doAdd";
+            editUser: function () {
+                return "${ctx}/user/doEdit";
             }
-        },
-        initDepartment: function (id) {
-            $.ajax({
-                url: addUser.url.getDepatment(),
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    if (data && data["isSuccess"]) {
-                        var depts = data["result"];
-                        var options = "<option value=''>请选择</option>"
-                        $.each(depts, function (index, item) {
-                            options += "<option value='"+item.id+"'>"+item.name+"</option>";
-                        })
-                        $(id).append(options);
-                    } else {
-                        layer.msg(data.message, {icon: 5});
-                    }
-                }
-            });
         },
         validateForm: function () {
             $('#form-user-add').validate({
                 rules: {
-                    userName: {
-                        required: true,
-                        minlength: 4,
-                        maxlength: 16
-                    },
-                    password: {
-                        required: true,
-                    },
                     mobile: {
                         isPhone: true,
                     },
@@ -127,18 +99,16 @@
                 focusCleanup: true,
                 success: "valid",
                 submitHandler: function (form) {
-                    addUser.submitForm(form);
+                    editUser.submitForm(form);
                 }
             });
         },
         submitForm: function (form) {
             $(form).ajaxSubmit({
-                url: addUser.url.addUser(),
+                url: editUser.url.editUser(),
                 type: 'post',
                 dataType: 'json',
-//                contentType: 'application/json;charset=UTF-8',
                 beforeSubmit: function (formData, jqForm, options) {
-                    console.log(JSON.stringify(options.data));
                     layer.load();
                 },
                 success: function (data) {
@@ -160,13 +130,12 @@
         },
         init: function () {
             $(".i-checks").iCheck({checkboxClass: "icheckbox_square_blur", radioClass: "iradio_square-blue",});
-            addUser.initDepartment("#departmentId");
             parent.layer.iframeAuto(index);
         }
     };
 
     $(function () {
-        addUser.init();
+        editUser.init();
     });
 
 </script>

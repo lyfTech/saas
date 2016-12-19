@@ -4,6 +4,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.saas.common.enums.ConsantEnums;
+import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
 import org.saas.common.handle.BaseResponseHandle;
 import org.saas.common.mybatis.PageRequest;
@@ -33,12 +34,13 @@ public class SysUserServiceImpl implements SysUserService {
     private PasswordHelper passwordHelper;
 
 
-    public SysUser getUserById(Long userId) {
+    public SingleResponseHandleT<SysUser> getUserById(Long userId) {
+        SingleResponseHandleT<SysUser> handleT = new SingleResponseHandleT<SysUser>();
         if (userId != null && userId != 0) {
             SysUser user = userMapper.selectByPrimaryKey(userId);
-            return user;
+            handleT.setResult(user);
         }
-        return null;
+        return handleT;
     }
 
     public SysUser getUserByName(String userName) {
@@ -100,7 +102,7 @@ public class SysUserServiceImpl implements SysUserService {
 
     public BaseResponseHandle changeState(Long id) {
         BaseResponseHandle handle = new BaseResponseHandle();
-        SysUser user = getUserById(id);
+        SysUser user = userMapper.selectByPrimaryKey(id);
         if (user != null) {
             user.setStatus(user.getStatus() == 1 ? 0 : 1);
             user.setModifier(currentUserInfo().getId());

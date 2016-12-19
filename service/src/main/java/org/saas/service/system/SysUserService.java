@@ -1,5 +1,6 @@
 package org.saas.service.system;
 
+import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
 import org.saas.common.handle.BaseResponseHandle;
 import org.saas.common.mybatis.PageRequest;
@@ -12,7 +13,7 @@ import java.util.Set;
 
 public interface SysUserService {
 
-    SysUser getUserById(Long userId);
+    SingleResponseHandleT<SysUser> getUserById(Long userId);
 
     SysUser getUserByName(String userName);
 

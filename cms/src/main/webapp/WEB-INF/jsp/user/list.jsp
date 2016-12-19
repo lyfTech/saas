@@ -36,6 +36,9 @@
             },
             toAddUser: function () {
                 return "${ctx}/user/add";
+            },
+            toEditUser: function (id) {
+                return "${ctx}/user/edit/"+id;
             }
         },
         changeUserState: function (id, msg) {
@@ -73,6 +76,9 @@
         },
         openAddUserModal: function () {
             cmsUserList.openModal(cmsUserList.url.toAddUser());
+        },
+        openEditUserModal: function (id) {
+            cmsUserList.openModal(cmsUserList.url.toEditUser(id));
         }
     };
 
@@ -155,7 +161,7 @@
                 align: 'center',
                 formatter: function (value, row, index) {
                     var a = '<a style="text-decoration:none" onclick="" href="javascript:;" title="分配角色"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
-                    a += '<a style="text-decoration:none" onclick="" href="javascript:;" title="编辑用户信息"><i class="Hui-iconfont">&#xe602;</i></a>';
+                    a += '<a style="text-decoration:none" onclick="cmsUserList.openEditUserModal(\''+row.id+'\')" href="javascript:;" title="编辑用户信息"><i class="Hui-iconfont">&#xe602;</i></a>';
                     return a;
                 }
             }

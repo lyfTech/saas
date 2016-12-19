@@ -36,11 +36,6 @@ public class SysUser implements Serializable {
 
     public SysUser() {}
 
-    public SysUser(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-
     public Long getId() {
         return id;
     }

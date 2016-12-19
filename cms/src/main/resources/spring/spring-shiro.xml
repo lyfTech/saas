@@ -99,6 +99,7 @@
                 /login = authc
                 /logout = logout
                 /index/** = user
+                /user/** = user
                 /** = anon
             </value>
         </property>
