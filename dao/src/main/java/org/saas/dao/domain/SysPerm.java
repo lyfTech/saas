@@ -1,5 +1,6 @@
 package org.saas.dao.domain;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,8 @@ public class SysPerm implements Serializable {
     private String modifier;
 
     private Date modifyTime;
+
+    private String parentName;
 
     /**
      * 用来获取子菜单
@@ -158,5 +161,13 @@ public class SysPerm implements Serializable {
 
     public void setChilds(List<SysPerm> childs) {
         this.childs = childs;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 }

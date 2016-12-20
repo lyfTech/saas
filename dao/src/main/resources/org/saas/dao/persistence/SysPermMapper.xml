@@ -16,6 +16,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modifier" property="modifier" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="parentName" property="parentName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -363,8 +364,8 @@
     <if test="distinct" >
       distinct
     </if>
-    <include refid="Base_Column_List" />
-    from sys_perm
+    <include refid="Base_Column_List" />,(select p.name from sys_perm p where s.parent_id = p.id) as parentName
+    from sys_perm s
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
