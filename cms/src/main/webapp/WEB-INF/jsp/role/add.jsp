@@ -10,63 +10,42 @@
 <body class="">
 <article class="page-container">
     <form class="form form-horizontal" id="form-user-add">
-        <input type="hidden" id="id" name="id" value="${user.id}"/>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">用户名：<span class="c-red">*</span></label>
+            <label class="form-label col-xs-3 col-sm-3">角色名：<span class="c-red">*</span></label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="请输入登录用户名" id="userName" name="userName" value="${user.userName}" disabled/>
+                <input type="text" class="input-text" placeholder="请输入角色名称" id="name" name="name"/>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">真实姓名：</label>
+            <label class="form-label col-xs-3 col-sm-3">排序：</label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="请输入真实姓名" id="realName" name="realName" value="${user.realName}"/>
+                <input type="number" class="input-text" placeholder="请输入排序位置" id="sort" name="sort"/>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">账号状态：<span class="c-red">*</span></label>
+            <label class="form-label col-xs-3 col-sm-3">角色状态：<span class="c-red">*</span></label>
             <div class="formControls col-xs-9 col-sm-9">
                 <div class="radio-box i-checks">
-                    <input name="status" type="radio" id="sex-1" value="0" <c:if test="${user.status == 0}">checked</c:if>>
+                    <input name="status" type="radio" id="sex-1" value="0" checked>
                     <label for="sex-1">激活</label>
                 </div>
                 <div class="radio-box i-checks">
-                    <input type="radio" id="sex-2" name="status" value="1" <c:if test="${user.status == 1}">checked</c:if>>
+                    <input type="radio" id="sex-2" name="status" value="1">
                     <label for="sex-2">冻结</label>
                 </div>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">职能部门：</label>
+            <label class="form-label col-xs-3 col-sm-3">角色描述：</label>
             <div class="formControls col-xs-9 col-sm-9">
-                <span class="select-box">
-			        <select class="select" id="departmentId" name="departmentId" size="1">
-                        <option value="">请选择</option>
-                        <c:forEach items="${depts}" var="item">
-                            <option value="${item.id}" <c:if test="${user.departmentId == item.id}">selected</c:if>>${item.name}</option>
-                        </c:forEach>
-                    </select>
-			    </span>
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">手机号码：</label>
-            <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="18888888888" id="mobile" name="mobile" value="${user.mobile}">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">邮箱：</label>
-            <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" placeholder="abc@zyx.com" name="email" id="email" value="${user.email}">
+                <textarea id="description" name="description" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
+                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <input class="btn btn-primary radius" type="submit" value="&nbsp;保存&nbsp;"
-                       onclick="editUser.validateForm()">
-                <input class="btn btn-default radius" type="button" value="&nbsp;取消&nbsp;&nbsp;"
-                       onclick="editUser.closeWin()">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;保存&nbsp;" onclick="cmsRoleAdd.validateForm()">
+                <input class="btn btn-default radius" type="button" value="&nbsp;取消&nbsp;&nbsp;" onclick="cmsRoleAdd.closeWin()">
             </div>
         </div>
     </form>
@@ -77,35 +56,39 @@
 
     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 
-    var editUser = {
+    var cmsRoleAdd = {
         url: {
-            getDepatment: function () {
-                return "${ctx}/dept/getAll";
-            },
-            editUser: function () {
-                return "${ctx}/user/edit";
+            addRole: function () {
+                return "${ctx}/role/add";
             }
         },
         validateForm: function () {
             $('#form-user-add').validate({
                 rules: {
-                    mobile: {
-                        isPhone: true,
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 10
                     },
-                    email: {
-                        email: true,
+                    sort: {
+                        number: true,
+                        min: 1,
+                        max: 99
+                    },
+                    description: {
+                        maxlength: 100
                     }
                 },
                 focusCleanup: true,
                 success: "valid",
                 submitHandler: function (form) {
-                    editUser.submitForm(form);
+                    cmsRoleAdd.submitForm(form);
                 }
             });
         },
         submitForm: function (form) {
             $(form).ajaxSubmit({
-                url: editUser.url.editUser(),
+                url: cmsRoleAdd.url.addRole(),
                 type: 'post',
                 dataType: 'json',
                 beforeSubmit: function (formData, jqForm, options) {
@@ -135,7 +118,7 @@
     };
 
     $(function () {
-        editUser.init();
+        cmsRoleAdd.init();
     });
 
 </script>

@@ -143,8 +143,8 @@
                 success: function (data) {
                     layer.closeAll('loading');
                     if (data && data["isSuccess"]) {
-                        layer.msg(data.message, {icon: 6});
-                        parent.$('.btn-refresh').click();
+                        parent.layer.msg(data.message, {icon: 6});
+                        parent.$("#exampleTableEvents").bootstrapTable("refresh");
                         parent.layer.close(index);
                     } else {
                         layer.msg(data.message, {icon: 5});
