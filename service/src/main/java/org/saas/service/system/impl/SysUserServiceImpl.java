@@ -3,12 +3,17 @@ package org.saas.service.system.impl;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
+import org.saas.common.dto.KeyValueDto;
 import org.saas.common.enums.ConsantEnums;
+import org.saas.common.handle.ResponseHandle;
+import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
 import org.saas.common.handle.BaseResponseHandle;
 import org.saas.common.mybatis.PageRequest;
 import org.saas.common.utils.StringUtils;
+import org.saas.dao.domain.RelUserRole;
+import org.saas.dao.domain.SysRole;
 import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
 import org.saas.dao.mapper.SysUserMapper;
@@ -17,12 +22,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.security.auth.Subject;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -143,11 +147,11 @@ public class SysUserServiceImpl implements SysUserService {
         return handle;
     }
 
-    public BaseResponseHandle resetPassword(Long id) {
+    public BaseResponseHandle resetPassword(Long id, String password) {
         BaseResponseHandle handle = new BaseResponseHandle();
         SysUser user = userMapper.selectByPrimaryKey(id);
         if (user != null) {
-            user.setPassword("123456");
+            user.setPassword(password);
             passwordHelper.encryptPassword(user);
             int i = userMapper.updateByPrimaryKey(user);
             if (i < 1) {
@@ -156,6 +160,42 @@ public class SysUserServiceImpl implements SysUserService {
             } else {
                 logger.info("用户id={}重置密码成功", user.getId());
             }
+        }
+        return handle;
+    }
+
+    public ResponseHandleT<SysRole> getUserRoleByUserId(Long id) {
+        ResponseHandleT<SysRole> handleT = new ResponseHandleT<SysRole>();
+        if (id == null) {
+            handleT.setErrorMessage("参数异常");
+            return handleT;
+        }
+        List<SysRole> map = userMapper.selectRoleByUserId(id);
+        handleT.setResult(map);
+        return handleT;
+    }
+
+    @Transactional
+    public BaseResponseHandle saveUserRole(Long userId, Integer[] roleIds) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (userId == null) {
+            handle.setErrorMessage("参数异常");
+            return handle;
+        }
+        try {
+            int i = userMapper.deleteUserRoleByUserId(userId);
+            List<RelUserRole> list = new ArrayList<RelUserRole>();
+            for (Integer roleId : roleIds) {
+                RelUserRole ur = new RelUserRole();
+                ur.setUserId(userId);
+                ur.setRoleId(Long.valueOf(roleId));
+                list.add(ur);
+            }
+            int j = userMapper.insertUserRole(list);
+            logger.info("用户[id={}]角色分配成功：移除{}—>新增{}", userId, i, j);
+        } catch (Exception e) {
+            logger.error("用户[id={}]角色分配异常，异常原因：{}", userId, e.getMessage());
+            handle.setErrorMessage("用户分配角色失败");
         }
         return handle;
     }

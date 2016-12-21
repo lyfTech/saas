@@ -108,16 +108,33 @@
     SELECT DISTINCT sp.`code` FROM sys_user su, rel_user_role ur, sys_role sr, rel_role_perm rp, sys_perm sp where su.id = ur.user_id AND sr.id = ur.role_id and sr.id = rp.role_id and rp.perm_id = sp.id AND su.user_name = #{name, jdbcType=VARCHAR}
   </select>
 
+  <select id="selectRoleByUserId" resultType="org.saas.dao.domain.SysRole" parameterType="java.lang.Long">
+    select sr.id, sr.`name` from sys_user su, sys_role sr, rel_user_role ur where su.id = ur.user_id and sr.id = ur.role_id and su.id = #{id, jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteUserRoleByUserId" parameterType="java.lang.Long">
+    delete from rel_user_role where user_id = #{id,jdbcType=BIGINT}
+  </delete>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <delete id="deleteByExample" parameterType="org.saas.dao.domain.SysUserExample" >
     delete from sys_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
+  <insert id="insertUserRole" parameterType="java.util.List">
+    insert into rel_user_role (user_id, role_id) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.userId},#{item.roleId})
+    </foreach>
+  </insert>
+
   <insert id="insert" parameterType="org.saas.dao.domain.SysUser" >
     insert into sys_user (id, user_name, `password`,
       real_name, mobile, email,

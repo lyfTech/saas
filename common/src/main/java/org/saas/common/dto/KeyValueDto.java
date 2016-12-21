@@ -5,27 +5,27 @@ package org.saas.common.dto;
  */
 public class KeyValueDto {
 
-    private String key;
-    private String value;
+    private Object key;
+    private Object value;
 
-    public KeyValueDto(String key, String value) {
+    public KeyValueDto(Object key, Object value) {
         this.key = key;
         this.value = value;
     }
 
-    public String getKey() {
+    public Object getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(Object key) {
         this.key = key;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Object value) {
         this.value = value;
     }
 }

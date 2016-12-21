@@ -101,7 +101,7 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" src="${ctx}/perm/list"></iframe>
+            <iframe scrolling="yes" frameborder="0" src="${ctx}/user/list"></iframe>
         </div>
     </div>
 </section>

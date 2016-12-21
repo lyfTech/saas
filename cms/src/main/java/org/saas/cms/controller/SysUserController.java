@@ -3,16 +3,17 @@ package org.saas.cms.controller;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.saas.common.dto.KeyValueDto;
 import org.saas.common.handle.BaseResponseHandle;
-import org.saas.common.handle.ResponseHandle;
 import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
-import org.saas.dao.domain.SysDepartment;
+import org.saas.dao.domain.SysRole;
 import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
 import org.saas.service.system.SysDeptService;
+import org.saas.service.system.SysRoleService;
 import org.saas.service.system.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -34,6 +35,8 @@ public class SysUserController {
     private SysUserService userService;
     @Autowired
     private SysDeptService deptService;
+    @Autowired
+    private SysRoleService roleService;
 
     @RequiresPermissions({"user:list"})
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -132,11 +135,11 @@ public class SysUserController {
 
     @RequestMapping(value = "/resetpwd", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseHandle resetpwd(Model model, @RequestParam(value = "ids[]") Integer[] ids) {
+    public BaseResponseHandle resetpwd(@RequestParam String password, @RequestParam(value = "ids[]") Integer[] ids) {
         BaseResponseHandle handle = new BaseResponseHandle();
         if (ids != null && ids.length > 0) {
             for (Integer id : ids) {
-                userService.resetPassword(Long.valueOf(id));
+                userService.resetPassword(Long.valueOf(id), password);
             }
         } else {
             handle.setErrorMessage("参数异常");
@@ -144,4 +147,30 @@ public class SysUserController {
         return handle;
     }
 
+    @RequiresPermissions({"user:role"})
+    @RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
+    public String userRole(Model model, @PathVariable(value = "id") Long id) {
+        ResponseHandleT<SysRole> responseHandleT = userService.getUserRoleByUserId(id);
+        if (responseHandleT.getIsSuccess()){
+            model.addAttribute("userId", id);
+            model.addAttribute("userRole", responseHandleT.getResult());
+        }
+        return "user/role";
+    }
+
+    @RequestMapping(value = "/role", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle saveUserRole(@RequestParam Long userId, @RequestParam(value = "ids[]") Integer[] ids) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (userId == null){
+            handle.setErrorMessage("页面参数异常");
+            return handle;
+        }
+        if (ids != null && ids.length > 0) {
+            handle = userService.saveUserRole(userId, ids);
+        } else {
+            handle.setErrorMessage("参数异常");
+        }
+        return handle;
+    }
 }

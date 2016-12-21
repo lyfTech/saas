@@ -137,7 +137,6 @@
                 type: 'post',
                 dataType: 'json',
                 beforeSubmit: function (formData, jqForm, options) {
-                    console.log(JSON.stringify(options.data));
                     layer.load();
                 },
                 success: function (data) {

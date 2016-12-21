@@ -23,11 +23,9 @@
         </div>
         <div id="tableEventsToolbar">
             <shiro:hasPermission name="user:add">
-                <a href="javascript:;" onclick="cmsUserList.openAddUserModal()" class="btn btn-primary radius"
-                   title="新增用户"><i class="Hui-iconfont">&#xe607;</i></a>
+                <a href="javascript:;" onclick="cmsUserList.openAddUserModal()" class="btn btn-primary radius" title="新增用户"><i class="Hui-iconfont">&#xe607;</i></a>
             </shiro:hasPermission>
-            <a href="javascript:;" onclick="cmsUserList.resetPwd()" class="btn btn-danger radius" title="批量重置密码"><i
-                    class="Hui-iconfont">&#xe6bc;</i></a>
+            <a href="javascript:;" onclick="cmsUserList.resetPwd()" class="btn btn-warning radius" title="批量重置密码"><i class="Hui-iconfont">&#xe66c;</i></a>
         </div>
         <table id="exampleTableEvents" data-mobile-responsive="true"></table>
     </div>
@@ -47,6 +45,9 @@
             },
             resetPwd: function () {
                 return "${ctx}/user/resetpwd";
+            },
+            toUserRole: function (id) {
+                return "${ctx}/user/role/" + id;
             }
         },
         changeUserState: function (id, msg) {
@@ -70,23 +71,24 @@
             });
         },
         getSelectIds: function (rows) {
-            if (rows == null && rows.length < 1){
+            if (rows == null && rows.length < 1) {
                 return "";
             }
             var ids = new Array();
-            $.each(rows, function(index, item){
+            $.each(rows, function (index, item) {
                 ids.push(item.id);
             });
             console.log(JSON.stringify(ids));
             return ids;
         },
-        openModal: function (url, title) {
+        openModal: function (url, title, area) {
             layer.open({
                 type: 2,
                 title: title,
-                area: ['500px', '450px'],
+                area: area,
                 fixed: false, //不固定
                 shadeClose: true,
+                maxmin: true,
                 content: url,
                 success: function (layero, index) {
                     layer.iframeAuto(index);
@@ -94,24 +96,31 @@
             });
         },
         openAddUserModal: function () {
-            cmsUserList.openModal(cmsUserList.url.toAddUser(), '新增用户');
+            cmsUserList.openModal(cmsUserList.url.toAddUser(), '新增用户', ['500px', '450px']);
         },
         openEditUserModal: function (id) {
-            cmsUserList.openModal(cmsUserList.url.toEditUser(id), '修改用户信息');
+            cmsUserList.openModal(cmsUserList.url.toEditUser(id), '修改用户信息', ['500px', '450px']);
+        },
+        openUserRoleModal: function (id) {
+            cmsUserList.openModal(cmsUserList.url.toUserRole(id), '用户分配角色', ['60%', '100%']);
         },
         resetPwd: function () {
             var rows = $("#exampleTableEvents").bootstrapTable("getSelections");
             if (rows.length < 1) {
-                layer.msg('请选择一条数据', {icon: 7});
+                layer.msg('请选择用户', {icon: 7});
                 return false;
             }
-            layer.confirm('您确定要重置选中用户的密码吗？', {
-                btn: ['确定', '再想想']
-            }, function () {
+            layer.prompt({title: '输入新密码', formType: 1}, function(val, index){
+                if (val == ''){
+                    return false;
+                }
                 $.ajax({
                     type: "post",
                     url: cmsUserList.url.resetPwd(),
-                    data: {ids: cmsUserList.getSelectIds(rows)},
+                    data: {
+                        password: val,
+                        ids: cmsUserList.getSelectIds(rows)
+                    },
                     async: false,
                     success: function (data) {
                         if (data && data["isSuccess"]) {
@@ -122,6 +131,7 @@
                         $("#exampleTableEvents").bootstrapTable("refresh");
                     }
                 });
+                layer.close(index);
             });
         }
     };
@@ -205,7 +215,7 @@
                 align: 'center',
                 formatter: function (value, row, index) {
                     var a = '';
-                    a += '<a style="text-decoration:none" onclick="" href="javascript:;" title="分配角色"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
+                    a += '<a style="text-decoration:none" onclick="cmsUserList.openUserRoleModal(\'' + row.id + '\')" href="javascript:;" title="分配角色"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
                     a += '<a style="text-decoration:none" onclick="cmsUserList.openEditUserModal(\'' + row.id + '\')" href="javascript:;" title="编辑用户信息"><i class="Hui-iconfont">&#xe602;</i></a>';
                     return a;
                 }
