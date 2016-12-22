@@ -5,6 +5,8 @@ import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
 import org.saas.common.utils.StringUtils;
+import org.saas.dao.domain.RelRolePerm;
+import org.saas.dao.domain.RelUserRole;
 import org.saas.dao.domain.SysRole;
 import org.saas.dao.domain.SysRoleExample;
 import org.saas.dao.mapper.SysRoleMapper;
@@ -13,8 +15,10 @@ import org.saas.service.system.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -107,6 +111,29 @@ public class SysRoleServiceImpl implements SysRoleService {
         } catch (Exception e) {
             handle.setErrorMessage("角色更新异常");
             logger.error("角色更新异常", e.getMessage());
+        }
+        return handle;
+    }
+
+    @Transactional
+    public BaseResponseHandle saveRolePerm(Long roleId, Integer[] permIds) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (roleId == null) {
+            handle.setErrorMessage("参数异常");
+            return handle;
+        }
+        try {
+            int i = roleMapper.deleteRolePermByRoleId(roleId);
+            List<RelRolePerm> list = new ArrayList<RelRolePerm>();
+            for (Integer permId : permIds) {
+                RelRolePerm rp = new RelRolePerm(roleId, Long.valueOf(permId));
+                list.add(rp);
+            }
+            int j = roleMapper.insertRolePerm(list);
+            logger.info("角色[id={}]权限分配成功：移除{}—>新增{}", roleId, i, j);
+        } catch (Exception e) {
+            logger.error("角色[id={}]权限分配异常，异常原因：{}", roleId, e.getMessage());
+            handle.setErrorMessage("角色分配权限失败");
         }
         return handle;
     }

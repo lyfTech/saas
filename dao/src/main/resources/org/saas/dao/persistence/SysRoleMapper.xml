@@ -95,6 +95,9 @@
     from sys_role
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <delete id="deleteRolePermByRoleId" parameterType="java.lang.Long">
+    delete from rel_role_perm where role_id = #{id,jdbcType=BIGINT}
+  </delete>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_role
     where id = #{id,jdbcType=BIGINT}
@@ -105,6 +108,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  <insert id="insertRolePerm" parameterType="java.util.List">
+    insert into rel_role_perm (role_id, perm_id) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.roleId},#{item.permId})
+    </foreach>
+  </insert>
   <insert id="insert" parameterType="org.saas.dao.domain.SysRole" >
     insert into sys_role (id, `name`, description,
       sort, `status`, is_del,

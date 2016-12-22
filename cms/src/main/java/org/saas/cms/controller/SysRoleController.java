@@ -7,11 +7,9 @@ import org.saas.common.handle.BaseResponseHandle;
 import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
-import org.saas.dao.domain.SysRole;
-import org.saas.dao.domain.SysRoleExample;
-import org.saas.dao.domain.SysUser;
-import org.saas.dao.domain.SysUserExample;
+import org.saas.dao.domain.*;
 import org.saas.service.system.SysDeptService;
+import org.saas.service.system.SysPermService;
 import org.saas.service.system.SysRoleService;
 import org.saas.service.system.SysUserService;
 import org.slf4j.Logger;
@@ -21,7 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 @Controller
@@ -35,6 +35,8 @@ public class SysRoleController {
     private SysDeptService deptService;
     @Autowired
     private SysRoleService roleService;
+    @Autowired
+    private SysPermService permService;
 
     @RequiresPermissions({"role:list"})
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -124,6 +126,37 @@ public class SysRoleController {
             }
         } else {
             handle.setErrorMessage("角色不存在");
+        }
+        return handle;
+    }
+
+    @RequiresPermissions({"role:perm"})
+    @RequestMapping(value = "/perm/{id}", method = RequestMethod.GET)
+    public String perm(Model model, @PathVariable(value = "id") Long id) {
+        SingleResponseHandleT<SysRole> singleResponseHandleT = roleService.getRoleById(id);
+        if (singleResponseHandleT.getIsSuccess()) {
+            List<SysPerm> allPerm = permService.getUserPerm(null);
+            Set<String> hasPerm = permService.getPremByRoleId(singleResponseHandleT.getResult().getId());
+            model.addAttribute("role", singleResponseHandleT.getResult());
+            model.addAttribute("allPerm", allPerm);
+            model.addAttribute("hasPerm", hasPerm);
+        }
+        return "role/perm";
+    }
+
+    @RequiresPermissions({"role:perm"})
+    @RequestMapping(value = "/perm", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle saveUserRole(@RequestParam Long roleId, @RequestParam(value = "ids[]") Integer[] ids) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (roleId == null){
+            handle.setErrorMessage("页面参数异常");
+            return handle;
+        }
+        if (ids != null && ids.length > 0) {
+            handle = roleService.saveRolePerm(roleId, ids);
+        } else {
+            handle.setErrorMessage("参数异常");
         }
         return handle;
     }

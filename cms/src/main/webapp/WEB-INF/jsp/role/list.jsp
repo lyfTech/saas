@@ -33,7 +33,7 @@
     var cmsRoleList = {
         url: {
             roleList: function () {
-              return "${ctx}/role/list";
+                return "${ctx}/role/list";
             },
             changeState: function () {
                 return "${ctx}/role/changeState";
@@ -43,6 +43,9 @@
             },
             toEditRole: function (id) {
                 return "${ctx}/role/edit/" + id;
+            },
+            toRolePerm: function (id) {
+                return "${ctx}/role/perm/" + id;
             }
         },
         changeRoleState: function (id, msg) {
@@ -66,22 +69,23 @@
             });
         },
         getSelectIds: function (rows) {
-            if (rows == null && rows.length < 1){
+            if (rows == null && rows.length < 1) {
                 return "";
             }
             var ids = new Array();
-            $.each(rows, function(index, item){
+            $.each(rows, function (index, item) {
                 ids.push(item.id);
             });
             return ids;
         },
-        openModal: function (url, title) {
+        openModal: function (url, title, area) {
             layer.open({
                 type: 2,
                 title: title,
-                area: ['500px', '400px'],
+                area: area,
                 fixed: false, //不固定
                 shadeClose: true,
+                maxmin: true,
                 content: url,
                 success: function (layero, index) {
                     layer.iframeAuto(index);
@@ -89,10 +93,13 @@
             });
         },
         openAddRoleModal: function () {
-            cmsRoleList.openModal(cmsRoleList.url.toAddRole(), '新增角色');
+            cmsRoleList.openModal(cmsRoleList.url.toAddRole(), '新增角色', ['500px', '450px']);
         },
         openEditRoleModal: function (id) {
-            cmsRoleList.openModal(cmsRoleList.url.toEditRole(id), '修改角色信息');
+            cmsRoleList.openModal(cmsRoleList.url.toEditRole(id), '修改角色信息', ['500px', '450px']);
+        },
+        openRolePermModal: function (id) {
+            cmsRoleList.openModal(cmsRoleList.url.toRolePerm(id), '用户分配角色', ['60%', '100%']);
         }
     };
 
@@ -163,7 +170,7 @@
                 align: 'center',
                 formatter: function (value, row, index) {
                     var a = '';
-                    a += '<a style="text-decoration:none" onclick="" href="javascript:;" title="分配权限"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
+                    a += '<a style="text-decoration:none" onclick="cmsRoleList.openRolePermModal(\'' + row.id + '\')" href="javascript:;" title="分配权限"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
                     a += '<a style="text-decoration:none" onclick="cmsRoleList.openEditRoleModal(\'' + row.id + '\')" href="javascript:;" title="编辑角色信息"><i class="Hui-iconfont">&#xe602;</i></a>';
                     return a;
                 }

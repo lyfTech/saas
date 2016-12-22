@@ -9,9 +9,12 @@ import org.saas.dao.domain.SysPerm;
 import org.saas.dao.domain.SysPermExample;
 
 import java.util.List;
+import java.util.Set;
 
 public interface SysPermService {
     List<SysPerm> getUserPerm(String username);
+
+    Set<String> getPremByRoleId(Long roleId);
 
     Page<SysPerm> queryPermPage(SysPermExample example, PageRequest pageRequest);
 

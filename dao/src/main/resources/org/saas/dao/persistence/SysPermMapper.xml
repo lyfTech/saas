@@ -105,9 +105,21 @@
     sp.id, sp.`name`, sp.code, sp.parent_id, sp.url, sp.icon, sp.sort, sp.`status`, sp.`type`, sp.description, sp.creator, sp.create_time, sp.modifier, sp.modify_time
     from sys_user su, rel_user_role ur, sys_role sr, rel_role_perm rp, sys_perm sp
     where su.id = ur.user_id AND sr.id = ur.role_id and sr.id = rp.role_id and rp.perm_id = sp.id
-    AND su.user_name = #{name, jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      AND su.user_name = #{name, jdbcType=VARCHAR}
+    </if>
     order by sp.sort asc;
   </select>
+
+  <select id="selectRolePremByRoleId" resultType="java.lang.String" parameterType="java.lang.Long">
+    select distinct
+    sp.code
+    from  sys_role sr, rel_role_perm rp, sys_perm sp
+    where sr.id = rp.role_id and rp.perm_id = sp.id
+    AND sr.id = #{id, jdbcType=BIGINT}
+    order by sp.sort asc;
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_perm
     where id = #{id,jdbcType=BIGINT}

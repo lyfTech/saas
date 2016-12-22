@@ -6,6 +6,7 @@ import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
 import org.saas.dao.domain.SysRole;
 import org.saas.dao.domain.SysRoleExample;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by gls on 2016/12/20.
@@ -22,4 +23,7 @@ public interface SysRoleService {
     BaseResponseHandle addRole(SysRole role);
 
     BaseResponseHandle updateRole(SysRole role);
+
+    @Transactional
+    BaseResponseHandle saveRolePerm(Long roleId, Integer[] permIds);
 }

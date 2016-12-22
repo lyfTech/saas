@@ -8,7 +8,6 @@ import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
 import org.saas.common.utils.StringUtils;
 import org.saas.dao.domain.SysPerm;
-import org.saas.dao.domain.SysPerm;
 import org.saas.dao.domain.SysPermExample;
 import org.saas.dao.mapper.SysPermMapper;
 import org.saas.service.system.SysPermService;
@@ -18,10 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by gls on 2016/12/15.
@@ -39,6 +37,11 @@ public class SysPermServiceImpl implements SysPermService {
         List<SysPerm> permList = permMapper.selectUserPremByUserName(username);
         TreeUtil treeUtil = new TreeUtil(permList);
         List<SysPerm> perms = treeUtil.generateTreeNode(new SysPerm(),1L);
+        return perms;
+    }
+
+    public Set<String> getPremByRoleId(Long roleId){
+        Set<String> perms = permMapper.selectRolePremByRoleId(roleId);
         return perms;
     }
 

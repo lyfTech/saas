@@ -142,7 +142,7 @@ public class SysUserServiceImpl implements SysUserService {
             }
         } catch (Exception e) {
             handle.setErrorMessage("用户更新异常");
-            logger.error("用户更新异常", e.getMessage());
+            logger.error("用户更新异常：{}", e.getMessage());
         }
         return handle;
     }
