@@ -21,8 +21,7 @@
         </div>
         <div id="tableEventsToolbar">
             <shiro:hasPermission name="role:add">
-                <a href="javascript:;" onclick="cmsRoleList.openAddRoleModal()" class="btn btn-primary radius"
-                   title="新增角色"><i class="Hui-iconfont">&#xe607;</i></a>
+                <a href="javascript:;" onclick="cmsRoleList.openAddRoleModal()" class="btn btn-primary radius" title="新增角色"><i class="Hui-iconfont">&#xe607;</i></a>
             </shiro:hasPermission>
         </div>
         <table id="exampleTableEvents" data-mobile-responsive="true"></table>
@@ -134,8 +133,6 @@
             },
             dataType: "json",
             columns: [{
-                checkbox: 'true'
-            }, {
                 field: 'name',
                 align: 'center',
                 title: '角色'
@@ -152,9 +149,9 @@
                 title: '账号状态',
                 align: 'center',
                 formatter: function (value, row) {
-                    var context = '<span class="label label-danger" style="cursor: pointer" title="点击激活用户" onclick="cmsRoleList.changeRoleState(' + row.id + ', \'激活\')">冻结</span>';
+                    var context = '<span class="label label-danger" style="cursor: pointer" title="点击激活用户" <shiro:hasPermission name="role:del">onclick="cmsRoleList.changeRoleState(' + row.id + ', \'激活\')"</shiro:hasPermission>>冻结</span>';
                     if (value == 0) {
-                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结用户" onclick="cmsRoleList.changeRoleState(' + row.id + ', \'冻结\')">激活</span>';
+                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结用户" <shiro:hasPermission name="role:del">onclick="cmsRoleList.changeRoleState(' + row.id + ', \'冻结\')"</shiro:hasPermission>>激活</span>';
                     }
                     return context;
                 }
@@ -170,8 +167,12 @@
                 align: 'center',
                 formatter: function (value, row, index) {
                     var a = '';
-                    a += '<a style="text-decoration:none" onclick="cmsRoleList.openRolePermModal(\'' + row.id + '\')" href="javascript:;" title="分配权限"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
-                    a += '<a style="text-decoration:none" onclick="cmsRoleList.openEditRoleModal(\'' + row.id + '\')" href="javascript:;" title="编辑角色信息"><i class="Hui-iconfont">&#xe602;</i></a>';
+                    <shiro:hasPermission name="role:edit">
+                    a += '<a style="text-decoration:none" onclick="cmsRoleList.openEditRoleModal(\'' + row.id + '\')" href="javascript:;" title="编辑角色信息"><i class="Hui-iconfont">&#xe602;</i></a>&nbsp;&nbsp;';
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="role:perm">
+                    a += '<a style="text-decoration:none" onclick="cmsRoleList.openRolePermModal(\'' + row.id + '\')" href="javascript:;" title="分配权限"><i class="Hui-iconfont">&#xe62b;</i></a>';
+                    </shiro:hasPermission>
                     return a;
                 }
             }

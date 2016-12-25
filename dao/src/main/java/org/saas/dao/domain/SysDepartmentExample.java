@@ -235,76 +235,6 @@ public class SysDepartmentExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("description is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("description is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("description =", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("description <>", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("description >", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("description >=", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("description <", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("description <=", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("description like", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("description not like", value, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("description in", values, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("description not in", values, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("description between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("description not between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
         public Criteria andParentIdIsNull() {
             addCriterion("parent_id is null");
             return (Criteria) this;
@@ -362,6 +292,66 @@ public class SysDepartmentExample {
 
         public Criteria andParentIdNotBetween(Long value1, Long value2) {
             addCriterion("parent_id not between", value1, value2, "parentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerIsNull() {
+            addCriterion("manager is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerIsNotNull() {
+            addCriterion("manager is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerEqualTo(Long value) {
+            addCriterion("manager =", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerNotEqualTo(Long value) {
+            addCriterion("manager <>", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerGreaterThan(Long value) {
+            addCriterion("manager >", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerGreaterThanOrEqualTo(Long value) {
+            addCriterion("manager >=", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerLessThan(Long value) {
+            addCriterion("manager <", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerLessThanOrEqualTo(Long value) {
+            addCriterion("manager <=", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerIn(List<Long> values) {
+            addCriterion("manager in", values, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerNotIn(List<Long> values) {
+            addCriterion("manager not in", values, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerBetween(Long value1, Long value2) {
+            addCriterion("manager between", value1, value2, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerNotBetween(Long value1, Long value2) {
+            addCriterion("manager not between", value1, value2, "manager");
             return (Criteria) this;
         }
 
@@ -482,6 +472,76 @@ public class SysDepartmentExample {
 
         public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("\"status\" not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
 

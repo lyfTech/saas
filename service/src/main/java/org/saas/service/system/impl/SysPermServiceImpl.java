@@ -15,6 +15,7 @@ import org.saas.service.system.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import sun.security.krb5.internal.crypto.KeyUsage;
 
 import javax.annotation.Resource;
 import java.util.Calendar;
@@ -37,6 +38,13 @@ public class SysPermServiceImpl implements SysPermService {
         List<SysPerm> permList = permMapper.selectUserPremByUserName(username);
         TreeUtil treeUtil = new TreeUtil(permList);
         List<SysPerm> perms = treeUtil.generateTreeNode(new SysPerm(),1L);
+        return perms;
+    }
+
+    public List<SysPerm> getPermTreeByParentId(Long parentId){
+        List<SysPerm> permList = permMapper.selectByExample(new SysPermExample());
+        TreeUtil treeUtil = new TreeUtil(permList);
+        List<SysPerm> perms = treeUtil.generateTreeNode(new SysPerm(),parentId);
         return perms;
     }
 

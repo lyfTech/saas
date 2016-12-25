@@ -25,7 +25,9 @@
             <shiro:hasPermission name="user:add">
                 <a href="javascript:;" onclick="cmsUserList.openAddUserModal()" class="btn btn-primary radius" title="新增用户"><i class="Hui-iconfont">&#xe607;</i></a>
             </shiro:hasPermission>
-            <a href="javascript:;" onclick="cmsUserList.resetPwd()" class="btn btn-warning radius" title="批量重置密码"><i class="Hui-iconfont">&#xe66c;</i></a>
+            <shiro:hasPermission name="user:reset">
+                <a href="javascript:;" onclick="cmsUserList.resetPwd()" class="btn btn-warning radius" title="批量重置密码"><i class="Hui-iconfont">&#xe66c;</i></a>
+            </shiro:hasPermission>
         </div>
         <table id="exampleTableEvents" data-mobile-responsive="true"></table>
     </div>
@@ -197,9 +199,10 @@
                 title: '账号状态',
                 align: 'center',
                 formatter: function (value, row) {
-                    var context = '<span class="label label-danger" style="cursor: pointer" title="点击激活用户" onclick="cmsUserList.changeUserState(' + row.id + ', \'激活\')">冻结</span>';
+                    var context = '';
+                    context += '<span class="label label-danger" style="cursor: pointer" title="点击激活用户" <shiro:hasPermission name="user:delete">onclick="cmsUserList.changeUserState(' + row.id + ', \'激活\')"</shiro:hasPermission>冻结</span>';
                     if (value == 0) {
-                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结用户" onclick="cmsUserList.changeUserState(' + row.id + ', \'冻结\')">激活</span>';
+                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结用户" <shiro:hasPermission name="user:delete">onclick="cmsUserList.changeUserState(' + row.id + ', \'冻结\')"</shiro:hasPermission>>激活</span>';
                     }
                     return context;
                 }
@@ -215,8 +218,12 @@
                 align: 'center',
                 formatter: function (value, row, index) {
                     var a = '';
-                    a += '<a style="text-decoration:none" onclick="cmsUserList.openUserRoleModal(\'' + row.id + '\')" href="javascript:;" title="分配角色"><i class="Hui-iconfont">&#xe62b;</i></a>&nbsp;&nbsp;';
-                    a += '<a style="text-decoration:none" onclick="cmsUserList.openEditUserModal(\'' + row.id + '\')" href="javascript:;" title="编辑用户信息"><i class="Hui-iconfont">&#xe602;</i></a>';
+                    <shiro:hasPermission name="user:edit">
+                    a += '<a style="text-decoration:none" onclick="cmsUserList.openEditUserModal(\'' + row.id + '\')" href="javascript:;" title="编辑用户信息"><i class="Hui-iconfont">&#xe602;</i></a>&nbsp;&nbsp;';
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="user:role">
+                    a += '<a style="text-decoration:none" onclick="cmsUserList.openUserRoleModal(\'' + row.id + '\')" href="javascript:;" title="分配角色"><i class="Hui-iconfont">&#xe62b;</i></a>';
+                    </shiro:hasPermission>
                     return a;
                 }
             }

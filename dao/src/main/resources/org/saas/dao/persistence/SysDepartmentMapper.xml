@@ -4,10 +4,11 @@
   <resultMap id="BaseResultMap" type="org.saas.dao.domain.SysDepartment" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="manager" property="manager" jdbcType="BIGINT" />
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modifier" property="modifier" jdbcType="VARCHAR" />
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, `name`, description, parent_id, sort, `status`, creator, create_time, modifier,
-    modify_time
+    id, `name`, parent_id, manager, sort, `status`, description, creator, create_time,
+    modifier, modify_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.saas.dao.domain.SysDepartmentExample" >
     select
@@ -106,14 +107,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.saas.dao.domain.SysDepartment" >
-    insert into sys_department (id, `name`, description,
-      parent_id, sort, `status`,
-      creator, create_time, modifier, 
-      modify_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=BIGINT}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP})
+    insert into sys_department (id, `name`, parent_id,
+      manager, sort, `status`,
+      description, creator, create_time, 
+      modifier, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{manager,jdbcType=BIGINT}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.saas.dao.domain.SysDepartment" >
     insert into sys_department
@@ -124,17 +125,20 @@
       <if test="name != null" >
         `name`,
       </if>
-      <if test="description != null" >
-        description,
-      </if>
       <if test="parentId != null" >
         parent_id,
+      </if>
+      <if test="manager != null" >
+        manager,
       </if>
       <if test="sort != null" >
         sort,
       </if>
       <if test="status != null" >
         `status`,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
       <if test="creator != null" >
         creator,
@@ -156,17 +160,20 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
-      </if>
       <if test="parentId != null" >
         #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="manager != null" >
+        #{manager,jdbcType=BIGINT},
       </if>
       <if test="sort != null" >
         #{sort,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="creator != null" >
         #{creator,jdbcType=VARCHAR},
@@ -197,17 +204,20 @@
       <if test="record.name != null" >
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
-      </if>
       <if test="record.parentId != null" >
         parent_id = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.manager != null" >
+        manager = #{record.manager,jdbcType=BIGINT},
       </if>
       <if test="record.sort != null" >
         sort = #{record.sort,jdbcType=INTEGER},
       </if>
       <if test="record.status != null" >
         `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.creator != null" >
         creator = #{record.creator,jdbcType=VARCHAR},
@@ -230,10 +240,11 @@
     update sys_department
     set id = #{record.id,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
       parent_id = #{record.parentId,jdbcType=BIGINT},
+      manager = #{record.manager,jdbcType=BIGINT},
       sort = #{record.sort,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
       creator = #{record.creator,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modifier = #{record.modifier,jdbcType=VARCHAR},
@@ -248,17 +259,20 @@
       <if test="name != null" >
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
-      </if>
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="manager != null" >
+        manager = #{manager,jdbcType=BIGINT},
       </if>
       <if test="sort != null" >
         sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="creator != null" >
         creator = #{creator,jdbcType=VARCHAR},
@@ -278,10 +292,11 @@
   <update id="updateByPrimaryKey" parameterType="org.saas.dao.domain.SysDepartment" >
     update sys_department
     set `name` = #{name,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
+      manager = #{manager,jdbcType=BIGINT},
       sort = #{sort,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
       creator = #{creator,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modifier = #{modifier,jdbcType=VARCHAR},

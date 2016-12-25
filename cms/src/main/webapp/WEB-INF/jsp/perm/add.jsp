@@ -125,7 +125,7 @@
                     code: {
                         required: true,
                         minlength: 2,
-                        maxlength: 15
+                        maxlength: 30
                     },
                     parentId: {
                         required: true
@@ -133,7 +133,7 @@
                     url: {
                         refReq: ["#type", 1],
                         minlength: 2,
-                        maxlength: 15
+                        maxlength: 30
                     },
                     type: {
                         required: true
@@ -141,7 +141,7 @@
                     sort: {
                         number: true,
                         min: 1,
-                        max: 99
+                        max: 999999
                     },
                     description: {
                         maxlength: 100

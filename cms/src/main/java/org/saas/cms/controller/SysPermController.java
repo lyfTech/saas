@@ -12,12 +12,7 @@ import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
 import org.saas.dao.domain.SysPerm;
 import org.saas.dao.domain.SysPermExample;
-import org.saas.dao.domain.SysRole;
-import org.saas.dao.domain.SysRoleExample;
-import org.saas.service.system.SysDeptService;
 import org.saas.service.system.SysPermService;
-import org.saas.service.system.SysRoleService;
-import org.saas.service.system.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +30,6 @@ public class SysPermController {
     public static final Logger logger = LoggerFactory.getLogger(SysPermController.class);
 
     @Autowired
-    private SysUserService userService;
-    @Autowired
     private SysPermService permService;
 
     @RequiresPermissions({"perm:list"})
@@ -45,6 +38,7 @@ public class SysPermController {
         return "perm/list";
     }
 
+    @RequiresPermissions({"perm:list"})
     @RequestMapping(value = "list", method = RequestMethod.POST)
     @ResponseBody
     public Page<SysPerm> list(@RequestBody Map map) {
@@ -62,6 +56,7 @@ public class SysPermController {
         return page;
     }
 
+    @RequiresPermissions({"perm:list"})
     @RequestMapping(value = "/changeState", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle changeState(@RequestParam Long id) {
@@ -78,6 +73,7 @@ public class SysPermController {
         return "perm/add";
     }
 
+    @RequiresPermissions({"perm:add"})
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle add(@ModelAttribute SysPerm perm) {

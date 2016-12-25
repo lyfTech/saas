@@ -8,13 +8,15 @@ public class SysDepartment implements Serializable {
 
     private String name;
 
-    private String description;
-
     private Long parentId;
+
+    private Long manager;
 
     private Integer sort;
 
     private Integer status;
+
+    private String description;
 
     private String creator;
 
@@ -42,20 +44,20 @@ public class SysDepartment implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
     public Long getParentId() {
         return parentId;
     }
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public Long getManager() {
+        return manager;
+    }
+
+    public void setManager(Long manager) {
+        this.manager = manager;
     }
 
     public Integer getSort() {
@@ -72,6 +74,14 @@ public class SysDepartment implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getCreator() {

@@ -44,6 +44,7 @@ public class SysUserController {
         return "user/list";
     }
 
+    @RequiresPermissions({"user:list"})
     @RequestMapping(value = "list", method = RequestMethod.POST)
     @ResponseBody
     public Page<SysUser> list(@RequestBody Map map) {
@@ -62,6 +63,7 @@ public class SysUserController {
         return page;
     }
 
+    @RequiresPermissions({"user:delete"})
     @RequestMapping(value = "/changeState", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle changeState(@RequestParam Long id) {
@@ -74,6 +76,7 @@ public class SysUserController {
         return "user/add";
     }
 
+    @RequiresPermissions({"user:add"})
     @RequestMapping(value = "/doAdd", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle doAdd(@ModelAttribute SysUser user) {
@@ -107,6 +110,7 @@ public class SysUserController {
         return "user/edit";
     }
 
+    @RequiresPermissions({"user:edit"})
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle edit(@ModelAttribute SysUser user) {
@@ -133,6 +137,7 @@ public class SysUserController {
         return handle;
     }
 
+    @RequiresPermissions({"user:reset"})
     @RequestMapping(value = "/resetpwd", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle resetpwd(@RequestParam String password, @RequestParam(value = "ids[]") Integer[] ids) {
@@ -158,6 +163,7 @@ public class SysUserController {
         return "user/role";
     }
 
+    @RequiresPermissions({"user:role"})
     @RequestMapping(value = "/role", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle saveUserRole(@RequestParam Long userId, @RequestParam(value = "ids[]") Integer[] ids) {

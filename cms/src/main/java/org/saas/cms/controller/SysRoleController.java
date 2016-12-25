@@ -44,6 +44,7 @@ public class SysRoleController {
         return "role/list";
     }
 
+    @RequiresPermissions({"role:list"})
     @RequestMapping(value = "list", method = RequestMethod.POST)
     @ResponseBody
     public Page<SysRole> list(@RequestBody Map map) {
@@ -61,6 +62,7 @@ public class SysRoleController {
         return page;
     }
 
+    @RequiresPermissions({"role:del"})
     @RequestMapping(value = "/changeState", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle changeState(@RequestParam Long id) {
@@ -73,6 +75,7 @@ public class SysRoleController {
         return "role/add";
     }
 
+    @RequiresPermissions({"role:add"})
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle add(@ModelAttribute SysRole role) {
@@ -105,6 +108,7 @@ public class SysRoleController {
         return "role/edit";
     }
 
+    @RequiresPermissions({"role:edit"})
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseHandle edit(@ModelAttribute SysRole role) {
@@ -135,7 +139,7 @@ public class SysRoleController {
     public String perm(Model model, @PathVariable(value = "id") Long id) {
         SingleResponseHandleT<SysRole> singleResponseHandleT = roleService.getRoleById(id);
         if (singleResponseHandleT.getIsSuccess()) {
-            List<SysPerm> allPerm = permService.getUserPerm(null);
+            List<SysPerm> allPerm = permService.getPermTreeByParentId(1L);
             Set<String> hasPerm = permService.getPremByRoleId(singleResponseHandleT.getResult().getId());
             model.addAttribute("role", singleResponseHandleT.getResult());
             model.addAttribute("allPerm", allPerm);
