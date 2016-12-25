@@ -3,6 +3,7 @@ package org.saas.cms.controller;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
+import org.saas.dao.domain.SysDepartment;
 import org.saas.service.system.SysDeptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
