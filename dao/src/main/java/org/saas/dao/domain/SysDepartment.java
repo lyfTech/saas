@@ -26,6 +26,10 @@ public class SysDepartment implements Serializable {
 
     private Date modifyTime;
 
+    private String managerName;
+
+    private String parentName;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -114,5 +118,21 @@ public class SysDepartment implements Serializable {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 }

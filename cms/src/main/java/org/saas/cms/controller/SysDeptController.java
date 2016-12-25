@@ -1,18 +1,23 @@
 package org.saas.cms.controller;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
+import org.saas.common.mybatis.Page;
+import org.saas.common.mybatis.PageRequest;
+import org.saas.common.utils.StringUtils;
 import org.saas.dao.domain.SysDepartment;
+import org.saas.dao.domain.SysDepartmentExample;
+import org.saas.dao.domain.SysUser;
 import org.saas.service.system.SysDeptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 @Controller
@@ -23,28 +28,28 @@ public class SysDeptController {
     @Autowired
     private SysDeptService deptService;
 
+    @RequiresPermissions({"dept:list"})
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String index() {
         return "dept/list";
     }
 
-/*    @RequestMapping(value = "list", method = RequestMethod.POST)
+    @RequiresPermissions({"dept:list"})
+    @RequestMapping(value = "list", method = RequestMethod.POST)
     @ResponseBody
-    public Page<SysUser> list(@RequestBody Map map){
+    public Page<SysDepartment> list(@RequestBody Map map){
         int offset = MapUtils.getIntValue(map, "offset");
         int limit = MapUtils.getIntValue(map, "limit");
-        String userName = MapUtils.getString(map, "username");
-        SysUserExample example = new SysUserExample();
-        if (StringUtils.isNotBlank(userName)){
-            example.createCriteria().andUserNameLike("%"+userName+"%");
-            example.or().andRealNameLike("%"+userName+"%");
-            example.or().andMobileLike("%"+userName+"%");
-            example.or().andEmailLike("%"+userName+"%");
+        String deptInfo = MapUtils.getString(map, "deptInfo");
+        SysDepartmentExample example = new SysDepartmentExample();
+        if (StringUtils.isNotBlank(deptInfo)){
+            example.createCriteria().andNameLike("%"+deptInfo+"%");
+            example.or().andDescriptionLike("%"+deptInfo+"%");
         }
         PageRequest pageRequest = new PageRequest(offset,limit);
-        Page<SysUser> page = deptService.getAllUserInfo(example, pageRequest);
+        Page<SysDepartment> page = deptService.queryPermPage(example, pageRequest);
         return page;
-    }*/
+    }
 
 
     @RequiresPermissions({"dept:add"})

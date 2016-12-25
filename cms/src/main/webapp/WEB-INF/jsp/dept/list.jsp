@@ -10,19 +10,18 @@
 </head>
 <body class="white-bg">
 <nav class="breadcrumb">
-    <i class="Hui-iconfont">&#xe67f;</i> 菜单权限管理
-    <span class="c-gray en">&gt;</span> 菜单权限列表
+    <i class="Hui-iconfont">&#xe67f;</i> 部门管理
+    <span class="c-gray en">&gt;</span> 部门列表
 </nav>
 <div class="page-container">
     <div class="example">
         <div class="alert alert-info" id="queryParams">
-            <input type="text" class="input-text" id="code" style="width:250px" placeholder="输入权限信息"/>
+            <input type="text" class="input-text" id="code" style="width:250px" placeholder="输入部门信息"/>
             <button class="btn btn-success" id="searchBtn"><i class="Hui-iconfont">&#xe665;</i>搜索</button>
         </div>
         <div id="tableEventsToolbar">
             <shiro:hasPermission name="role:add">
-                <a href="javascript:;" onclick="cmsPermList.openAddModal()" class="btn btn-primary radius"
-                   title="新增菜单按钮"><i class="Hui-iconfont">&#xe607;</i></a>
+                <a href="javascript:;" onclick="cmsPermList.openAddModal()" class="btn btn-primary radius" title="新增部门按钮"><i class="Hui-iconfont">&#xe607;</i></a>
             </shiro:hasPermission>
         </div>
         <table id="exampleTableEvents" data-mobile-responsive="true"></table>
@@ -30,19 +29,19 @@
 </div>
 <script type="application/javascript" src="${ctx}/static/js/plugins.js"></script>
 <script type="application/javascript">
-    var cmsPermList = {
+    var cmsDeptList = {
         url: {
-            permList: function () {
-                return "${ctx}/perm/list";
+            deptList: function () {
+                return "${ctx}/dept/list";
             },
             changeState: function () {
                 return "${ctx}/perm/changeState";
             },
             toAdd: function () {
-                return "${ctx}/perm/add";
+                return "${ctx}/dept/add";
             },
             toEdit: function (id) {
-                return "${ctx}/perm/edit/" + id;
+                return "${ctx}/dept/edit/" + id;
             }
         },
         changeState: function (id, msg) {
@@ -89,17 +88,17 @@
             });
         },
         openAddModal: function () {
-            cmsPermList.openModal(cmsPermList.url.toAdd(), '新增权限');
+            cmsPermList.openModal(cmsDeptList.url.toAdd(), '新增部门');
         },
         openEditModal: function (id) {
-            cmsPermList.openModal(cmsPermList.url.toEdit(id), '修改权限信息');
+            cmsPermList.openModal(cmsDeptList.url.toEdit(id), '修改部门信息');
         }
     };
 
     $(function () {
         $("#exampleTableEvents").bootstrapTable({
             method: 'post',
-            url: cmsPermList.url.permList(),
+            url: cmsDeptList.url.deptList(),
             search: false,
             pagination: !0,
             showRefresh: !0,
@@ -116,7 +115,7 @@
                 return {
                     offset: params.offset,
                     limit: params.limit,
-                    code: $("#code").val()
+                    deptInfo: $("#code").val()
                 };
             },
             responseHandler: function (res) {
@@ -131,33 +130,13 @@
                 align: 'center',
                 title: '名称'
             }, {
-                field: 'code',
+                field: 'managerName',
                 align: 'center',
-                title: 'code'
+                title: '部门经理'
             }, {
                 field: 'parentName',
                 align: 'center',
-                title: '父菜单'
-            }, {
-                field: 'url',
-                align: 'center',
-                title: 'URL'
-            }, {
-                field: 'icon',
-                align: 'center',
-                title: '菜单图标'
-            }, {
-                field: 'type',
-                align: 'center',
-                title: '类型',
-                formatter: function (value, row) {
-                    if (value == 1) {
-                        return "菜单"
-                    } else if (value == 2) {
-                        return "按钮";
-                    }
-                    return context;
-                }
+                title: '上级部门'
             }, {
                 field: 'sort',
                 align: 'center',
@@ -181,7 +160,6 @@
                 title: '操作',
                 align: 'center',
                 formatter: function (value, row, index) {
-                    if (row.id == 1) return '';
                     var a = '';
                     <shiro:hasPermission name="perm:edit">
                     a += '<a style="text-decoration:none" onclick="cmsPermList.openEditModal(\'' + row.id + '\')" href="javascript:;" title="编辑角色信息"><i class="Hui-iconfont">&#xe602;</i></a>';
