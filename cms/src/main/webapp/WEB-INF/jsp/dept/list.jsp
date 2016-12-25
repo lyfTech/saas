@@ -21,7 +21,7 @@
         </div>
         <div id="tableEventsToolbar">
             <shiro:hasPermission name="role:add">
-                <a href="javascript:;" onclick="cmsPermList.openAddModal()" class="btn btn-primary radius" title="新增部门按钮"><i class="Hui-iconfont">&#xe607;</i></a>
+                <a href="javascript:;" onclick="cmsDeptList.openAddModal()" class="btn btn-primary radius" title="新增部门按钮"><i class="Hui-iconfont">&#xe607;</i></a>
             </shiro:hasPermission>
         </div>
         <table id="exampleTableEvents" data-mobile-responsive="true"></table>
@@ -50,7 +50,7 @@
             }, function () {
                 $.ajax({
                     type: "post",
-                    url: cmsPermList.url.changeState(),
+                    url: cmsDeptList.url.changeState(),
                     data: {id: id},
                     async: false,
                     success: function (data) {
@@ -74,11 +74,11 @@
             });
             return ids;
         },
-        openModal: function (url, title) {
+        openModal: function (url, title, area) {
             layer.open({
                 type: 2,
                 title: title,
-                area: ['500px', '610px'],
+                area: area,
                 fixed: false, //不固定
                 shadeClose: true,
                 content: url,
@@ -88,10 +88,10 @@
             });
         },
         openAddModal: function () {
-            cmsPermList.openModal(cmsDeptList.url.toAdd(), '新增部门');
+            cmsDeptList.openModal(cmsDeptList.url.toAdd(), '新增部门',['500px', '510px']);
         },
         openEditModal: function (id) {
-            cmsPermList.openModal(cmsDeptList.url.toEdit(id), '修改部门信息');
+            cmsDeptList.openModal(cmsDeptList.url.toEdit(id), '修改部门信息',['500px', '510px']);
         }
     };
 
@@ -146,9 +146,9 @@
                 title: '账号状态',
                 align: 'center',
                 formatter: function (value, row) {
-                    var context = '<span class="label label-danger" style="cursor: pointer" title="点击激活权限" <shiro:hasPermission name="perm:state">onclick="cmsPermList.changeState(' + row.id + ', \'激活\')"</shiro:hasPermission>>冻结</span>';
+                    var context = '<span class="label label-danger" style="cursor: pointer" title="点击激活权限" <shiro:hasPermission name="perm:state">onclick="cmsDeptList.changeState(' + row.id + ', \'激活\')"</shiro:hasPermission>>冻结</span>';
                     if (value == 0) {
-                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结权限" <shiro:hasPermission name="perm:state">onclick="cmsPermList.changeState(' + row.id + ', \'冻结\')"</shiro:hasPermission>>激活</span>';
+                        context = '<span class="label label-success" style="cursor: pointer" title="点击冻结权限" <shiro:hasPermission name="perm:state">onclick="cmsDeptList.changeState(' + row.id + ', \'冻结\')"</shiro:hasPermission>>激活</span>';
                     }
                     return context;
                 }
@@ -162,7 +162,7 @@
                 formatter: function (value, row, index) {
                     var a = '';
                     <shiro:hasPermission name="perm:edit">
-                    a += '<a style="text-decoration:none" onclick="cmsPermList.openEditModal(\'' + row.id + '\')" href="javascript:;" title="编辑角色信息"><i class="Hui-iconfont">&#xe602;</i></a>';
+                    a += '<a style="text-decoration:none" onclick="cmsDeptList.openEditModal(\'' + row.id + '\')" href="javascript:;" title="编辑角色信息"><i class="Hui-iconfont">&#xe602;</i></a>';
                     </shiro:hasPermission>
                     return a;
                 }
