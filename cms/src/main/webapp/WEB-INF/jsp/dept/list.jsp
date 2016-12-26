@@ -82,8 +82,15 @@
                 fixed: false, //不固定
                 shadeClose: true,
                 content: url,
+                maxmin: true,
                 success: function (layero, index) {
                     layer.iframeAuto(index);
+                },btn: ['继续弹出', '全部关闭'] //只是为了演示
+                ,yes: function(layero, index){
+                    var body = layer.getChildFrame('body', index);
+                    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：
+                    var o = iframeWin.cmsDeptAdd.url.parentDepartment();
+                    layer.msg(o);
                 }
             });
         },

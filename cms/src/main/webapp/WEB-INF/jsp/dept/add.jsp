@@ -20,14 +20,20 @@
             <label class="form-label col-xs-3 col-sm-3">上级部门：<span class="c-red">*</span></label>
             <div class="formControls col-xs-9 col-sm-9">
                 <input type="hidden" class="input-text" id="parentId" name="parentId"/>
-                <input type="text" class="input-text" id="parentName" name="parentName" readonly/>
+                <div class="input-group m-b">
+                    <input type="text" class="form-control" id="parentName" name="parentName" readonly>
+                    <a href="#" class="input-group-addon" id="selectDeptBtn">选择</a>
+                </div>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">部门经理：</label>
             <div class="formControls col-xs-9 col-sm-9">
                 <input type="hidden" class="input-text" id="managerId" name="managerId"/>
-                <input type="text" class="input-text" id="managerName" name="managerName" readonly/>
+                <div class="input-group m-b">
+                    <input type="text" class="form-control" id="managerName" name="managerName" readonly>
+                    <a href="#" class="input-group-addon" id="selectManagerBtn">选择</a>
+                </div>
             </div>
         </div>
         <div class="row cl">
@@ -52,7 +58,8 @@
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">描述：</label>
             <div class="formControls col-xs-9 col-sm-9">
-                <textarea id="description" name="description" cols="" rows="" class="textarea"  placeholder="100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
+                <textarea id="description" name="description" cols="" rows="" class="textarea" placeholder="100个字符以内"
+                          dragonfly="true" onKeyUp="textarealength(this,100)"></textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
@@ -74,12 +81,35 @@
 
     var cmsDeptAdd = {
         url: {
-            getParentDept: function () {
+            parentDepartment: function () {
                 return "${ctx}/dept/getAll";
+            },
+            manager: function () {
+                return "${ctx}/user/openList";
             },
             cmsDeptAdd: function () {
                 return "${ctx}/dept/add";
             }
+        },
+        openModal: function (url, title, area) {
+            parent.layer.open({
+                type: 2,
+                title: title,
+                area: area,
+                fixed: false, //不固定
+                shadeClose: true,
+                content: url,
+                maxmin: true,
+                success: function (layero, index) {
+                    layer.iframeAuto(index);
+                }
+            });
+        },
+        openParentDepartmentModal: function () {
+            cmsDeptAdd.openModal(cmsDeptAdd.url.parentDepartment(), "选择上级部门","['500px', '510px']");
+        },
+        openManagerModal: function () {
+            cmsDeptAdd.openModal(cmsDeptAdd.url.manager(), "选择部门经理","['500px', '510px']");
         },
         validateForm: function () {
             $('#form-user-add').validate({
@@ -125,6 +155,12 @@
         init: function () {
             $(".i-checks").iCheck({checkboxClass: "icheckbox_square_blur", radioClass: "iradio_square-blue",});
             parent.layer.iframeAuto(index);
+            $("#selectDeptBtn").on("click", function () {
+                cmsDeptAdd.openParentDepartmentModal();
+            });
+            $("#selectManagerBtn").on("click", function () {
+                cmsDeptAdd.openManagerModal();
+            });
         }
     };
 
