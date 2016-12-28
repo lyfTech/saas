@@ -86,11 +86,11 @@
                 success: function (layero, index) {
                     layer.iframeAuto(index);
                 },btn: ['继续弹出', '全部关闭'] //只是为了演示
-                ,yes: function(layero, index){
+                ,yes: function(index, layero){
                     var body = layer.getChildFrame('body', index);
-                    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：
-                    var o = iframeWin.cmsDeptAdd.url.parentDepartment();
-                    layer.msg(o);
+                    var iframeWin = window[layero.find('iframe')[0]['name']];
+                    console.log(iframeWin.$("#name").val());
+                    console.log(iframeWin.cmsDeptAdd.url.manager());
                 }
             });
         },
