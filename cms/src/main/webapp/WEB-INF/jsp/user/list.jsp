@@ -80,7 +80,6 @@
             $.each(rows, function (index, item) {
                 ids.push(item.id);
             });
-            console.log(JSON.stringify(ids));
             return ids;
         },
         openModal: function (url, title, area) {

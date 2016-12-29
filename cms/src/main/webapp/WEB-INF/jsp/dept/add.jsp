@@ -27,16 +27,6 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-3">部门经理：</label>
-            <div class="formControls col-xs-9 col-sm-9">
-                <input type="hidden" class="input-text" id="managerId" name="managerId"/>
-                <div class="input-group m-b">
-                    <input type="text" class="form-control" id="managerName" name="managerName" readonly>
-                    <a href="#" class="input-group-addon" id="selectManagerBtn">选择</a>
-                </div>
-            </div>
-        </div>
-        <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">排序：</label>
             <div class="formControls col-xs-9 col-sm-9">
                 <input type="number" class="input-text" placeholder="请输入排序位置" id="sort" name="sort"/>
@@ -82,22 +72,20 @@
     var cmsDeptAdd = {
         url: {
             parentDepartment: function () {
-                return "${ctx}/dept/getAll";
-            },
-            manager: function () {
-                return "${ctx}/user/openList";
+                return "${ctx}/dept/open-dept-list";
             },
             cmsDeptAdd: function () {
                 return "${ctx}/dept/add";
             }
         },
         openModal: function (url, title, area) {
-            parent.layer.open({
+            layer.open({
                 type: 2,
                 title: title,
                 area: area,
                 fixed: false, //不固定
                 shadeClose: true,
+                moveOut: true,
                 content: url,
                 maxmin: true,
                 success: function (layero, index) {
@@ -106,10 +94,7 @@
             });
         },
         openParentDepartmentModal: function () {
-            cmsDeptAdd.openModal(cmsDeptAdd.url.parentDepartment(), "选择上级部门","['500px', '510px']");
-        },
-        openManagerModal: function () {
-            cmsDeptAdd.openModal(cmsDeptAdd.url.manager(), "选择部门经理","['500px', '510px']");
+            cmsDeptAdd.openModal(cmsDeptAdd.url.parentDepartment(), "选择上级部门", ['500px', '510px']);
         },
         validateForm: function () {
             $('#form-user-add').validate({
@@ -153,6 +138,7 @@
             parent.layer.close(index);
         },
         init: function () {
+            parent.layer.full(index);
             $(".i-checks").iCheck({checkboxClass: "icheckbox_square_blur", radioClass: "iradio_square-blue",});
             parent.layer.iframeAuto(index);
             $("#selectDeptBtn").on("click", function () {

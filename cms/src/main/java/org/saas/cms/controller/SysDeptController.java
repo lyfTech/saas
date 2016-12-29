@@ -2,6 +2,7 @@ package org.saas.cms.controller;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.saas.common.handle.BaseResponseHandle;
 import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
@@ -58,6 +59,22 @@ public class SysDeptController {
         return "dept/add";
     }
 
+    @RequiresPermissions({"dept:add"})
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle doAdd(@ModelAttribute SysDepartment department) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (org.apache.commons.lang3.StringUtils.isBlank(department.getName())) {
+            handle.setErrorMessage("请输入正确的部门名称");
+            return handle;
+        }
+        handle = deptService.addDept(department);
+        if (handle.getIsSuccess()) {
+            handle.setMessage("新增部门成功");
+        }
+        return handle;
+    }
+
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
     public ResponseHandleT<SysDepartment> getAll() {
@@ -78,5 +95,13 @@ public class SysDeptController {
         return handleT;
     }
 
+    @RequestMapping(value = "/open-dept-list", method = RequestMethod.GET)
+    public String openDeptList() {
+        return "dept/open-dept-list";
+    }
 
+    @RequestMapping(value = "/open-user-list", method = RequestMethod.GET)
+    public String openUserList() {
+        return "dept/open-user-list";
+    }
 }

@@ -86,7 +86,7 @@ public class SysDeptServiceImpl implements SysDeptService {
             SysDepartmentExample example = new SysDepartmentExample();
             example.createCriteria().andNameEqualTo(dept.getName());
             ResponseHandleT<SysDepartment> deptByExample = getDeptByExample(example);
-            if (deptByExample != null) {
+            if (deptByExample.getResult().size() > 0) {
                 handle.setErrorMessage("部门已经存在");
                 return handle;
             }

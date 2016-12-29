@@ -64,16 +64,6 @@
                 });
             });
         },
-        getSelectIds: function (rows) {
-            if (rows == null && rows.length < 1) {
-                return "";
-            }
-            var ids = new Array();
-            $.each(rows, function (index, item) {
-                ids.push(item.id);
-            });
-            return ids;
-        },
         openModal: function (url, title, area) {
             layer.open({
                 type: 2,
@@ -85,20 +75,14 @@
                 maxmin: true,
                 success: function (layero, index) {
                     layer.iframeAuto(index);
-                },btn: ['继续弹出', '全部关闭'] //只是为了演示
-                ,yes: function(index, layero){
-                    var body = layer.getChildFrame('body', index);
-                    var iframeWin = window[layero.find('iframe')[0]['name']];
-                    console.log(iframeWin.$("#name").val());
-                    console.log(iframeWin.cmsDeptAdd.url.manager());
                 }
             });
         },
         openAddModal: function () {
-            cmsDeptList.openModal(cmsDeptList.url.toAdd(), '新增部门',['500px', '510px']);
+            cmsDeptList.openModal(cmsDeptList.url.toAdd(), '新增部门',['100%', '100%']);
         },
         openEditModal: function (id) {
-            cmsDeptList.openModal(cmsDeptList.url.toEdit(id), '修改部门信息',['500px', '510px']);
+            cmsDeptList.openModal(cmsDeptList.url.toEdit(id), '修改部门信息',['100%', '100%']);
         }
     };
 

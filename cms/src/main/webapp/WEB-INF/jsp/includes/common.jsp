@@ -23,7 +23,7 @@
 
 <script src="http://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://cdn.bootcss.com/layer/3.0/layer.min.js"></script>
+<script src="http://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="http://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 <script src="http://cdn.bootcss.com/iCheck/1.0.2/icheck.min.js"></script>

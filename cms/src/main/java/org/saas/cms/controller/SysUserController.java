@@ -179,4 +179,25 @@ public class SysUserController {
         }
         return handle;
     }
+
+    @RequestMapping(value = "open-list", method = RequestMethod.POST)
+    @ResponseBody
+    public Page<SysUser> listByDept(@RequestBody Map map) {
+        int offset = MapUtils.getIntValue(map, "offset");
+        int limit = MapUtils.getIntValue(map, "limit");
+        String userName = MapUtils.getString(map, "username");
+        String deptid = MapUtils.getString(map, "deptid");
+        SysUserExample example = new SysUserExample();
+        SysUserExample.Criteria criteria = example.createCriteria();
+        criteria.andDepartmentIdEqualTo(Long.valueOf(deptid));
+        if (StringUtils.isNotBlank(userName)) {
+            criteria.andUserNameLike("%" + userName + "%");
+            example.or().andRealNameLike("%" + userName + "%");
+            example.or().andMobileLike("%" + userName + "%");
+            example.or().andEmailLike("%" + userName + "%");
+        }
+        PageRequest pageRequest = new PageRequest(offset, limit);
+        Page<SysUser> page = userService.getAllUserInfo(example, pageRequest);
+        return page;
+    }
 }
