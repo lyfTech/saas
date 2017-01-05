@@ -76,7 +76,7 @@
     <div class="menu_dropdown bk_2">
         <c:forEach items="${menu}" var="item">
             <dl id="menu-article">
-                <dt><i class="Hui-iconfont">&#xe62e;</i> ${item.name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dt><i class="Hui-iconfont">${item.icon}</i>${item.name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>
                     <ul>
                         <c:forEach items="${item.childs}" var="child">

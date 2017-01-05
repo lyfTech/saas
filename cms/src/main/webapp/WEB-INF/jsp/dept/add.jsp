@@ -144,9 +144,6 @@
             $("#selectDeptBtn").on("click", function () {
                 cmsDeptAdd.openParentDepartmentModal();
             });
-            $("#selectManagerBtn").on("click", function () {
-                cmsDeptAdd.openManagerModal();
-            });
         }
     };
 

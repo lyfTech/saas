@@ -57,7 +57,10 @@
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">图标：</label>
             <div class="formControls col-xs-9 col-sm-9">
-                <input type="text" class="input-text" id="icon" name="icon"/>
+                <div class="input-group m-b">
+                    <input type="text" class="form-control" id="icon" name="icon" readonly>
+                    <a href="#" class="input-group-addon" id="selectIconBtn">选择</a>
+                </div>
             </div>
         </div>
         <div class="row cl">
@@ -112,7 +115,25 @@
         url: {
             addPerm: function () {
                 return "${ctx}/perm/add";
+            },
+            openIcon: function () {
+                return "${ctx}/perm/icon";
             }
+        },
+        openIconModal: function () {
+            layer.open({
+                type: 2,
+                title: '选择图标',
+                area:['100%', '100%'],
+                fixed: false, //不固定
+                shadeClose: true,
+                moveOut: true,
+                content: cmsPermAdd.url.openIcon(),
+                maxmin: true,
+                success: function (layero, index) {
+                    layer.iframeAuto(index);
+                }
+            });
         },
         validateForm: function () {
             $('#form-user-add').validate({
@@ -182,6 +203,9 @@
         init: function () {
             $(".i-checks").iCheck({checkboxClass: "icheckbox_square_blur", radioClass: "iradio_square-blue",});
             parent.layer.iframeAuto(index);
+            $("#selectIconBtn").on("click", function () {
+                cmsPermAdd.openIconModal();
+            });
         }
     };
 

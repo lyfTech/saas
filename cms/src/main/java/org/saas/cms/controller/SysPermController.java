@@ -141,4 +141,8 @@ public class SysPermController {
         return handle;
     }
 
+    @RequestMapping(value = "/icon", method = RequestMethod.GET)
+    public String icon() {
+        return "perm/icon";
+    }
 }

@@ -79,7 +79,7 @@
             layer.open({
                 type: 2,
                 title: title,
-                area: ['500px', '610px'],
+                area: ['100%', '100%'],
                 fixed: false, //不固定
                 shadeClose: true,
                 content: url,
