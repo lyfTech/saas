@@ -6,1583 +6,1758 @@
     <%@include file="../includes/common.jsp" %>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="${ctx}/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="${ctx}/static/js/plugins/Hui-iconfont/1.0.7/iconfont.css">
-    <style type="text/css">
-        .main {padding: 30px 100px;}
-        .main h1{font-size:36px; line-height:1.6; color:#333; text-align:center;margin-bottom:30px; font-weight:normal}
-        .main h2{ font-size:24px;line-height:1.6;color:#333;margin-bottom:30px; border-bottom: 1px solid #eee; font-weight:normal}
-        .helps pre{padding: 20px;margin: 10px 0;border: solid 1px #e7e1cd;background-color: #fffdef;overflow: auto}
-        .icon_lists li{float: left;width: 100px;height: 190px;text-align: center}
-        .icon_lists .Hui-iconfont{font-size: 42px;line-height: 100px;margin: 10px 0;color: #333;-webkit-transition: font-size 0.25s ease-out 0s;-moz-transition: font-size 0.25s ease-out 0s;transition: font-size 0.25s ease-out 0s}
-        .icon_lists .Hui-iconfont:hover { font-size: 100px}
-    </style>
 </head>
-<body class="">
-<div class="main">
-    <h1>点击图标进行选择</h1>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe684;</i>
-            <div class="name">返回顶部</div>
-            <div class="code">&amp;#xe684;</div>
-            <div class="fontclass">.Hui-iconfont-gotop</div>
-        </li>
-        <li><i class="icon Hui-iconfont">&#xe667;</i>
-            <div class="name">列表</div>
-            <div class="code">&amp;#xe667;</div>
-            <div class="fontclass">.Hui-iconfont-menu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe64e;</i>
-            <div class="name">剪切</div>
-            <div class="code">&amp;#xe64e;</div>
-            <div class="fontclass">.Hui-iconfont-jiandao</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe665;</i>
-            <div class="name">搜索2</div>
-            <div class="code">&amp;#xe665;</div>
-            <div class="fontclass">.Hui-iconfont-search2</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe709;</i>
-            <div class="name">搜索1</div>
-            <div class="code">&amp;#xe709;</div>
-            <div class="fontclass">.Hui-iconfont-search1</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe632;</i>
-            <div class="name">保存</div>
-            <div class="code">&amp;#xe632;</div>
-            <div class="fontclass">.save</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe66b;</i>
-            <div class="name">撤销</div>
-            <div class="code">&amp;#xe66b;</div>
-            <div class="fontclass">.Hui-iconfont-chexiao</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe66c;</i>
-            <div class="name">重做</div>
-            <div class="code">&amp;#xe66c;</div>
-            <div class="fontclass">.Hui-iconfont-zhongzuo</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe640;</i>
-            <div class="name">下载</div>
-            <div class="code">&amp;#xe640;</div>
-            <div class="fontclass">.Hui-iconfont-down</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe63d;</i>
-            <div class="name">切换器右</div>
-            <div class="code">&amp;#xe63d;</div>
-            <div class="fontclass">.Hui-iconfont-slider-right</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe67d;</i>
-            <div class="name">切换器左</div>
-            <div class="code">&amp;#xe67d;</div>
-            <div class="fontclass">.Hui-iconfont-slider-left</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe603;</i>
-            <div class="name">发布</div>
-            <div class="code">&amp;#xe603;</div>
-            <div class="fontclass">.Hui-iconfont-fabu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe604;</i>
-            <div class="name">添加</div>
-            <div class="code">&amp;#xe604;</div>
-            <div class="fontclass">.Hui-iconfont-add2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe68f;</i>
-            <div class="name">换一批</div>
-            <div class="code">&amp;#xe68f;</div>
-            <div class="fontclass">.Hui-iconfont-huanyipi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe606;</i>
-            <div class="name">等待</div>
-            <div class="code">&amp;#xe606;</div>
-            <div class="fontclass">.Hui-iconfont-dengdai</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe644;</i>
-            <div class="name">导出</div>
-            <div class="code">&amp;#xe644;</div>
-            <div class="fontclass">.Hui-iconfont-daochu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe645;</i>
-            <div class="name">导入</div>
-            <div class="code">&amp;#xe645;</div>
-            <div class="fontclass">.Hui-iconfont-daoru</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe60b;</i>
-            <div class="name">删除</div>
-            <div class="code">&amp;#xe60b;</div>
-            <div class="fontclass">.Hui-iconfont-del</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe609;</i>
-            <div class="name">删除</div>
-            <div class="code">&amp;#xe609;</div>
-            <div class="fontclass">.Hui-iconfont-del2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6e2;</i>
-            <div class="name">删除</div>
-            <div class="code">&amp;#xe6e2;</div>
-            <div class="fontclass">.Hui-iconfont-del3</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe647;</i>
-            <div class="name">输入</div>
-            <div class="code">&amp;#xe647;</div>
-            <div class="fontclass">.Hui-iconfont-shuru</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe600;</i>
-            <div class="name">添加</div>
-            <div class="code">&amp;#xe600;</div>
-            <div class="fontclass">.Hui-iconfont-add</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a1;</i>
-            <div class="name">减号</div>
-            <div class="code">&amp;#xe6a1;</div>
-            <div class="fontclass">.Hui-iconfont-jianhao</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe60c;</i>
-            <div class="name">编辑</div>
-            <div class="code">&amp;#xe60c;</div>
-            <div class="fontclass">.Hui-iconfont-edit2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6df;</i>
-            <div class="name">编辑</div>
-            <div class="code">&amp;#xe6df;</div>
-            <div class="fontclass">.Hui-iconfont-edit</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe61d;</i>
-            <div class="name">管理</div>
-            <div class="code">&amp;#xe61d;</div>
-            <div class="fontclass">.Hui-iconfont-manage</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe610;</i>
-            <div class="name">添加</div>
-            <div class="code">&amp;#xe610;</div>
-            <div class="fontclass">.Hui-iconfont-add3</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe61f;</i>
-            <div class="name">添加</div>
-            <div class="code">&amp;#xe61f;</div>
-            <div class="fontclass">.Hui-iconfont-add4</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe63f;</i>
-            <div class="name">密码</div>
-            <div class="code">&amp;#xe63f;</div>
-            <div class="fontclass">.Hui-iconfont-key</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe605;</i>
-            <div class="name">解锁</div>
-            <div class="code">&amp;#xe605;</div>
-            <div class="fontclass">.Hui-iconfont-jiesuo</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe60e;</i>
-            <div class="name">锁定</div>
-            <div class="code">&amp;#xe60e;</div>
-            <div class="fontclass">.Hui-iconfont-suoding</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a6;</i>
-            <div class="name">关闭</div>
-            <div class="code">&amp;#xe6a6;</div>
-            <div class="fontclass">.Hui-iconfont-close</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe706;</i>
-            <div class="name">关闭2</div>
-            <div class="code">&amp;#xe706;</div>
-            <div class="fontclass">.Hui-iconfont-close2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a7;</i>
-            <div class="name">选择</div>
-            <div class="code">&amp;#xe6a7;</div>
-            <div class="fontclass">.Hui-iconfont-xuanze</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe608;</i>
-            <div class="name">未选</div>
-            <div class="code">&amp;#xe608;</div>
-            <div class="fontclass">.Hui-iconfont-weigouxuan2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a8;</i>
-            <div class="name">选中</div>
-            <div class="code">&amp;#xe6a8;</div>
-            <div class="fontclass">.Hui-iconfont-xuanzhong1</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe676;</i>
-            <div class="name">选中</div>
-            <div class="code">&amp;#xe676;</div>
-            <div class="fontclass">.Hui-iconfont-xuanzhong</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe677;</i>
-            <div class="name">未选中</div>
-            <div class="code">&amp;#xe677;</div>
-            <div class="fontclass">.Hui-iconfont-weixuanzhong</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe601;</i>
-            <div class="name">启用</div>
-            <div class="code">&amp;#xe601;</div>
-            <div class="fontclass">.Hui-iconfont-gouxuan2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6f7;</i>
-            <div class="name">重启</div>
-            <div class="code">&amp;#xe6f7;</div>
-            <div class="fontclass">.Hui-iconfont-chongqi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe617;</i>
-            <div class="name">勾选</div>
-            <div class="code">&amp;#xe617;</div>
-            <div class="fontclass">.Hui-iconfont-selected</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6dc;</i>
-            <div class="name">上架</div>
-            <div class="code">&amp;#xe6dc;</div>
-            <div class="fontclass">.Hui-iconfont-shangjia</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6de;</i>
-            <div class="name">下架</div>
-            <div class="code">&amp;#xe6de;</div>
-            <div class="fontclass">.Hui-iconfont-xiajia</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe642;</i>
-            <div class="name">上传</div>
-            <div class="code">&amp;#xe642;</div>
-            <div class="fontclass">.Hui-iconfont-upload</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe641;</i>
-            <div class="name">下载</div>
-            <div class="code">&amp;#xe641;</div>
-            <div class="fontclass">.Hui-iconfont-yundown</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6bc;</i>
-            <div class="name">剪裁</div>
-            <div class="code">&amp;#xe6bc;</div>
-            <div class="fontclass">.Hui-iconfont-caiqie</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6bd;</i>
-            <div class="name">旋转</div>
-            <div class="code">&amp;#xe6bd;</div>
-            <div class="fontclass">.Hui-iconfont-xuanzhuan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe615;</i>
-            <div class="name">启用</div>
-            <div class="code">&amp;#xe615;</div>
-            <div class="fontclass">.Hui-iconfont-gouxuan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6e1;</i>
-            <div class="name">未勾选</div>
-            <div class="code">&amp;#xe614;</div>
-            <div class="fontclass">.Hui-iconfont-weigouxuan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe619;</i>
-            <div class="name">录音</div>
-            <div class="code">&amp;#xe619;</div>
-            <div class="fontclass">.Hui-iconfont-luyin</div>
-        </li>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content icons-box">
+                    <section id="web-application">
+                        <h2 class="page-header">Web应用程序图标</h2>
 
-        <li> <i class="icon Hui-iconfont">&#xe695;</i>
-            <div class="name">预览</div>
-            <div class="code">&amp;#xe695;</div>
-            <div class="fontclass">.Hui-iconfont-yulan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6e0;</i>
-            <div class="name">审核不通过</div>
-            <div class="code">&amp;#xe6e0;</div>
-            <div class="fontclass">.Hui-iconfont-shenhe-weitongguo</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6dd;</i>
-            <div class="name">审核不通过</div>
-            <div class="code">&amp;#xe6dd;</div>
-            <div class="fontclass">.Hui-iconfont-shenhe-butongguo2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6e1;</i>
-            <div class="name">审核通过</div>
-            <div class="code">&amp;#xe6e1;</div>
-            <div class="fontclass">.Hui-iconfont-shenhe-tongguo</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe631;</i>
-            <div class="name">停用</div>
-            <div class="code">&amp;#xe631;</div>
-            <div class="fontclass">.Hui-iconfont-shenhe-tingyong</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6e6;</i>
-            <div class="name">播放</div>
-            <div class="code">&amp;#xe6e6;</div>
-            <div class="fontclass">.Hui-iconfont-bofang</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6db;</i>
-            <div class="name">上一首</div>
-            <div class="code">&amp;#xe6db;</div>
-            <div class="fontclass">.Hui-iconfont-shangyishou</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6e3;</i>
-            <div class="name">下一首</div>
-            <div class="code">&amp;#xe6e3;</div>
-            <div class="fontclass">.Hui-iconfont-xiayishou</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6e5;</i>
-            <div class="name">暂停</div>
-            <div class="code">&amp;#xe6e5;</div>
-            <div class="fontclass">.Hui-iconfont-zanting</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6e4;</i>
-            <div class="name">停止</div>
-            <div class="code">&amp;#xe6e4;</div>
-            <div class="fontclass">.Hui-iconfont-tingzhi</div>
-        </li>
-    </ul>
-    <h2>菜单相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe625;</i>
-            <div class="name">home</div>
-            <div class="code">&amp;#xe625;</div>
-            <div class="fontclass">.Hui-iconfont-home</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe67f;</i>
-            <div class="name">小箭头</div>
-            <div class="code">&amp;#xe67f;</div>
-            <div class="fontclass">.Hui-iconfont-home2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe616;</i>
-            <div class="name">cmstop新闻</div>
-            <div class="code">&amp;#xe616;</div>
-            <div class="fontclass">.Hui-iconfont-news</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe613;</i>
-            <div class="name">图片</div>
-            <div class="code">&amp;#xe613;</div>
-            <div class="fontclass">.Hui-iconfont-tuku</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe60f;</i>
-            <div class="name">音乐</div>
-            <div class="code">&amp;#xe60f;</div>
-            <div class="fontclass">.Hui-iconfont-music</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe64b;</i>
-            <div class="name">标签</div>
-            <div class="code">&amp;#xe64b;</div>
-            <div class="fontclass">.Hui-iconfont-tags</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe66f;</i>
-            <div class="name">语音</div>
-            <div class="code">&amp;#xe66f;</div>
-            <div class="fontclass">.Hui-iconfont-yuyin3</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe62e;</i>
-            <div class="name">系统</div>
-            <div class="code">&amp;#xe62e;</div>
-            <div class="fontclass">.Hui-iconfont-system</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe633;</i>
-            <div class="name">帮助</div>
-            <div class="code">&amp;#xe633;</div>
-            <div class="fontclass">.Hui-iconfont-help</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe634;</i>
-            <div class="name">出库</div>
-            <div class="code">&amp;#xe634;</div>
-            <div class="fontclass">.Hui-iconfont-chuku</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe646;</i>
-            <div class="name">图片</div>
-            <div class="code">&amp;#xe646;</div>
-            <div class="fontclass">.Hui-iconfont-picture</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe681;</i>
-            <div class="name">分类</div>
-            <div class="code">&amp;#xe681;</div>
-            <div class="fontclass">.Hui-iconfont-fenlei</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe636;</i>
-            <div class="name">合同管理</div>
-            <div class="code">&amp;#xe636;</div>
-            <div class="fontclass">.Hui-iconfont-hetong</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe687;</i>
-            <div class="name">全部订单</div>
-            <div class="code">&amp;#xe687;</div>
-            <div class="fontclass">.Hui-iconfont-quanbudingdan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe637;</i>
-            <div class="name">任务管理</div>
-            <div class="code">&amp;#xe637;</div>
-            <div class="fontclass">.Hui-iconfont-renwu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe691;</i>
-            <div class="name">问题反馈</div>
-            <div class="code">&amp;#xe691;</div>
-            <div class="fontclass">.Hui-iconfont-feedback</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe692;</i>
-            <div class="name">意见反馈</div>
-            <div class="code">&amp;#xe692;</div>
-            <div class="fontclass">.Hui-iconfont-feedback2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe639;</i>
-            <div class="name">合同</div>
-            <div class="code">&amp;#xe639;</div>
-            <div class="fontclass">.Hui-iconfont-dangan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe623;</i>
-            <div class="name">日志</div>
-            <div class="code">&amp;#xe623;</div>
-            <div class="fontclass">.Hui-iconfont-log</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe626;</i>
-            <div class="name">列表页面</div>
-            <div class="code">&amp;#xe626;</div>
-            <div class="fontclass">.Hui-iconfont-pages</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe63e;</i>
-            <div class="name">文件</div>
-            <div class="code">&amp;#xe63e;</div>
-            <div class="fontclass">.Hui-iconfont-file</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe63c;</i>
-            <div class="name">管理</div>
-            <div class="code">&amp;#xe63c;</div>
-            <div class="fontclass">.Hui-iconfont-manage2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe627;</i>
-            <div class="name">订单</div>
-            <div class="code">&amp;#xe627;</div>
-            <div class="fontclass">.Hui-iconfont-order</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a4;</i>
-            <div class="name">语音</div>
-            <div class="code">&amp;#xe6a4;</div>
-            <div class="fontclass">.Hui-iconfont-yuyin2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a5;</i>
-            <div class="name">语音</div>
-            <div class="code">&amp;#xe6a5;</div>
-            <div class="fontclass">.Hui-iconfont-yuyin</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe612;</i>
-            <div class="name">图片</div>
-            <div class="code">&amp;#xe612;</div>
-            <div class="fontclass">.Hui-iconfont-picture1</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe685;</i>
-            <div class="name">图文详情</div>
-            <div class="code">&amp;#xe685;</div>
-            <div class="fontclass">.Hui-iconfont-tuwenxiangqing</div>
-        </li>
-    </ul>
-    <h2>天气相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe6ac;</i>
-            <div class="name">多云</div>
-            <div class="code">&amp;#xe6ac;</div>
-            <div class="fontclass">.Hui-iconfont-tianqi-duoyun</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6ad;</i>
-            <div class="name">霾</div>
-            <div class="code">&amp;#xe6ad;</div>
-            <div class="fontclass">.Hui-iconfont-tianqi-mai</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6ae;</i>
-            <div class="name">晴</div>
-            <div class="code">&amp;#xe6ae;</div>
-            <div class="fontclass">.Hui-iconfont-tianqi-qing</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6af;</i>
-            <div class="name">雾</div>
-            <div class="code">&amp;#xe6af;</div>
-            <div class="fontclass">.Hui-iconfont-tianqi-wu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b0;</i>
-            <div class="name">雪</div>
-            <div class="code">&amp;#xe6b0;</div>
-            <div class="fontclass">.Hui-iconfont-tianqi-xue</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b1;</i>
-            <div class="name">阴</div>
-            <div class="code">&amp;#xe6b1;</div>
-            <div class="fontclass">.Hui-iconfont-tianqi-yin</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b2;</i>
-            <div class="name">雨</div>
-            <div class="code">&amp;#xe6b2;</div>
-            <div class="fontclass">.Hui-iconfont-tianqi-yu</div>
-        </li>
-    </ul>
-    <h2>用户相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe62c;</i>
-            <div class="name">用户</div>
-            <div class="code">&amp;#xe62c;</div>
-            <div class="fontclass">.Hui-iconfont-user</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe60d;</i>
-            <div class="name">用户</div>
-            <div class="code">&amp;#xe60d;</div>
-            <div class="fontclass">.Hui-iconfont-user2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe60a;</i>
-            <div class="name">用户头像</div>
-            <div class="code">&amp;#xe60a;</div>
-            <div class="fontclass">.Hui-iconfont-avatar</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe705;</i>
-            <div class="name">个人中心</div>
-            <div class="code">&amp;#xe705;</div>
-            <div class="fontclass">.Hui-iconfont-avatar2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe607;</i>
-            <div class="name">添加用户</div>
-            <div class="code">&amp;#xe607;</div>
-            <div class="fontclass">.Hui-iconfont-user-add</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe602;</i>
-            <div class="name">用户ID</div>
-            <div class="code">&amp;#xe602;</div>
-            <div class="fontclass">.Hui-iconfont-userid</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe638;</i>
-            <div class="name">证照管理</div>
-            <div class="code">&amp;#xe638;</div>
-            <div class="fontclass">.Hui-iconfont-zhizhao</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe70d;</i>
-            <div class="name">执业证</div>
-            <div class="code">&amp;#xe70d;</div>
-            <div class="fontclass">.Hui-iconfont-practice</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe62b;</i>
-            <div class="name">群组</div>
-            <div class="code">&amp;#xe62b;</div>
-            <div class="fontclass">.Hui-iconfont-user-group</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe653;</i>
-            <div class="name">站长</div>
-            <div class="code">&amp;#xe653;</div>
-            <div class="fontclass">.Hui-iconfont-user-zhanzhang</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe62d;</i>
-            <div class="name">管理员</div>
-            <div class="code">&amp;#xe62d;</div>
-            <div class="fontclass">.Hui-iconfont-root</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe643;</i>
-            <div class="name">公司</div>
-            <div class="code">&amp;#xe643;</div>
-            <div class="fontclass">.Hui-iconfont-gongsi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b4;</i>
-            <div class="name">会员卡</div>
-            <div class="code">&amp;#xe6b4;</div>
-            <div class="fontclass">.Hui-iconfont-vip-card2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6cc;</i>
-            <div class="name">会员</div>
-            <div class="code">&amp;#xe6cc;</div>
-            <div class="fontclass">.Hui-iconfont-vip</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe611;</i>
-            <div class="name">群组</div>
-            <div class="code">&amp;#xe611;</div>
-            <div class="fontclass">.Hui-iconfont-usergroup2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d0;</i>
-            <div class="name">客服</div>
-            <div class="code">&amp;#xe6d0;</div>
-            <div class="fontclass">.Hui-iconfont-kefu</div>
-        </li>
-    </ul>
-    <h2>表情相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe68e;</i>
-            <div class="name">表情</div>
-            <div class="code">&amp;#xe68e;</div>
-            <div class="fontclass">.Hui-iconfont-face2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe668;</i>
-            <div class="name">表情</div>
-            <div class="code">&amp;#xe668;</div>
-            <div class="fontclass">.Hui-iconfont-face</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe656;</i>
-            <div class="name">微笑</div>
-            <div class="code">&amp;#xe656;</div>
-            <div class="fontclass">.Hui-iconfont-face-weixiao</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe688;</i>
-            <div class="name">哭脸</div>
-            <div class="code">&amp;#xe688;</div>
-            <div class="fontclass">.face-ku</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe657;</i>
-            <div class="name">吃惊</div>
-            <div class="code">&amp;#xe657;</div>
-            <div class="fontclass">.Hui-iconfont-face-chijing</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe658;</i>
-            <div class="name">呆</div>
-            <div class="code">&amp;#xe658;</div>
-            <div class="fontclass">.Hui-iconfont-face-dai</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe659;</i>
-            <div class="name">耍酷</div>
-            <div class="code">&amp;#xe659;</div>
-            <div class="fontclass">.Hui-iconfont-face-shuaku</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe65a;</i>
-            <div class="name">魔鬼</div>
-            <div class="code">&amp;#xe65a;</div>
-            <div class="fontclass">.Hui-iconfont-face-mogui</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe65b;</i>
-            <div class="name">尴尬</div>
-            <div class="code">&amp;#xe65b;</div>
-            <div class="fontclass">.Hui-iconfont-face-ganga</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe65c;</i>
-            <div class="name">亲</div>
-            <div class="code">&amp;#xe65c;</div>
-            <div class="fontclass">.Hui-iconfont-face-qin</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe65d;</i>
-            <div class="name">怒</div>
-            <div class="code">&amp;#xe65d;</div>
-            <div class="fontclass">.Hui-iconfont-face-nu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe65e;</i>
-            <div class="name">眨眼</div>
-            <div class="code">&amp;#xe65e;</div>
-            <div class="fontclass">.Hui-iconfont-face-zhayan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe65f;</i>
-            <div class="name">生气</div>
-            <div class="code">&amp;#xe65f;</div>
-            <div class="fontclass">.Hui-iconfont-face-shengqi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe660;</i>
-            <div class="name">骂</div>
-            <div class="code">&amp;#xe660;</div>
-            <div class="fontclass">.Hui-iconfont-face-ma</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe661;</i>
-            <div class="name">鄙视</div>
-            <div class="code">&amp;#xe661;</div>
-            <div class="fontclass">.Hui-iconfont-face-bishi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe662;</i>
-            <div class="name">卖萌</div>
-            <div class="code">&amp;#xe662;</div>
-            <div class="fontclass">.Hui-iconfont-face-maimeng</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe663;</i>
-            <div class="name">惊呆</div>
-            <div class="code">&amp;#xe663;</div>
-            <div class="fontclass">.Hui-iconfont-face-jingdai</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe664;</i>
-            <div class="name">晕</div>
-            <div class="code">&amp;#xe664;</div>
-            <div class="fontclass">.Hui-iconfont-face-yun</div>
-        </li>
-    </ul>
-    <h2>社区相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe666;</i>
-            <div class="name">分享</div>
-            <div class="code">&amp;#xe666;</div>
-            <div class="fontclass">.Hui-iconfont-share2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6aa;</i>
-            <div class="name">分享</div>
-            <div class="code">&amp;#xe6aa;</div>
-            <div class="fontclass">.Hui-iconfont-share</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d8;</i>
-            <div class="name">人人网</div>
-            <div class="code">&amp;#xe6d8;</div>
-            <div class="fontclass">.Hui-iconfont-share-renren</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d9;</i>
-            <div class="name">腾讯微博</div>
-            <div class="code">&amp;#xe6d9;</div>
-            <div class="fontclass">.Hui-iconfont-share-tweibo</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe67c;</i>
-            <div class="name">豆瓣</div>
-            <div class="code">&amp;#xe67c;</div>
-            <div class="fontclass">.Hui-iconfont-share-douban</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe693;</i>
-            <div class="name">朋友圈</div>
-            <div class="code">&amp;#xe693;</div>
-            <div class="fontclass">.Hui-iconfont-share-pengyouquan</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe694;</i>
-            <div class="name">微信</div>
-            <div class="code">&amp;#xe694;</div>
-            <div class="fontclass">.Hui-iconfont-share-weixin</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe67b;</i>
-            <div class="name">QQ</div>
-            <div class="code">&amp;#xe67b;</div>
-            <div class="fontclass">.Hui-iconfont-share-qq</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6c8;</i>
-            <div class="name">QQ空间</div>
-            <div class="code">&amp;#xe6c8;</div>
-            <div class="fontclass">.Hui-iconfont-share-qzone</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6da;</i>
-            <div class="name">微博</div>
-            <div class="code">&amp;#xe6da;</div>
-            <div class="fontclass">.Hui-iconfont-share-weibo</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe689;</i>
-            <div class="name">知乎</div>
-            <div class="code">&amp;#xe689;</div>
-            <div class="fontclass">.Hui-iconfont-share-zhihu</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe715;</i>
-            <div class="name">更多</div>
-            <div class="code">&amp;#xe715;</div>
-            <div class="fontclass">.Hui-iconfont-gengduo</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe716;</i>
-            <div class="name">更多</div>
-            <div class="code">&amp;#xe716;</div>
-            <div class="fontclass">.Hui-iconfont-gengduo2</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f9;</i>
-            <div class="name">更多</div>
-            <div class="code">&amp;#xe6f9;</div>
-            <div class="fontclass">.Hui-iconfont-engduo3</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe717;</i>
-            <div class="name">更多</div>
-            <div class="code">&amp;#xe717;</div>
-            <div class="fontclass">.Hui-iconfont-gengduo4</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe649;</i>
-            <div class="name">喜欢</div>
-            <div class="code">&amp;#xe649;</div>
-            <div class="fontclass">.Hui-iconfont-like</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe648;</i>
-            <div class="name">喜欢</div>
-            <div class="code">&amp;#xe648;</div>
-            <div class="fontclass">.Hui-iconfont-like2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe680;</i>
-            <div class="name">已关注</div>
-            <div class="code">&amp;#xe680;</div>
-            <div class="fontclass">.Hui-iconfont-yiguanzhu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe622;</i>
-            <div class="name">评论</div>
-            <div class="code">&amp;#xe622;</div>
-            <div class="fontclass">.Hui-iconfont-comment</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe686;</i>
-            <div class="name">累计评价</div>
-            <div class="code">&amp;#xe686;</div>
-            <div class="fontclass">.Hui-iconfont-leijipingjia</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe68a;</i>
-            <div class="name">消息</div>
-            <div class="code">&amp;#xe68a;</div>
-            <div class="fontclass">.Hui-iconfont-xiaoxi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe61b;</i>
-            <div class="name">收藏</div>
-            <div class="code">&amp;#xe61b;</div>
-            <div class="fontclass">.Hui-iconfont-cang</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe630;</i>
-            <div class="name">收藏-选中</div>
-            <div class="code">&amp;#xe630;</div>
-            <div class="fontclass">.Hui-iconfont-cang-selected</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe69e;</i>
-            <div class="name">收藏</div>
-            <div class="code">&amp;#xe69e;</div>
-            <div class="fontclass">.Hui-iconfont-cang2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe69d;</i>
-            <div class="name">收藏-选中</div>
-            <div class="code">&amp;#xe69d;</div>
-            <div class="fontclass">.Hui-iconfont-cang2-selected</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe68b;</i>
-            <div class="name">关注-更多操作</div>
-            <div class="code">&amp;#xe68b;</div>
-            <div class="fontclass">.Hui-iconfont-more</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe66d;</i>
-            <div class="name">赞扬</div>
-            <div class="code">&amp;#xe66d;</div>
-            <div class="fontclass">.Hui-iconfont-zan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe66e;</i>
-            <div class="name">批评</div>
-            <div class="code">&amp;#xe66e;</div>
-            <div class="fontclass">.Hui-iconfont-cai</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe697;</i>
-            <div class="name">点赞</div>
-            <div class="code">&amp;#xe697;</div>
-            <div class="fontclass">.Hui-iconfont-zan2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe62f;</i>
-            <div class="name">通知</div>
-            <div class="code">&amp;#xe62f;</div>
-            <div class="fontclass">.Hui-iconfont-msg</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe63b;</i>
-            <div class="name">消息管理</div>
-            <div class="code">&amp;#xe63b;</div>
-            <div class="fontclass">.Hui-iconfont-email</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a9;</i>
-            <div class="name">已关注店铺</div>
-            <div class="code">&amp;#xe6a9;</div>
-            <div class="fontclass">.Hui-iconfont-yiguanzhu1</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6ab;</i>
-            <div class="name">转发</div>
-            <div class="code">&amp;#xe6ab;</div>
-            <div class="fontclass">.Hui-iconfont-zhuanfa</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b3;</i>
-            <div class="name">待评价</div>
-            <div class="code">&amp;#xe6b3;</div>
-            <div class="fontclass">.Hui-iconfont-daipingjia</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b5;</i>
-            <div class="name">积分</div>
-            <div class="code">&amp;#xe6b5;</div>
-            <div class="fontclass">.Hui-iconfont-jifen</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c5;</i>
-            <div class="name">消息</div>
-            <div class="code">&amp;#xe6c5;</div>
-            <div class="fontclass">.Hui-iconfont-xiaoxi1</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe70b;</i>
-            <div class="name">已读</div>
-            <div class="code">&amp;#xe70b;</div>
-            <div class="fontclass">.Hui-iconfont-read</div>
-        </li>
+                        <div class="row fontawesome-icon-list">
 
-        <li>
-            <i class="icon Hui-iconfont">&#xe70c;</i>
-            <div class="name">用户反馈</div>
-            <div class="code">&amp;#xe70c;</div>
-            <div class="fontclass">.Hui-iconfont-feedback1</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6ce;</i>
-            <div class="name">订阅</div>
-            <div class="code">&amp;#xe6ce;</div>
-            <div class="fontclass">.Hui-iconfont-dingyue</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6cd;</i>
-            <div class="name">提示</div>
-            <div class="code">&amp;#xe6cd;</div>
-            <div class="fontclass">.Hui-iconfont-tishi</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe702;</i>
-            <div class="name">star-o</div>
-            <div class="code">&amp;#xe702;</div>
-            <div class="fontclass">.Hui-iconfont-star-o</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6ff;</i>
-            <div class="name">star</div>
-            <div class="code">&amp;#xe6ff;</div>
-            <div class="fontclass">.Hui-iconfont-star</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe700;</i>
-            <div class="name">star-half</div>
-            <div class="code">&amp;#xe700;</div>
-            <div class="fontclass">.Hui-iconfont-star-half</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe701;</i>
-            <div class="name">star-half-empty</div>
-            <div class="code">&amp;#xe701;</div>
-            <div class="fontclass">.Hui-iconfont-star-halfempty</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe70a;</i>
-            <div class="name">我的评价</div>
-            <div class="code">&amp;#xe70a;</div>
-            <div class="fontclass">.Hui-iconfont-comment1</div>
-        </li>
-    </ul>
-    <h2>统计相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe621;</i>
-            <div class="name">数据统计</div>
-            <div class="code">&amp;#xe621;</div>
-            <div class="fontclass">.Hui-iconfont-tongji-bing</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe635;</i>
-            <div class="name">统计管理</div>
-            <div class="code">&amp;#xe635;</div>
-            <div class="fontclass">.Hui-iconfont-ad</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe61e;</i>
-            <div class="name">数据统计</div>
-            <div class="code">&amp;#xe61e;</div>
-            <div class="fontclass">.Hui-iconfont-shujutongji</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe61a;</i>
-            <div class="name">统计</div>
-            <div class="code">&amp;#xe61a;</div>
-            <div class="fontclass">.Hui-iconfont-tongji</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe618;</i>
-            <div class="name">柱状统计</div>
-            <div class="code">&amp;#xe618;</div>
-            <div class="fontclass">.Hui-iconfont-tongji-zhu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe61c;</i>
-            <div class="name">线状统计</div>
-            <div class="code">&amp;#xe61c;</div>
-            <div class="fontclass">.Hui-iconfont-tongji-xian</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6cf;</i>
-            <div class="name">排行榜</div>
-            <div class="code">&amp;#xe6cf;</div>
-            <div class="fontclass">.Hui-iconfont-paixingbang</div>
-        </li>
-    </ul>
-    <h2>箭头相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe678;</i>
-            <div class="name">向左</div>
-            <div class="code">&amp;#xe678;</div>
-            <div class="fontclass">.Hui-iconfont-arrow1-bottom</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe674;</i>
-            <div class="name">向下</div>
-            <div class="code">&amp;#xe674;</div>
-            <div class="fontclass">.Hui-iconfont-arrow1-bottom</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe679;</i>
-            <div class="name">向上</div>
-            <div class="code">&amp;#xe679;</div>
-            <div class="fontclass">.Hui-iconfont-arrow1-top</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe67a;</i>
-            <div class="name">向右</div>
-            <div class="code">&amp;#xe67a;</div>
-            <div class="fontclass">.Hui-iconfont-arrow1-right</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d4;</i>
-            <div class="name">向左</div>
-            <div class="code">&amp;#xe6d4;</div>
-            <div class="fontclass">.Hui-iconfont-arrow2-left</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d6;</i>
-            <div class="name">向上</div>
-            <div class="code">&amp;#xe6d6;</div>
-            <div class="fontclass">.Hui-iconfont-arrow2-top</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d7;</i>
-            <div class="name">向右</div>
-            <div class="code">&amp;#xe6d7;</div>
-            <div class="fontclass">.Hui-iconfont-arrow2-right</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d5;</i>
-            <div class="name">向下</div>
-            <div class="code">&amp;#xe6d5;</div>
-            <div class="fontclass">.Hui-iconfont-arrow2-bottom</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe69b;</i>
-            <div class="name">向左</div>
-            <div class="code">&amp;#xe69b;</div>
-            <div class="fontclass">.Hui-iconfont-arrow3-left</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe699;</i>
-            <div class="name">向上</div>
-            <div class="code">&amp;#xe699;</div>
-            <div class="fontclass">.Hui-iconfont-arrow3-top</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe69a;</i>
-            <div class="name">向右</div>
-            <div class="code">&amp;#xe69a;</div>
-            <div class="fontclass">.Hui-iconfont-arrow3-right</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe698;</i>
-            <div class="name">向下</div>
-            <div class="code">&amp;#xe698;</div>
-            <div class="fontclass">.Hui-iconfont-arrow3-bottom</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe67e;</i>
-            <div class="name">向右</div>
-            <div class="code">&amp;#xe67e;</div>
-            <div class="fontclass">.Hui-iconfont-sanjiao</div>
-        </li>
-    </ul>
-    <h2>电商相关</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe669;</i>
-            <div class="name">物流</div>
-            <div class="code">&amp;#xe669;</div>
-            <div class="fontclass">.Hui-iconfont-wuliu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe66a;</i>
-            <div class="name">店铺</div>
-            <div class="code">&amp;#xe66a;</div>
-            <div class="fontclass">.Hui-iconfont-dianpu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe670;</i>
-            <div class="name">购物车</div>
-            <div class="code">&amp;#xe670;</div>
-            <div class="fontclass">.Hui-iconfont-cart2-selected</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe672;</i>
-            <div class="name">购物车满</div>
-            <div class="code">&amp;#xe672;</div>
-            <div class="fontclass">.Hui-iconfont-cart2-man</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe673;</i>
-            <div class="name">购物车空</div>
-            <div class="code">&amp;#xe673;</div>
-            <div class="fontclass">.Hui-iconfont-card2-kong</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b8;</i>
-            <div class="name">购物车-选中</div>
-            <div class="code">&amp;#xe6b8;</div>
-            <div class="fontclass">.Hui-iconfont-cart-selected</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b9;</i>
-            <div class="name">购物车</div>
-            <div class="code">&amp;#xe6b9;</div>
-            <div class="fontclass">.Hui-iconfont-cart-kong</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6ba;</i>
-            <div class="name">降价</div>
-            <div class="code">&amp;#xe6ba;</div>
-            <div class="fontclass">.Hui-iconfont-jiangjia</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe628;</i>
-            <div class="name">信用卡还款</div>
-            <div class="code">&amp;#xe628;</div>
-            <div class="fontclass">.Hui-iconfont-bank</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6bb;</i>
-            <div class="name">礼物</div>
-            <div class="code">&amp;#xe6bb;</div>
-            <div class="fontclass">.Hui-iconfont-liwu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b6;</i>
-            <div class="name">优惠券</div>
-            <div class="code">&amp;#xe6b6;</div>
-            <div class="fontclass">.Hui-iconfont-youhuiquan</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6b7;</i>
-            <div class="name">红包</div>
-            <div class="code">&amp;#xe6b7;</div>
-            <div class="fontclass">.Hui-iconfont-hongbao</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6ca;</i>
-            <div class="name">优惠券</div>
-            <div class="code">&amp;#xe6ca;</div>
-            <div class="fontclass">.Hui-iconfont-hongbao2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe63a;</i>
-            <div class="name">资金</div>
-            <div class="code">&amp;#xe63a;</div>
-            <div class="fontclass">.Hui-iconfont-money</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe620;</i>
-            <div class="name">商品</div>
-            <div class="code">&amp;#xe620;</div>
-            <div class="fontclass">.Hui-iconfont-goods</div>
-        </li>
-    </ul>
-    <h2>编辑器</h2>
-    <ul class="icon_lists cl">
-        <li>
-            <i class="icon Hui-iconfont">&#xe6ee;</i>
-            <div class="name">code</div>
-            <div class="code">&amp;#xe6ee;</div>
-            <div class="fontclass">.Hui-iconfont-code</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe710;</i>
-            <div class="name">左对齐</div>
-            <div class="code">&amp;#xe710;</div>
-            <div class="fontclass">.Hui-iconfont-align-left</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe70e;</i>
-            <div class="name">居中对齐</div>
-            <div class="code">&amp;#xe70e;</div>
-            <div class="fontclass">.Hui-iconfont-align-center</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe711;</i>
-            <div class="name">右对齐</div>
-            <div class="code">&amp;#xe711;</div>
-            <div class="fontclass">.Hui-iconfont-align-right</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe70f;</i>
-            <div class="name">两头对齐</div>
-            <div class="code">&amp;#xe70f;</div>
-            <div class="fontclass">.Hui-iconfont-align-justify</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6ec;</i>
-            <div class="name">字体</div>
-            <div class="code">&amp;#xe6ec;</div>
-            <div class="fontclass">.Hui-iconfont-font</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6e7;</i>
-            <div class="name">加粗</div>
-            <div class="code">&amp;#xe6e7;</div>
-            <div class="fontclass">.Hui-iconfont-bold</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6e9;</i>
-            <div class="name">倾斜</div>
-            <div class="code">&amp;#xe6e9;</div>
-            <div class="fontclass">.Hui-iconfont-italic</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6fe;</i>
-            <div class="name">下划线</div>
-            <div class="code">&amp;#xe6fe;</div>
-            <div class="fontclass">.Hui-iconfont-underline</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6fc;</i>
-            <div class="name">text-height</div>
-            <div class="code">&amp;#xe6fc;</div>
-            <div class="fontclass">.Hui-iconfont-text-height</div>
-        </li>
 
-        <li>
-            <i class="icon Hui-iconfont">&#xe6fd;</i>
-            <div class="name">text-width</div>
-            <div class="code">&amp;#xe6fd;</div>
-            <div class="fontclass">.Hui-iconfont-text-width</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f1;</i>
-            <div class="name">link</div>
-            <div class="code">&amp;#xe6f1;</div>
-            <div class="fontclass">.Hui-iconfont-link</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f3;</i>
-            <div class="name">有序列表</div>
-            <div class="code">&amp;#xe6f3;</div>
-            <div class="fontclass">.Hui-iconfont-ordered-list</div>
-        </li>
 
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f5;</i>
-            <div class="name">无序列表</div>
-            <div class="code">&amp;#xe6f5;</div>
-            <div class="fontclass">.Hui-iconfont-unordered-list</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6ef;</i>
-            <div class="name">剪切</div>
-            <div class="code">&amp;#xe6ef;</div>
-            <div class="fontclass">.Hui-iconfont-cut</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6ea;</i>
-            <div class="name">复制</div>
-            <div class="code">&amp;#xe6ea;</div>
-            <div class="fontclass">.Hui-iconfont-copy</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6eb;</i>
-            <div class="name">粘贴</div>
-            <div class="code">&amp;#xe6eb;</div>
-            <div class="fontclass">.Hui-iconfont-paste</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f2;</i>
-            <div class="name">新建</div>
-            <div class="code">&amp;#xe6f2;</div>
-            <div class="fontclass">.Hui-iconfont-new</div>
-        </li>
-    </ul>
-    <h2>银行、支付相关</h2>
-    <ul class="icon_lists cl">
-        <li>
-            <i class="icon Hui-iconfont">&#xe71f;</i>
-            <div class="name">支付宝支付1</div>
-            <div class="code">&amp;#xe71f;</div>
-            <div class="fontclass">.Hui-iconfont-pay-alipay-1</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe71c;</i>
-            <div class="name">支付宝支付2</div>
-            <div class="code">&amp;#xe71c;</div>
-            <div class="fontclass">.Hui-iconfont-pay-alipay-2</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe719;</i>
-            <div class="name">微信支付</div>
-            <div class="code">&amp;#xe719;</div>
-            <div class="fontclass">.Hui-iconfont-pay-weixin</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe722;</i>
-            <div class="name">中国银行</div>
-            <div class="code">&amp;#xe722;</div>
-            <div class="fontclass">.Hui-iconfont-zhongguoyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe71d;</i>
-            <div class="name">工商银行</div>
-            <div class="code">&amp;#xe71d;</div>
-            <div class="fontclass">.Hui-iconfont-gongshangyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f8;</i>
-            <div class="name">建设银行</div>
-            <div class="code">&amp;#xe6f8;</div>
-            <div class="fontclass">.Hui-iconfont-jiansheyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe71a;</i>
-            <div class="name">交通银行</div>
-            <div class="code">&amp;#xe71a;</div>
-            <div class="fontclass">.Hui-iconfont-jiaotongyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe713;</i>
-            <div class="name">中国农业银行</div>
-            <div class="code">&amp;#xe713;</div>
-            <div class="fontclass">.Hui-iconfont-zhongguonongyeyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe721;</i>
-            <div class="name">邮政银行</div>
-            <div class="code">&amp;#xe721;</div>
-            <div class="fontclass">.Hui-iconfont-youzhengyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe71b;</i>
-            <div class="name">浦发银行</div>
-            <div class="code">&amp;#xe71b;</div>
-            <div class="fontclass">.Hui-iconfont-pufayinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe71e;</i>
-            <div class="name">华夏银行</div>
-            <div class="code">&amp;#xe71e;</div>
-            <div class="fontclass">.Hui-iconfont-huaxiayinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe704;</i>
-            <div class="name">招商银行</div>
-            <div class="code">&amp;#xe704;</div>
-            <div class="fontclass">.Hui-iconfont-zhaoshangyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe723;</i>
-            <div class="name">中信银行</div>
-            <div class="code">&amp;#xe723;</div>
-            <div class="fontclass">.Hui-iconfont-zhongxinyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe724;</i>
-            <div class="name">上海银行</div>
-            <div class="code">&amp;#xe724;</div>
-            <div class="fontclass">.Hui-iconfont-shanghaiyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6ed;</i>
-            <div class="name">温州银行</div>
-            <div class="code">&amp;#xe6ed;</div>
-            <div class="fontclass">.Hui-iconfont-wenzhouyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f0;</i>
-            <div class="name">光大银行</div>
-            <div class="code">&amp;#xe6f0;</div>
-            <div class="fontclass">.Hui-iconfont-guangdayinxing</div>
-        </li>
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#adjust"><i class="fa fa-adjust"></i> adjust</a></div>
 
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f4;</i>
-            <div class="name">民生银行</div>
-            <div class="code">&amp;#xe6f4;</div>
-            <div class="fontclass">.Hui-iconfont-minshengyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6f6;</i>
-            <div class="name">青岛银行</div>
-            <div class="code">&amp;#xe6f6;</div>
-            <div class="fontclass">.Hui-iconfont-qingdaoyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe6fb;</i>
-            <div class="name">北京银行</div>
-            <div class="code">&amp;#xe6fb;</div>
-            <div class="fontclass">.Hui-iconfont-beijingyinxing</div>
-        </li>
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#anchor"><i class="fa fa-anchor"></i> anchor</a></div>
 
-        <li>
-            <i class="icon Hui-iconfont">&#xe703;</i>
-            <div class="name">广东发展银行</div>
-            <div class="code">&amp;#xe703;</div>
-            <div class="fontclass">.Hui-iconfont-guangdongfazhanyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe712;</i>
-            <div class="name">浙商银行</div>
-            <div class="code">&amp;#xe712;</div>
-            <div class="fontclass">.Hui-iconfont-zheshangyinxing</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe714;</i>
-            <div class="name">成都银行</div>
-            <div class="code">&amp;#xe714;</div>
-            <div class="fontclass">.Hui-iconfont-cdbank</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe718;</i>
-            <div class="name">杭州银行</div>
-            <div class="code">&amp;#xe718;</div>
-            <div class="fontclass">.Hui-iconfont-hangzhouyinxing</div>
-        </li>
-    </ul>
-    <h2>其他</h2>
-    <ul class="icon_lists cl">
-        <li> <i class="icon Hui-iconfont">&#xe6c7;</i>
-            <div class="name">电话</div>
-            <div class="code">&amp;#xe6c7;</div>
-            <div class="fontclass">.Hui-iconfont-tel</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a3;</i>
-            <div class="name">电话</div>
-            <div class="code">&amp;#xe6a3;</div>
-            <div class="fontclass">.Hui-iconfont-tel2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe696;</i>
-            <div class="name">iphone手机</div>
-            <div class="code">&amp;#xe696;</div>
-            <div class="fontclass">.Hui-iconfont-phone</div>
-        </li>
-        <li>
-            <i class="icon Hui-iconfont">&#xe708;</i>
-            <div class="name">安卓手机</div>
-            <div class="code">&amp;#xe708;</div>
-            <div class="fontclass">.Hui-iconfont-phone-android</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe64c;</i>
-            <div class="name">平板电脑</div>
-            <div class="code">&amp;#xe64c;</div>
-            <div class="fontclass">.Hui-iconfont-pad</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe64f;</i>
-            <div class="name">PC</div>
-            <div class="code">&amp;#xe64f;</div>
-            <div class="fontclass">.Hui-iconfont-xianshiqi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe650;</i>
-            <div class="name">照相机</div>
-            <div class="code">&amp;#xe650;</div>
-            <div class="fontclass">.Hui-iconfont-zhaoxiangji</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe651;</i>
-            <div class="name">单反相机</div>
-            <div class="code">&amp;#xe651;</div>
-            <div class="fontclass">.Hui-iconfont-danfanxiangji</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe652;</i>
-            <div class="name">打印机</div>
-            <div class="code">&amp;#xe652;</div>
-            <div class="fontclass">.Hui-iconfont-dayinji</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe64d;</i>
-            <div class="name">轮胎</div>
-            <div class="code">&amp;#xe64d;</div>
-            <div class="fontclass">.Hui-iconfont-lunzi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe654;</i>
-            <div class="name">插件</div>
-            <div class="code">&amp;#xe654;</div>
-            <div class="fontclass">.Hui-iconfont-chajian</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe655;</i>
-            <div class="name">节日</div>
-            <div class="code">&amp;#xe655;</div>
-            <div class="fontclass">.Hui-iconfont-jieri</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe675;</i>
-            <div class="name">排序</div>
-            <div class="code">&amp;#xe675;</div>
-            <div class="fontclass">.Hui-iconfont-paixu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe624;</i>
-            <div class="name">匿名</div>
-            <div class="code">&amp;#xe624;</div>
-            <div class="fontclass">.Hui-iconfont-niming</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe62a;</i>
-            <div class="name">换肤</div>
-            <div class="code">&amp;#xe62a;</div>
-            <div class="fontclass">.Hui-iconfont-pifu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6cb;</i>
-            <div class="name">二维码</div>
-            <div class="code">&amp;#xe6cb;</div>
-            <div class="fontclass">.Hui-iconfont-2code</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe682;</i>
-            <div class="name">扫一扫</div>
-            <div class="code">&amp;#xe682;</div>
-            <div class="fontclass">.Hui-iconfont-saoyisao</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe683;</i>
-            <div class="name">搜索</div>
-            <div class="code">&amp;#xe683;</div>
-            <div class="fontclass">.Hui-iconfont-search</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe68c;</i>
-            <div class="name">中图模式</div>
-            <div class="code">&amp;#xe68c;</div>
-            <div class="fontclass">.Hui-iconfont-zhongtumoshi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe68d;</i>
-            <div class="name">大图模式</div>
-            <div class="code">&amp;#xe68d;</div>
-            <div class="fontclass">.Hui-iconfont-datumoshi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6be;</i>
-            <div class="name">大图模式</div>
-            <div class="code">&amp;#xe6be;</div>
-            <div class="fontclass">.Hui-iconfont-bigpic</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c0;</i>
-            <div class="name">中图模式</div>
-            <div class="code">&amp;#xe6c0;</div>
-            <div class="fontclass">.Hui-iconfont-middle</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6bf;</i>
-            <div class="name">列表模式</div>
-            <div class="code">&amp;#xe6bf;</div>
-            <div class="fontclass">.Hui-iconfont-list</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe690;</i>
-            <div class="name">时间</div>
-            <div class="code">&amp;#xe690;</div>
-            <div class="fontclass">.Hui-iconfont-shijian</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe69c;</i>
-            <div class="name">更多</div>
-            <div class="code">&amp;#xe69c;</div>
-            <div class="fontclass">.Hui-iconfont-more2</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe629;</i>
-            <div class="name">SIM卡</div>
-            <div class="code">&amp;#xe629;</div>
-            <div class="fontclass">.Hui-iconfont-sim</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c1;</i>
-            <div class="name">火热</div>
-            <div class="code">&amp;#xe6c1;</div>
-            <div class="fontclass">.Hui-iconfont-hot</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c2;</i>
-            <div class="name">拍摄</div>
-            <div class="code">&amp;#xe6c2;</div>
-            <div class="fontclass">.Hui-iconfont-paishe</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c3;</i>
-            <div class="name">热销</div>
-            <div class="code">&amp;#xe6c3;</div>
-            <div class="fontclass">.Hui-iconfont-hot1</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c4;</i>
-            <div class="name">上新</div>
-            <div class="code">&amp;#xe6c4;</div>
-            <div class="fontclass">.Hui-iconfont-new</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c6;</i>
-            <div class="name">产品参数</div>
-            <div class="code">&amp;#xe6c6;</div>
-            <div class="fontclass">.Hui-iconfont-canshu</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6c9;</i>
-            <div class="name">定位</div>
-            <div class="code">&amp;#xe6c9;</div>
-            <div class="fontclass">.Hui-iconfont-dingwei</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe671;</i>
-            <div class="name">定位</div>
-            <div class="code">&amp;#xe671;</div>
-            <div class="fontclass">.Hui-iconfont-weizhi</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe69f;</i>
-            <div class="name">HTML</div>
-            <div class="code">&amp;#xe69f;</div>
-            <div class="fontclass">.Hui-iconfont-html</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a0;</i>
-            <div class="name">CSS</div>
-            <div class="code">&amp;#xe6a0;</div>
-            <div class="fontclass">.Hui-iconfont-css</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe64a;</i>
-            <div class="name">苹果</div>
-            <div class="code">&amp;#xe64a;</div>
-            <div class="fontclass">.Hui-iconfont-apple</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6a2;</i>
-            <div class="name">android</div>
-            <div class="code">&amp;#xe6a2;</div>
-            <div class="fontclass">.Hui-iconfont-android</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d1;</i>
-            <div class="name">github</div>
-            <div class="code">&amp;#xe6d1;</div>
-            <div class="fontclass">.Hui-iconfont-github</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d2;</i>
-            <div class="name">html5</div>
-            <div class="code">&amp;#xe6d2;</div>
-            <div class="fontclass">.Hui-iconfont-html5</div>
-        </li>
-        <li> <i class="icon Hui-iconfont">&#xe6d3;</i>
-            <div class="name">皇冠</div>
-            <div class="code">&amp;#xe6d3;</div>
-            <div class="fontclass">.Hui-iconfont-huangguan</div>
-        </li>
-    </ul>
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#archive"><i class="fa fa-archive"></i> archive</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#area-chart"><i class="fa fa-area-chart"></i> area-chart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows"><i class="fa fa-arrows"></i> arrows</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows-h"><i class="fa fa-arrows-h"></i> arrows-h</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows-v"><i class="fa fa-arrows-v"></i> arrows-v</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#asterisk"><i class="fa fa-asterisk"></i> asterisk</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#at"><i class="fa fa-at"></i> at</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#car"><i class="fa fa-automobile"></i> automobile <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#balance-scale"><i class="fa fa-balance-scale"></i> balance-scale</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ban"><i class="fa fa-ban"></i> ban</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#university"><i class="fa fa-bank"></i> bank <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bar-chart"><i class="fa fa-bar-chart"></i> bar-chart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bar-chart"><i class="fa fa-bar-chart-o"></i> bar-chart-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#barcode"><i class="fa fa-barcode"></i> barcode</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bars"><i class="fa fa-bars"></i> bars</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-empty"><i class="fa fa-battery-0"></i> battery-0 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-quarter"><i class="fa fa-battery-1"></i> battery-1 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-half"><i class="fa fa-battery-2"></i> battery-2 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-three-quarters"><i class="fa fa-battery-3"></i> battery-3 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-full"><i class="fa fa-battery-4"></i> battery-4 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-empty"><i class="fa fa-battery-empty"></i> battery-empty</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-full"><i class="fa fa-battery-full"></i> battery-full</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-half"><i class="fa fa-battery-half"></i> battery-half</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-quarter"><i class="fa fa-battery-quarter"></i> battery-quarter</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#battery-three-quarters"><i class="fa fa-battery-three-quarters"></i> battery-three-quarters</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bed"><i class="fa fa-bed"></i> bed</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#beer"><i class="fa fa-beer"></i> beer</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bell"><i class="fa fa-bell"></i> bell</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bell-o"><i class="fa fa-bell-o"></i> bell-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bell-slash"><i class="fa fa-bell-slash"></i> bell-slash</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bell-slash-o"><i class="fa fa-bell-slash-o"></i> bell-slash-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bicycle"><i class="fa fa-bicycle"></i> bicycle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#binoculars"><i class="fa fa-binoculars"></i> binoculars</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#birthday-cake"><i class="fa fa-birthday-cake"></i> birthday-cake</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bolt"><i class="fa fa-bolt"></i> bolt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bomb"><i class="fa fa-bomb"></i> bomb</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#book"><i class="fa fa-book"></i> book</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bookmark"><i class="fa fa-bookmark"></i> bookmark</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bookmark-o"><i class="fa fa-bookmark-o"></i> bookmark-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#briefcase"><i class="fa fa-briefcase"></i> briefcase</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bug"><i class="fa fa-bug"></i> bug</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#building"><i class="fa fa-building"></i> building</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#building-o"><i class="fa fa-building-o"></i> building-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bullhorn"><i class="fa fa-bullhorn"></i> bullhorn</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bullseye"><i class="fa fa-bullseye"></i> bullseye</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bus"><i class="fa fa-bus"></i> bus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#taxi"><i class="fa fa-cab"></i> cab <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#calculator"><i class="fa fa-calculator"></i> calculator</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#calendar"><i class="fa fa-calendar"></i> calendar</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#calendar-check-o"><i class="fa fa-calendar-check-o"></i> calendar-check-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#calendar-minus-o"><i class="fa fa-calendar-minus-o"></i> calendar-minus-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#calendar-o"><i class="fa fa-calendar-o"></i> calendar-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#calendar-plus-o"><i class="fa fa-calendar-plus-o"></i> calendar-plus-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#calendar-times-o"><i class="fa fa-calendar-times-o"></i> calendar-times-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#camera"><i class="fa fa-camera"></i> camera</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#camera-retro"><i class="fa fa-camera-retro"></i> camera-retro</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#car"><i class="fa fa-car"></i> car</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-down"><i class="fa fa-caret-square-o-down"></i> caret-square-o-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-left"><i class="fa fa-caret-square-o-left"></i> caret-square-o-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-right"><i class="fa fa-caret-square-o-right"></i> caret-square-o-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-up"><i class="fa fa-caret-square-o-up"></i> caret-square-o-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cart-arrow-down"><i class="fa fa-cart-arrow-down"></i> cart-arrow-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cart-plus"><i class="fa fa-cart-plus"></i> cart-plus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc"><i class="fa fa-cc"></i> cc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#certificate"><i class="fa fa-certificate"></i> certificate</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#check"><i class="fa fa-check"></i> check</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#check-circle"><i class="fa fa-check-circle"></i> check-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#check-circle-o"><i class="fa fa-check-circle-o"></i> check-circle-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#check-square"><i class="fa fa-check-square"></i> check-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#check-square-o"><i class="fa fa-check-square-o"></i> check-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#child"><i class="fa fa-child"></i> child</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#circle"><i class="fa fa-circle"></i> circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#circle-o"><i class="fa fa-circle-o"></i> circle-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#circle-o-notch"><i class="fa fa-circle-o-notch"></i> circle-o-notch</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#circle-thin"><i class="fa fa-circle-thin"></i> circle-thin</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#clock-o"><i class="fa fa-clock-o"></i> clock-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#clone"><i class="fa fa-clone"></i> clone</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#times"><i class="fa fa-close"></i> close <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cloud"><i class="fa fa-cloud"></i> cloud</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cloud-download"><i class="fa fa-cloud-download"></i> cloud-download</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cloud-upload"><i class="fa fa-cloud-upload"></i> cloud-upload</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#code"><i class="fa fa-code"></i> code</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#code-fork"><i class="fa fa-code-fork"></i> code-fork</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#coffee"><i class="fa fa-coffee"></i> coffee</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cog"><i class="fa fa-cog"></i> cog</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cogs"><i class="fa fa-cogs"></i> cogs</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#comment"><i class="fa fa-comment"></i> comment</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#comment-o"><i class="fa fa-comment-o"></i> comment-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#commenting"><i class="fa fa-commenting"></i> commenting</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#commenting-o"><i class="fa fa-commenting-o"></i> commenting-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#comments"><i class="fa fa-comments"></i> comments</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#comments-o"><i class="fa fa-comments-o"></i> comments-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#compass"><i class="fa fa-compass"></i> compass</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#copyright"><i class="fa fa-copyright"></i> copyright</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#creative-commons"><i class="fa fa-creative-commons"></i> creative-commons</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#credit-card"><i class="fa fa-credit-card"></i> credit-card</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#crop"><i class="fa fa-crop"></i> crop</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#crosshairs"><i class="fa fa-crosshairs"></i> crosshairs</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cube"><i class="fa fa-cube"></i> cube</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cubes"><i class="fa fa-cubes"></i> cubes</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cutlery"><i class="fa fa-cutlery"></i> cutlery</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tachometer"><i class="fa fa-dashboard"></i> dashboard <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#database"><i class="fa fa-database"></i> database</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#desktop"><i class="fa fa-desktop"></i> desktop</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#diamond"><i class="fa fa-diamond"></i> diamond</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#dot-circle-o"><i class="fa fa-dot-circle-o"></i> dot-circle-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#download"><i class="fa fa-download"></i> download</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pencil-square-o"><i class="fa fa-edit"></i> edit <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ellipsis-h"><i class="fa fa-ellipsis-h"></i> ellipsis-h</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ellipsis-v"><i class="fa fa-ellipsis-v"></i> ellipsis-v</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#envelope"><i class="fa fa-envelope"></i> envelope</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#envelope-o"><i class="fa fa-envelope-o"></i> envelope-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#envelope-square"><i class="fa fa-envelope-square"></i> envelope-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eraser"><i class="fa fa-eraser"></i> eraser</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#exchange"><i class="fa fa-exchange"></i> exchange</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#exclamation"><i class="fa fa-exclamation"></i> exclamation</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#exclamation-circle"><i class="fa fa-exclamation-circle"></i> exclamation-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#exclamation-triangle"><i class="fa fa-exclamation-triangle"></i> exclamation-triangle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#external-link"><i class="fa fa-external-link"></i> external-link</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#external-link-square"><i class="fa fa-external-link-square"></i> external-link-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eye"><i class="fa fa-eye"></i> eye</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eye-slash"><i class="fa fa-eye-slash"></i> eye-slash</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eyedropper"><i class="fa fa-eyedropper"></i> eyedropper</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fax"><i class="fa fa-fax"></i> fax</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rss"><i class="fa fa-feed"></i> feed <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#female"><i class="fa fa-female"></i> female</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fighter-jet"><i class="fa fa-fighter-jet"></i> fighter-jet</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-archive-o"><i class="fa fa-file-archive-o"></i> file-archive-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-audio-o"><i class="fa fa-file-audio-o"></i> file-audio-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-code-o"><i class="fa fa-file-code-o"></i> file-code-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-excel-o"><i class="fa fa-file-excel-o"></i> file-excel-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-image-o"><i class="fa fa-file-image-o"></i> file-image-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-video-o"><i class="fa fa-file-movie-o"></i> file-movie-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-pdf-o"><i class="fa fa-file-pdf-o"></i> file-pdf-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-image-o"><i class="fa fa-file-photo-o"></i> file-photo-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-image-o"><i class="fa fa-file-picture-o"></i> file-picture-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-powerpoint-o"><i class="fa fa-file-powerpoint-o"></i> file-powerpoint-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-audio-o"><i class="fa fa-file-sound-o"></i> file-sound-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-video-o"><i class="fa fa-file-video-o"></i> file-video-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-word-o"><i class="fa fa-file-word-o"></i> file-word-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-archive-o"><i class="fa fa-file-zip-o"></i> file-zip-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#film"><i class="fa fa-film"></i> film</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#filter"><i class="fa fa-filter"></i> filter</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fire"><i class="fa fa-fire"></i> fire</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fire-extinguisher"><i class="fa fa-fire-extinguisher"></i> fire-extinguisher</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#flag"><i class="fa fa-flag"></i> flag</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#flag-checkered"><i class="fa fa-flag-checkered"></i> flag-checkered</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#flag-o"><i class="fa fa-flag-o"></i> flag-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bolt"><i class="fa fa-flash"></i> flash <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#flask"><i class="fa fa-flask"></i> flask</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#folder"><i class="fa fa-folder"></i> folder</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#folder-o"><i class="fa fa-folder-o"></i> folder-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#folder-open"><i class="fa fa-folder-open"></i> folder-open</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#folder-open-o"><i class="fa fa-folder-open-o"></i> folder-open-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#frown-o"><i class="fa fa-frown-o"></i> frown-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#futbol-o"><i class="fa fa-futbol-o"></i> futbol-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gamepad"><i class="fa fa-gamepad"></i> gamepad</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gavel"><i class="fa fa-gavel"></i> gavel</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cog"><i class="fa fa-gear"></i> gear <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cogs"><i class="fa fa-gears"></i> gears <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gift"><i class="fa fa-gift"></i> gift</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#glass"><i class="fa fa-glass"></i> glass</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#globe"><i class="fa fa-globe"></i> globe</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#graduation-cap"><i class="fa fa-graduation-cap"></i> graduation-cap</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#users"><i class="fa fa-group"></i> group <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-rock-o"><i class="fa fa-hand-grab-o"></i> hand-grab-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-lizard-o"><i class="fa fa-hand-lizard-o"></i> hand-lizard-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-paper-o"><i class="fa fa-hand-paper-o"></i> hand-paper-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-peace-o"><i class="fa fa-hand-peace-o"></i> hand-peace-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-pointer-o"><i class="fa fa-hand-pointer-o"></i> hand-pointer-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-rock-o"><i class="fa fa-hand-rock-o"></i> hand-rock-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-scissors-o"><i class="fa fa-hand-scissors-o"></i> hand-scissors-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-spock-o"><i class="fa fa-hand-spock-o"></i> hand-spock-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-paper-o"><i class="fa fa-hand-stop-o"></i> hand-stop-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hdd-o"><i class="fa fa-hdd-o"></i> hdd-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#headphones"><i class="fa fa-headphones"></i> headphones</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#heart"><i class="fa fa-heart"></i> heart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#heart-o"><i class="fa fa-heart-o"></i> heart-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#heartbeat"><i class="fa fa-heartbeat"></i> heartbeat</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#history"><i class="fa fa-history"></i> history</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#home"><i class="fa fa-home"></i> home</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bed"><i class="fa fa-hotel"></i> hotel <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass"><i class="fa fa-hourglass"></i> hourglass</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass-start"><i class="fa fa-hourglass-1"></i> hourglass-1 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass-half"><i class="fa fa-hourglass-2"></i> hourglass-2 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass-end"><i class="fa fa-hourglass-3"></i> hourglass-3 <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass-end"><i class="fa fa-hourglass-end"></i> hourglass-end</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass-half"><i class="fa fa-hourglass-half"></i> hourglass-half</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass-o"><i class="fa fa-hourglass-o"></i> hourglass-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hourglass-start"><i class="fa fa-hourglass-start"></i> hourglass-start</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#i-cursor"><i class="fa fa-i-cursor"></i> i-cursor</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#picture-o"><i class="fa fa-image"></i> image <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#inbox"><i class="fa fa-inbox"></i> inbox</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#industry"><i class="fa fa-industry"></i> industry</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#info"><i class="fa fa-info"></i> info</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#info-circle"><i class="fa fa-info-circle"></i> info-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#university"><i class="fa fa-institution"></i> institution <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#key"><i class="fa fa-key"></i> key</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#keyboard-o"><i class="fa fa-keyboard-o"></i> keyboard-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#language"><i class="fa fa-language"></i> language</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#laptop"><i class="fa fa-laptop"></i> laptop</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#leaf"><i class="fa fa-leaf"></i> leaf</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gavel"><i class="fa fa-legal"></i> legal <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#lemon-o"><i class="fa fa-lemon-o"></i> lemon-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#level-down"><i class="fa fa-level-down"></i> level-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#level-up"><i class="fa fa-level-up"></i> level-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#life-ring"><i class="fa fa-life-bouy"></i> life-bouy <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#life-ring"><i class="fa fa-life-buoy"></i> life-buoy <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#life-ring"><i class="fa fa-life-ring"></i> life-ring</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#life-ring"><i class="fa fa-life-saver"></i> life-saver <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#lightbulb-o"><i class="fa fa-lightbulb-o"></i> lightbulb-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#line-chart"><i class="fa fa-line-chart"></i> line-chart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#location-arrow"><i class="fa fa-location-arrow"></i> location-arrow</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#lock"><i class="fa fa-lock"></i> lock</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#magic"><i class="fa fa-magic"></i> magic</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#magnet"><i class="fa fa-magnet"></i> magnet</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share"><i class="fa fa-mail-forward"></i> mail-forward <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#reply"><i class="fa fa-mail-reply"></i> mail-reply <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#reply-all"><i class="fa fa-mail-reply-all"></i> mail-reply-all <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#male"><i class="fa fa-male"></i> male</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#map"><i class="fa fa-map"></i> map</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#map-marker"><i class="fa fa-map-marker"></i> map-marker</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#map-o"><i class="fa fa-map-o"></i> map-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#map-pin"><i class="fa fa-map-pin"></i> map-pin</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#map-signs"><i class="fa fa-map-signs"></i> map-signs</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#meh-o"><i class="fa fa-meh-o"></i> meh-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#microphone"><i class="fa fa-microphone"></i> microphone</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#microphone-slash"><i class="fa fa-microphone-slash"></i> microphone-slash</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#minus"><i class="fa fa-minus"></i> minus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#minus-circle"><i class="fa fa-minus-circle"></i> minus-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#minus-square"><i class="fa fa-minus-square"></i> minus-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#minus-square-o"><i class="fa fa-minus-square-o"></i> minus-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mobile"><i class="fa fa-mobile"></i> mobile</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mobile"><i class="fa fa-mobile-phone"></i> mobile-phone <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#money"><i class="fa fa-money"></i> money</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#moon-o"><i class="fa fa-moon-o"></i> moon-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#graduation-cap"><i class="fa fa-mortar-board"></i> mortar-board <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#motorcycle"><i class="fa fa-motorcycle"></i> motorcycle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mouse-pointer"><i class="fa fa-mouse-pointer"></i> mouse-pointer</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#music"><i class="fa fa-music"></i> music</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bars"><i class="fa fa-navicon"></i> navicon <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#newspaper-o"><i class="fa fa-newspaper-o"></i> newspaper-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#object-group"><i class="fa fa-object-group"></i> object-group</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#object-ungroup"><i class="fa fa-object-ungroup"></i> object-ungroup</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paint-brush"><i class="fa fa-paint-brush"></i> paint-brush</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paper-plane"><i class="fa fa-paper-plane"></i> paper-plane</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paper-plane-o"><i class="fa fa-paper-plane-o"></i> paper-plane-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paw"><i class="fa fa-paw"></i> paw</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pencil"><i class="fa fa-pencil"></i> pencil</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pencil-square"><i class="fa fa-pencil-square"></i> pencil-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pencil-square-o"><i class="fa fa-pencil-square-o"></i> pencil-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#phone"><i class="fa fa-phone"></i> phone</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#phone-square"><i class="fa fa-phone-square"></i> phone-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#picture-o"><i class="fa fa-photo"></i> photo <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#picture-o"><i class="fa fa-picture-o"></i> picture-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pie-chart"><i class="fa fa-pie-chart"></i> pie-chart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plane"><i class="fa fa-plane"></i> plane</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plug"><i class="fa fa-plug"></i> plug</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plus"><i class="fa fa-plus"></i> plus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plus-circle"><i class="fa fa-plus-circle"></i> plus-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plus-square"><i class="fa fa-plus-square"></i> plus-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plus-square-o"><i class="fa fa-plus-square-o"></i> plus-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#power-off"><i class="fa fa-power-off"></i> power-off</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#print"><i class="fa fa-print"></i> print</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#puzzle-piece"><i class="fa fa-puzzle-piece"></i> puzzle-piece</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#qrcode"><i class="fa fa-qrcode"></i> qrcode</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#question"><i class="fa fa-question"></i> question</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#question-circle"><i class="fa fa-question-circle"></i> question-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#quote-left"><i class="fa fa-quote-left"></i> quote-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#quote-right"><i class="fa fa-quote-right"></i> quote-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#random"><i class="fa fa-random"></i> random</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#recycle"><i class="fa fa-recycle"></i> recycle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#refresh"><i class="fa fa-refresh"></i> refresh</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#registered"><i class="fa fa-registered"></i> registered</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#times"><i class="fa fa-remove"></i> remove <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bars"><i class="fa fa-reorder"></i> reorder <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#reply"><i class="fa fa-reply"></i> reply</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#reply-all"><i class="fa fa-reply-all"></i> reply-all</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#retweet"><i class="fa fa-retweet"></i> retweet</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#road"><i class="fa fa-road"></i> road</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rocket"><i class="fa fa-rocket"></i> rocket</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rss"><i class="fa fa-rss"></i> rss</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rss-square"><i class="fa fa-rss-square"></i> rss-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#search"><i class="fa fa-search"></i> search</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#search-minus"><i class="fa fa-search-minus"></i> search-minus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#search-plus"><i class="fa fa-search-plus"></i> search-plus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paper-plane"><i class="fa fa-send"></i> send <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paper-plane-o"><i class="fa fa-send-o"></i> send-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#server"><i class="fa fa-server"></i> server</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share"><i class="fa fa-share"></i> share</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share-alt"><i class="fa fa-share-alt"></i> share-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share-alt-square"><i class="fa fa-share-alt-square"></i> share-alt-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share-square"><i class="fa fa-share-square"></i> share-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share-square-o"><i class="fa fa-share-square-o"></i> share-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#shield"><i class="fa fa-shield"></i> shield</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ship"><i class="fa fa-ship"></i> ship</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#shopping-cart"><i class="fa fa-shopping-cart"></i> shopping-cart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sign-in"><i class="fa fa-sign-in"></i> sign-in</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sign-out"><i class="fa fa-sign-out"></i> sign-out</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#signal"><i class="fa fa-signal"></i> signal</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sitemap"><i class="fa fa-sitemap"></i> sitemap</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sliders"><i class="fa fa-sliders"></i> sliders</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#smile-o"><i class="fa fa-smile-o"></i> smile-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#futbol-o"><i class="fa fa-soccer-ball-o"></i> soccer-ball-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort"><i class="fa fa-sort"></i> sort</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-alpha-asc"><i class="fa fa-sort-alpha-asc"></i> sort-alpha-asc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-alpha-desc"><i class="fa fa-sort-alpha-desc"></i> sort-alpha-desc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-amount-asc"><i class="fa fa-sort-amount-asc"></i> sort-amount-asc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-amount-desc"><i class="fa fa-sort-amount-desc"></i> sort-amount-desc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-asc"><i class="fa fa-sort-asc"></i> sort-asc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-desc"><i class="fa fa-sort-desc"></i> sort-desc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-desc"><i class="fa fa-sort-down"></i> sort-down <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-numeric-asc"><i class="fa fa-sort-numeric-asc"></i> sort-numeric-asc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-numeric-desc"><i class="fa fa-sort-numeric-desc"></i> sort-numeric-desc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort-asc"><i class="fa fa-sort-up"></i> sort-up <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#space-shuttle"><i class="fa fa-space-shuttle"></i> space-shuttle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#spinner"><i class="fa fa-spinner"></i> spinner</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#spoon"><i class="fa fa-spoon"></i> spoon</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#square"><i class="fa fa-square"></i> square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#square-o"><i class="fa fa-square-o"></i> square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#star"><i class="fa fa-star"></i> star</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#star-half"><i class="fa fa-star-half"></i> star-half</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#star-half-o"><i class="fa fa-star-half-empty"></i> star-half-empty <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#star-half-o"><i class="fa fa-star-half-full"></i> star-half-full <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#star-half-o"><i class="fa fa-star-half-o"></i> star-half-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#star-o"><i class="fa fa-star-o"></i> star-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sticky-note"><i class="fa fa-sticky-note"></i> sticky-note</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sticky-note-o"><i class="fa fa-sticky-note-o"></i> sticky-note-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#street-view"><i class="fa fa-street-view"></i> street-view</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#suitcase"><i class="fa fa-suitcase"></i> suitcase</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sun-o"><i class="fa fa-sun-o"></i> sun-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#life-ring"><i class="fa fa-support"></i> support <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tablet"><i class="fa fa-tablet"></i> tablet</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tachometer"><i class="fa fa-tachometer"></i> tachometer</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tag"><i class="fa fa-tag"></i> tag</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tags"><i class="fa fa-tags"></i> tags</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tasks"><i class="fa fa-tasks"></i> tasks</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#taxi"><i class="fa fa-taxi"></i> taxi</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#television"><i class="fa fa-television"></i> television</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#terminal"><i class="fa fa-terminal"></i> terminal</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumb-tack"><i class="fa fa-thumb-tack"></i> thumb-tack</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-down"><i class="fa fa-thumbs-down"></i> thumbs-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-o-down"><i class="fa fa-thumbs-o-down"></i> thumbs-o-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-o-up"><i class="fa fa-thumbs-o-up"></i> thumbs-o-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-up"><i class="fa fa-thumbs-up"></i> thumbs-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ticket"><i class="fa fa-ticket"></i> ticket</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#times"><i class="fa fa-times"></i> times</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#times-circle"><i class="fa fa-times-circle"></i> times-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#times-circle-o"><i class="fa fa-times-circle-o"></i> times-circle-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tint"><i class="fa fa-tint"></i> tint</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-down"><i class="fa fa-toggle-down"></i> toggle-down <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-left"><i class="fa fa-toggle-left"></i> toggle-left <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#toggle-off"><i class="fa fa-toggle-off"></i> toggle-off</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#toggle-on"><i class="fa fa-toggle-on"></i> toggle-on</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-right"><i class="fa fa-toggle-right"></i> toggle-right <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-up"><i class="fa fa-toggle-up"></i> toggle-up <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#trademark"><i class="fa fa-trademark"></i> trademark</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#trash"><i class="fa fa-trash"></i> trash</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#trash-o"><i class="fa fa-trash-o"></i> trash-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tree"><i class="fa fa-tree"></i> tree</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#trophy"><i class="fa fa-trophy"></i> trophy</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#truck"><i class="fa fa-truck"></i> truck</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tty"><i class="fa fa-tty"></i> tty</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#television"><i class="fa fa-tv"></i> tv <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#umbrella"><i class="fa fa-umbrella"></i> umbrella</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#university"><i class="fa fa-university"></i> university</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#unlock"><i class="fa fa-unlock"></i> unlock</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#unlock-alt"><i class="fa fa-unlock-alt"></i> unlock-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sort"><i class="fa fa-unsorted"></i> unsorted <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#upload"><i class="fa fa-upload"></i> upload</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#user"><i class="fa fa-user"></i> user</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#user-plus"><i class="fa fa-user-plus"></i> user-plus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#user-secret"><i class="fa fa-user-secret"></i> user-secret</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#user-times"><i class="fa fa-user-times"></i> user-times</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#users"><i class="fa fa-users"></i> users</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#video-camera"><i class="fa fa-video-camera"></i> video-camera</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#volume-down"><i class="fa fa-volume-down"></i> volume-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#volume-off"><i class="fa fa-volume-off"></i> volume-off</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#volume-up"><i class="fa fa-volume-up"></i> volume-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#exclamation-triangle"><i class="fa fa-warning"></i> warning <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#wheelchair"><i class="fa fa-wheelchair"></i> wheelchair</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#wifi"><i class="fa fa-wifi"></i> wifi</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#wrench"><i class="fa fa-wrench"></i> wrench</a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="hand">
+                        <h2 class="page-header">手型图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-rock-o"><i class="fa fa-hand-grab-o"></i> hand-grab-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-lizard-o"><i class="fa fa-hand-lizard-o"></i> hand-lizard-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-down"><i class="fa fa-hand-o-down"></i> hand-o-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-left"><i class="fa fa-hand-o-left"></i> hand-o-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-right"><i class="fa fa-hand-o-right"></i> hand-o-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-up"><i class="fa fa-hand-o-up"></i> hand-o-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-paper-o"><i class="fa fa-hand-paper-o"></i> hand-paper-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-peace-o"><i class="fa fa-hand-peace-o"></i> hand-peace-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-pointer-o"><i class="fa fa-hand-pointer-o"></i> hand-pointer-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-rock-o"><i class="fa fa-hand-rock-o"></i> hand-rock-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-scissors-o"><i class="fa fa-hand-scissors-o"></i> hand-scissors-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-spock-o"><i class="fa fa-hand-spock-o"></i> hand-spock-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-paper-o"><i class="fa fa-hand-stop-o"></i> hand-stop-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-down"><i class="fa fa-thumbs-down"></i> thumbs-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-o-down"><i class="fa fa-thumbs-o-down"></i> thumbs-o-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-o-up"><i class="fa fa-thumbs-o-up"></i> thumbs-o-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#thumbs-up"><i class="fa fa-thumbs-up"></i> thumbs-up</a></div>
+
+                        </div>
+
+                    </section>
+
+                    <section id="transportation">
+                        <h2 class="page-header">交通运输图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ambulance"><i class="fa fa-ambulance"></i> ambulance</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#car"><i class="fa fa-automobile"></i> automobile <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bicycle"><i class="fa fa-bicycle"></i> bicycle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bus"><i class="fa fa-bus"></i> bus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#taxi"><i class="fa fa-cab"></i> cab <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#car"><i class="fa fa-car"></i> car</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fighter-jet"><i class="fa fa-fighter-jet"></i> fighter-jet</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#motorcycle"><i class="fa fa-motorcycle"></i> motorcycle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plane"><i class="fa fa-plane"></i> plane</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rocket"><i class="fa fa-rocket"></i> rocket</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ship"><i class="fa fa-ship"></i> ship</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#space-shuttle"><i class="fa fa-space-shuttle"></i> space-shuttle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#subway"><i class="fa fa-subway"></i> subway</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#taxi"><i class="fa fa-taxi"></i> taxi</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#train"><i class="fa fa-train"></i> train</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#truck"><i class="fa fa-truck"></i> truck</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#wheelchair"><i class="fa fa-wheelchair"></i> wheelchair</a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="gender">
+                        <h2 class="page-header">性别图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#genderless"><i class="fa fa-genderless"></i> genderless</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#transgender"><i class="fa fa-intersex"></i> intersex <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mars"><i class="fa fa-mars"></i> mars</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mars-double"><i class="fa fa-mars-double"></i> mars-double</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mars-stroke"><i class="fa fa-mars-stroke"></i> mars-stroke</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mars-stroke-h"><i class="fa fa-mars-stroke-h"></i> mars-stroke-h</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mars-stroke-v"><i class="fa fa-mars-stroke-v"></i> mars-stroke-v</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#mercury"><i class="fa fa-mercury"></i> mercury</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#neuter"><i class="fa fa-neuter"></i> neuter</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#transgender"><i class="fa fa-transgender"></i> transgender</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#transgender-alt"><i class="fa fa-transgender-alt"></i> transgender-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#venus"><i class="fa fa-venus"></i> venus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#venus-double"><i class="fa fa-venus-double"></i> venus-double</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#venus-mars"><i class="fa fa-venus-mars"></i> venus-mars</a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="file-type">
+                        <h2 class="page-header">文件类型图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file"><i class="fa fa-file"></i> file</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-archive-o"><i class="fa fa-file-archive-o"></i> file-archive-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-audio-o"><i class="fa fa-file-audio-o"></i> file-audio-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-code-o"><i class="fa fa-file-code-o"></i> file-code-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-excel-o"><i class="fa fa-file-excel-o"></i> file-excel-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-image-o"><i class="fa fa-file-image-o"></i> file-image-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-video-o"><i class="fa fa-file-movie-o"></i> file-movie-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-o"><i class="fa fa-file-o"></i> file-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-pdf-o"><i class="fa fa-file-pdf-o"></i> file-pdf-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-image-o"><i class="fa fa-file-photo-o"></i> file-photo-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-image-o"><i class="fa fa-file-picture-o"></i> file-picture-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-powerpoint-o"><i class="fa fa-file-powerpoint-o"></i> file-powerpoint-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-audio-o"><i class="fa fa-file-sound-o"></i> file-sound-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-text"><i class="fa fa-file-text"></i> file-text</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-text-o"><i class="fa fa-file-text-o"></i> file-text-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-video-o"><i class="fa fa-file-video-o"></i> file-video-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-word-o"><i class="fa fa-file-word-o"></i> file-word-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-archive-o"><i class="fa fa-file-zip-o"></i> file-zip-o <span class="text-muted">(alias)</span></a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="spinner">
+                        <h2 class="page-header">加载动画图标</h2>
+
+                        <div class="alert alert-success">
+                            <ul class="fa-ul">
+                                <li>
+                                    <i class="fa fa-info-circle fa-lg fa-li"></i> 给这些图标加上
+                                    <code>fa-spin</code> class，就可以表现出加载动画了
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#circle-o-notch"><i class="fa fa-circle-o-notch"></i> circle-o-notch</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cog"><i class="fa fa-cog"></i> cog</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cog"><i class="fa fa-gear"></i> gear <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#refresh"><i class="fa fa-refresh"></i> refresh</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#spinner"><i class="fa fa-spinner"></i> spinner</a></div>
+
+                        </div>
+                    </section>
+                    <section id="form-control">
+                        <h2 class="page-header">表单图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#check-square"><i class="fa fa-check-square"></i> check-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#check-square-o"><i class="fa fa-check-square-o"></i> check-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#circle"><i class="fa fa-circle"></i> circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#circle-o"><i class="fa fa-circle-o"></i> circle-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#dot-circle-o"><i class="fa fa-dot-circle-o"></i> dot-circle-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#minus-square"><i class="fa fa-minus-square"></i> minus-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#minus-square-o"><i class="fa fa-minus-square-o"></i> minus-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plus-square"><i class="fa fa-plus-square"></i> plus-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plus-square-o"><i class="fa fa-plus-square-o"></i> plus-square-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#square"><i class="fa fa-square"></i> square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#square-o"><i class="fa fa-square-o"></i> square-o</a></div>
+
+                        </div>
+                    </section>
+                    <section id="payment">
+                        <h2 class="page-header">支付图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-amex"><i class="fa fa-cc-amex"></i> cc-amex</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-diners-club"><i class="fa fa-cc-diners-club"></i> cc-diners-club</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-discover"><i class="fa fa-cc-discover"></i> cc-discover</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-jcb"><i class="fa fa-cc-jcb"></i> cc-jcb</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-mastercard"><i class="fa fa-cc-mastercard"></i> cc-mastercard</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-paypal"><i class="fa fa-cc-paypal"></i> cc-paypal</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-stripe"><i class="fa fa-cc-stripe"></i> cc-stripe</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-visa"><i class="fa fa-cc-visa"></i> cc-visa</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#credit-card"><i class="fa fa-credit-card"></i> credit-card</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#google-wallet"><i class="fa fa-google-wallet"></i> google-wallet</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paypal"><i class="fa fa-paypal"></i> paypal</a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="chart">
+                        <h2 class="page-header">统计图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#area-chart"><i class="fa fa-area-chart"></i> area-chart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bar-chart"><i class="fa fa-bar-chart"></i> bar-chart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bar-chart"><i class="fa fa-bar-chart-o"></i> bar-chart-o <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#line-chart"><i class="fa fa-line-chart"></i> line-chart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pie-chart"><i class="fa fa-pie-chart"></i> pie-chart</a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="currency">
+                        <h2 class="page-header">货币图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#btc"><i class="fa fa-bitcoin"></i> bitcoin <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#btc"><i class="fa fa-btc"></i> btc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#jpy"><i class="fa fa-cny"></i> cny <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#usd"><i class="fa fa-dollar"></i> dollar <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eur"><i class="fa fa-eur"></i> eur</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eur"><i class="fa fa-euro"></i> euro <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gbp"><i class="fa fa-gbp"></i> gbp</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gg"><i class="fa fa-gg"></i> gg</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gg-circle"><i class="fa fa-gg-circle"></i> gg-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ils"><i class="fa fa-ils"></i> ils</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#inr"><i class="fa fa-inr"></i> inr</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#jpy"><i class="fa fa-jpy"></i> jpy</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#krw"><i class="fa fa-krw"></i> krw</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#money"><i class="fa fa-money"></i> money</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#jpy"><i class="fa fa-rmb"></i> rmb <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rub"><i class="fa fa-rouble"></i> rouble <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rub"><i class="fa fa-rub"></i> rub</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rub"><i class="fa fa-ruble"></i> ruble <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#inr"><i class="fa fa-rupee"></i> rupee <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ils"><i class="fa fa-shekel"></i> shekel <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ils"><i class="fa fa-sheqel"></i> sheqel <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#try"><i class="fa fa-try"></i> try</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#try"><i class="fa fa-turkish-lira"></i> turkish-lira <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#usd"><i class="fa fa-usd"></i> usd</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#krw"><i class="fa fa-won"></i> won <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#jpy"><i class="fa fa-yen"></i> yen <span class="text-muted">(alias)</span></a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="text-editor">
+                        <h2 class="page-header">文本编辑器图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#align-center"><i class="fa fa-align-center"></i> align-center</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#align-justify"><i class="fa fa-align-justify"></i> align-justify</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#align-left"><i class="fa fa-align-left"></i> align-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#align-right"><i class="fa fa-align-right"></i> align-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bold"><i class="fa fa-bold"></i> bold</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#link"><i class="fa fa-chain"></i> chain <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chain-broken"><i class="fa fa-chain-broken"></i> chain-broken</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#clipboard"><i class="fa fa-clipboard"></i> clipboard</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#columns"><i class="fa fa-columns"></i> columns</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#files-o"><i class="fa fa-copy"></i> copy <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#scissors"><i class="fa fa-cut"></i> cut <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#outdent"><i class="fa fa-dedent"></i> dedent <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eraser"><i class="fa fa-eraser"></i> eraser</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file"><i class="fa fa-file"></i> file</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-o"><i class="fa fa-file-o"></i> file-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-text"><i class="fa fa-file-text"></i> file-text</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#file-text-o"><i class="fa fa-file-text-o"></i> file-text-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#files-o"><i class="fa fa-files-o"></i> files-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#floppy-o"><i class="fa fa-floppy-o"></i> floppy-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#font"><i class="fa fa-font"></i> font</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#header"><i class="fa fa-header"></i> header</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#indent"><i class="fa fa-indent"></i> indent</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#italic"><i class="fa fa-italic"></i> italic</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#link"><i class="fa fa-link"></i> link</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#list"><i class="fa fa-list"></i> list</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#list-alt"><i class="fa fa-list-alt"></i> list-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#list-ol"><i class="fa fa-list-ol"></i> list-ol</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#list-ul"><i class="fa fa-list-ul"></i> list-ul</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#outdent"><i class="fa fa-outdent"></i> outdent</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paperclip"><i class="fa fa-paperclip"></i> paperclip</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paragraph"><i class="fa fa-paragraph"></i> paragraph</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#clipboard"><i class="fa fa-paste"></i> paste <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#repeat"><i class="fa fa-repeat"></i> repeat</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#undo"><i class="fa fa-rotate-left"></i> rotate-left <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#repeat"><i class="fa fa-rotate-right"></i> rotate-right <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#floppy-o"><i class="fa fa-save"></i> save <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#scissors"><i class="fa fa-scissors"></i> scissors</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#strikethrough"><i class="fa fa-strikethrough"></i> strikethrough</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#subscript"><i class="fa fa-subscript"></i> subscript</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#superscript"><i class="fa fa-superscript"></i> superscript</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#table"><i class="fa fa-table"></i> table</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#text-height"><i class="fa fa-text-height"></i> text-height</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#text-width"><i class="fa fa-text-width"></i> text-width</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#th"><i class="fa fa-th"></i> th</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#th-large"><i class="fa fa-th-large"></i> th-large</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#th-list"><i class="fa fa-th-list"></i> th-list</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#underline"><i class="fa fa-underline"></i> underline</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#undo"><i class="fa fa-undo"></i> undo</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chain-broken"><i class="fa fa-unlink"></i> unlink <span class="text-muted">(alias)</span></a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="directional">
+                        <h2 class="page-header">方向图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-double-down"><i class="fa fa-angle-double-down"></i> angle-double-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-double-left"><i class="fa fa-angle-double-left"></i> angle-double-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-double-right"><i class="fa fa-angle-double-right"></i> angle-double-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-double-up"><i class="fa fa-angle-double-up"></i> angle-double-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-down"><i class="fa fa-angle-down"></i> angle-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-left"><i class="fa fa-angle-left"></i> angle-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-right"><i class="fa fa-angle-right"></i> angle-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angle-up"><i class="fa fa-angle-up"></i> angle-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-down"><i class="fa fa-arrow-circle-down"></i> arrow-circle-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-left"><i class="fa fa-arrow-circle-left"></i> arrow-circle-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-o-down"><i class="fa fa-arrow-circle-o-down"></i> arrow-circle-o-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-o-left"><i class="fa fa-arrow-circle-o-left"></i> arrow-circle-o-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-o-right"><i class="fa fa-arrow-circle-o-right"></i> arrow-circle-o-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-o-up"><i class="fa fa-arrow-circle-o-up"></i> arrow-circle-o-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-right"><i class="fa fa-arrow-circle-right"></i> arrow-circle-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-circle-up"><i class="fa fa-arrow-circle-up"></i> arrow-circle-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-down"><i class="fa fa-arrow-down"></i> arrow-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-left"><i class="fa fa-arrow-left"></i> arrow-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-right"><i class="fa fa-arrow-right"></i> arrow-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrow-up"><i class="fa fa-arrow-up"></i> arrow-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows"><i class="fa fa-arrows"></i> arrows</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows-alt"><i class="fa fa-arrows-alt"></i> arrows-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows-h"><i class="fa fa-arrows-h"></i> arrows-h</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows-v"><i class="fa fa-arrows-v"></i> arrows-v</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-down"><i class="fa fa-caret-down"></i> caret-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-left"><i class="fa fa-caret-left"></i> caret-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-right"><i class="fa fa-caret-right"></i> caret-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-down"><i class="fa fa-caret-square-o-down"></i> caret-square-o-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-left"><i class="fa fa-caret-square-o-left"></i> caret-square-o-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-right"><i class="fa fa-caret-square-o-right"></i> caret-square-o-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-up"><i class="fa fa-caret-square-o-up"></i> caret-square-o-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-up"><i class="fa fa-caret-up"></i> caret-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-circle-down"><i class="fa fa-chevron-circle-down"></i> chevron-circle-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-circle-left"><i class="fa fa-chevron-circle-left"></i> chevron-circle-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-circle-right"><i class="fa fa-chevron-circle-right"></i> chevron-circle-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-circle-up"><i class="fa fa-chevron-circle-up"></i> chevron-circle-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-down"><i class="fa fa-chevron-down"></i> chevron-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-left"><i class="fa fa-chevron-left"></i> chevron-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-right"><i class="fa fa-chevron-right"></i> chevron-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chevron-up"><i class="fa fa-chevron-up"></i> chevron-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#exchange"><i class="fa fa-exchange"></i> exchange</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-down"><i class="fa fa-hand-o-down"></i> hand-o-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-left"><i class="fa fa-hand-o-left"></i> hand-o-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-right"><i class="fa fa-hand-o-right"></i> hand-o-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hand-o-up"><i class="fa fa-hand-o-up"></i> hand-o-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#long-arrow-down"><i class="fa fa-long-arrow-down"></i> long-arrow-down</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#long-arrow-left"><i class="fa fa-long-arrow-left"></i> long-arrow-left</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#long-arrow-right"><i class="fa fa-long-arrow-right"></i> long-arrow-right</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#long-arrow-up"><i class="fa fa-long-arrow-up"></i> long-arrow-up</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-down"><i class="fa fa-toggle-down"></i> toggle-down <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-left"><i class="fa fa-toggle-left"></i> toggle-left <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-right"><i class="fa fa-toggle-right"></i> toggle-right <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#caret-square-o-up"><i class="fa fa-toggle-up"></i> toggle-up <span class="text-muted">(alias)</span></a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="video-player">
+                        <h2 class="page-header">视频播放图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#arrows-alt"><i class="fa fa-arrows-alt"></i> arrows-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#backward"><i class="fa fa-backward"></i> backward</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#compress"><i class="fa fa-compress"></i> compress</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#eject"><i class="fa fa-eject"></i> eject</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#expand"><i class="fa fa-expand"></i> expand</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fast-backward"><i class="fa fa-fast-backward"></i> fast-backward</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fast-forward"><i class="fa fa-fast-forward"></i> fast-forward</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#forward"><i class="fa fa-forward"></i> forward</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pause"><i class="fa fa-pause"></i> pause</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#play"><i class="fa fa-play"></i> play</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#play-circle"><i class="fa fa-play-circle"></i> play-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#play-circle-o"><i class="fa fa-play-circle-o"></i> play-circle-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#random"><i class="fa fa-random"></i> random</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#step-backward"><i class="fa fa-step-backward"></i> step-backward</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#step-forward"><i class="fa fa-step-forward"></i> step-forward</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#stop"><i class="fa fa-stop"></i> stop</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#youtube-play"><i class="fa fa-youtube-play"></i> youtube-play</a></div>
+
+                        </div>
+
+                    </section>
+                    <section id="brand">
+                        <h2 class="page-header">品牌图标</h2>
+
+                        <div class="row fontawesome-icon-list margin-bottom-lg">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#500px"><i class="fa fa-500px"></i> 500px</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#adn"><i class="fa fa-adn"></i> adn</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#amazon"><i class="fa fa-amazon"></i> amazon</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#android"><i class="fa fa-android"></i> android</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#angellist"><i class="fa fa-angellist"></i> angellist</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#apple"><i class="fa fa-apple"></i> apple</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#behance"><i class="fa fa-behance"></i> behance</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#behance-square"><i class="fa fa-behance-square"></i> behance-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bitbucket"><i class="fa fa-bitbucket"></i> bitbucket</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#bitbucket-square"><i class="fa fa-bitbucket-square"></i> bitbucket-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#btc"><i class="fa fa-bitcoin"></i> bitcoin <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#black-tie"><i class="fa fa-black-tie"></i> black-tie</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#btc"><i class="fa fa-btc"></i> btc</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#buysellads"><i class="fa fa-buysellads"></i> buysellads</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-amex"><i class="fa fa-cc-amex"></i> cc-amex</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-diners-club"><i class="fa fa-cc-diners-club"></i> cc-diners-club</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-discover"><i class="fa fa-cc-discover"></i> cc-discover</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-jcb"><i class="fa fa-cc-jcb"></i> cc-jcb</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-mastercard"><i class="fa fa-cc-mastercard"></i> cc-mastercard</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-paypal"><i class="fa fa-cc-paypal"></i> cc-paypal</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-stripe"><i class="fa fa-cc-stripe"></i> cc-stripe</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#cc-visa"><i class="fa fa-cc-visa"></i> cc-visa</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#chrome"><i class="fa fa-chrome"></i> chrome</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#codepen"><i class="fa fa-codepen"></i> codepen</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#connectdevelop"><i class="fa fa-connectdevelop"></i> connectdevelop</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#contao"><i class="fa fa-contao"></i> contao</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#css3"><i class="fa fa-css3"></i> css3</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#dashcube"><i class="fa fa-dashcube"></i> dashcube</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#delicious"><i class="fa fa-delicious"></i> delicious</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#deviantart"><i class="fa fa-deviantart"></i> deviantart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#digg"><i class="fa fa-digg"></i> digg</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#dribbble"><i class="fa fa-dribbble"></i> dribbble</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#dropbox"><i class="fa fa-dropbox"></i> dropbox</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#drupal"><i class="fa fa-drupal"></i> drupal</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#empire"><i class="fa fa-empire"></i> empire</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#expeditedssl"><i class="fa fa-expeditedssl"></i> expeditedssl</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#facebook"><i class="fa fa-facebook"></i> facebook</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#facebook"><i class="fa fa-facebook-f"></i> facebook-f <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#facebook-official"><i class="fa fa-facebook-official"></i> facebook-official</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#facebook-square"><i class="fa fa-facebook-square"></i> facebook-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#firefox"><i class="fa fa-firefox"></i> firefox</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#flickr"><i class="fa fa-flickr"></i> flickr</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#fonticons"><i class="fa fa-fonticons"></i> fonticons</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#forumbee"><i class="fa fa-forumbee"></i> forumbee</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#foursquare"><i class="fa fa-foursquare"></i> foursquare</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#empire"><i class="fa fa-ge"></i> ge <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#get-pocket"><i class="fa fa-get-pocket"></i> get-pocket</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gg"><i class="fa fa-gg"></i> gg</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gg-circle"><i class="fa fa-gg-circle"></i> gg-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#git"><i class="fa fa-git"></i> git</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#git-square"><i class="fa fa-git-square"></i> git-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#github"><i class="fa fa-github"></i> github</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#github-alt"><i class="fa fa-github-alt"></i> github-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#github-square"><i class="fa fa-github-square"></i> github-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gratipay"><i class="fa fa-gittip"></i> gittip <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#google"><i class="fa fa-google"></i> google</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#google-plus"><i class="fa fa-google-plus"></i> google-plus</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#google-plus-square"><i class="fa fa-google-plus-square"></i> google-plus-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#google-wallet"><i class="fa fa-google-wallet"></i> google-wallet</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#gratipay"><i class="fa fa-gratipay"></i> gratipay</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hacker-news"><i class="fa fa-hacker-news"></i> hacker-news</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#houzz"><i class="fa fa-houzz"></i> houzz</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#html5"><i class="fa fa-html5"></i> html5</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#instagram"><i class="fa fa-instagram"></i> instagram</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#internet-explorer"><i class="fa fa-internet-explorer"></i> internet-explorer</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ioxhost"><i class="fa fa-ioxhost"></i> ioxhost</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#joomla"><i class="fa fa-joomla"></i> joomla</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#jsfiddle"><i class="fa fa-jsfiddle"></i> jsfiddle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#lastfm"><i class="fa fa-lastfm"></i> lastfm</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#lastfm-square"><i class="fa fa-lastfm-square"></i> lastfm-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#leanpub"><i class="fa fa-leanpub"></i> leanpub</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#linkedin"><i class="fa fa-linkedin"></i> linkedin</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#linkedin-square"><i class="fa fa-linkedin-square"></i> linkedin-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#linux"><i class="fa fa-linux"></i> linux</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#maxcdn"><i class="fa fa-maxcdn"></i> maxcdn</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#meanpath"><i class="fa fa-meanpath"></i> meanpath</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#medium"><i class="fa fa-medium"></i> medium</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#odnoklassniki"><i class="fa fa-odnoklassniki"></i> odnoklassniki</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#odnoklassniki-square"><i class="fa fa-odnoklassniki-square"></i> odnoklassniki-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#opencart"><i class="fa fa-opencart"></i> opencart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#openid"><i class="fa fa-openid"></i> openid</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#opera"><i class="fa fa-opera"></i> opera</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#optin-monster"><i class="fa fa-optin-monster"></i> optin-monster</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pagelines"><i class="fa fa-pagelines"></i> pagelines</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#paypal"><i class="fa fa-paypal"></i> paypal</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pied-piper"><i class="fa fa-pied-piper"></i> pied-piper</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pied-piper-alt"><i class="fa fa-pied-piper-alt"></i> pied-piper-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pinterest"><i class="fa fa-pinterest"></i> pinterest</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pinterest-p"><i class="fa fa-pinterest-p"></i> pinterest-p</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#pinterest-square"><i class="fa fa-pinterest-square"></i> pinterest-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#qq"><i class="fa fa-qq"></i> qq</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rebel"><i class="fa fa-ra"></i> ra <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#rebel"><i class="fa fa-rebel"></i> rebel</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#reddit"><i class="fa fa-reddit"></i> reddit</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#reddit-square"><i class="fa fa-reddit-square"></i> reddit-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#renren"><i class="fa fa-renren"></i> renren</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#safari"><i class="fa fa-safari"></i> safari</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#sellsy"><i class="fa fa-sellsy"></i> sellsy</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share-alt"><i class="fa fa-share-alt"></i> share-alt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#share-alt-square"><i class="fa fa-share-alt-square"></i> share-alt-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#shirtsinbulk"><i class="fa fa-shirtsinbulk"></i> shirtsinbulk</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#simplybuilt"><i class="fa fa-simplybuilt"></i> simplybuilt</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#skyatlas"><i class="fa fa-skyatlas"></i> skyatlas</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#skype"><i class="fa fa-skype"></i> skype</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#slack"><i class="fa fa-slack"></i> slack</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#slideshare"><i class="fa fa-slideshare"></i> slideshare</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#soundcloud"><i class="fa fa-soundcloud"></i> soundcloud</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#spotify"><i class="fa fa-spotify"></i> spotify</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#stack-exchange"><i class="fa fa-stack-exchange"></i> stack-exchange</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#stack-overflow"><i class="fa fa-stack-overflow"></i> stack-overflow</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#steam"><i class="fa fa-steam"></i> steam</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#steam-square"><i class="fa fa-steam-square"></i> steam-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#stumbleupon"><i class="fa fa-stumbleupon"></i> stumbleupon</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#stumbleupon-circle"><i class="fa fa-stumbleupon-circle"></i> stumbleupon-circle</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tencent-weibo"><i class="fa fa-tencent-weibo"></i> tencent-weibo</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#trello"><i class="fa fa-trello"></i> trello</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tripadvisor"><i class="fa fa-tripadvisor"></i> tripadvisor</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tumblr"><i class="fa fa-tumblr"></i> tumblr</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#tumblr-square"><i class="fa fa-tumblr-square"></i> tumblr-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#twitch"><i class="fa fa-twitch"></i> twitch</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#twitter"><i class="fa fa-twitter"></i> twitter</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#twitter-square"><i class="fa fa-twitter-square"></i> twitter-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#viacoin"><i class="fa fa-viacoin"></i> viacoin</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#vimeo"><i class="fa fa-vimeo"></i> vimeo</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#vimeo-square"><i class="fa fa-vimeo-square"></i> vimeo-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#vine"><i class="fa fa-vine"></i> vine</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#vk"><i class="fa fa-vk"></i> vk</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#weixin"><i class="fa fa-wechat"></i> wechat <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#weibo"><i class="fa fa-weibo"></i> weibo</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#weixin"><i class="fa fa-weixin"></i> weixin</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#whatsapp"><i class="fa fa-whatsapp"></i> whatsapp</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#wikipedia-w"><i class="fa fa-wikipedia-w"></i> wikipedia-w</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#windows"><i class="fa fa-windows"></i> windows</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#wordpress"><i class="fa fa-wordpress"></i> wordpress</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#xing"><i class="fa fa-xing"></i> xing</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#xing-square"><i class="fa fa-xing-square"></i> xing-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#y-combinator"><i class="fa fa-y-combinator"></i> y-combinator</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hacker-news"><i class="fa fa-y-combinator-square"></i> y-combinator-square <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#yahoo"><i class="fa fa-yahoo"></i> yahoo</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#y-combinator"><i class="fa fa-yc"></i> yc <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hacker-news"><i class="fa fa-yc-square"></i> yc-square <span class="text-muted">(alias)</span></a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#yelp"><i class="fa fa-yelp"></i> yelp</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#youtube"><i class="fa fa-youtube"></i> youtube</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#youtube-play"><i class="fa fa-youtube-play"></i> youtube-play</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#youtube-square"><i class="fa fa-youtube-square"></i> youtube-square</a></div>
+
+                        </div>
+
+                        <div class="alert alert-success">
+                            <ul class="margin-bottom-none padding-left-lg">
+                                <li>所有品牌图标均为其各自所有者的商标</li>
+                                <li>使用这些商标并不表示该商标持有人的认可，反之亦然</li>
+                            </ul>
+
+                        </div>
+                    </section>
+                    <section id="medical">
+                        <h2 class="page-header">医疗图标</h2>
+
+                        <div class="row fontawesome-icon-list">
+
+
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#ambulance"><i class="fa fa-ambulance"></i> ambulance</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#h-square"><i class="fa fa-h-square"></i> h-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#heart"><i class="fa fa-heart"></i> heart</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#heart-o"><i class="fa fa-heart-o"></i> heart-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#heartbeat"><i class="fa fa-heartbeat"></i> heartbeat</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#hospital-o"><i class="fa fa-hospital-o"></i> hospital-o</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#medkit"><i class="fa fa-medkit"></i> medkit</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#plus-square"><i class="fa fa-plus-square"></i> plus-square</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#stethoscope"><i class="fa fa-stethoscope"></i> stethoscope</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#user-md"><i class="fa fa-user-md"></i> user-md</a></div>
+
+                            <div class="fa-hover col-md-3 col-sm-4"><a href="#wheelchair"><i class="fa fa-wheelchair"></i> wheelchair</a></div>
+
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="application/javascript">
     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
     $(function () {
-        $("i").on("click", function(){
-            var icon = $(this).next().next().html().replace('&amp;','');
+        $(".fa-hover").on("click", function(){
+            var icon = $(this).find("i").attr("class");
             parent.$("#icon").val(icon);
+            parent.$("#iconi").attr("class",icon+' fa-2x');
             parent.layer.close(index);
         });
     });

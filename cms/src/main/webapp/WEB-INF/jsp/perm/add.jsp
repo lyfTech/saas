@@ -56,10 +56,15 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">图标：</label>
-            <div class="formControls col-xs-9 col-sm-9">
+            <div class="formControls col-xs-1 col-sm-1">
                 <div class="input-group m-b">
-                    <input type="text" class="form-control" id="icon" name="icon" readonly>
-                    <a href="#" class="input-group-addon" id="selectIconBtn">选择</a>
+                    <i class="" aria-hidden="true" id="iconi"></i>
+                </div>
+            </div>
+            <div class="formControls col-xs-8 col-sm-8">
+                <div class="input-group m-b">
+                    <input type="hidden" class="form-control" id="icon" name="icon" readonly>
+                    <button type="button" class="btn btn-default btn-xs" id="selectIconBtn">选择</button>
                 </div>
             </div>
         </div>

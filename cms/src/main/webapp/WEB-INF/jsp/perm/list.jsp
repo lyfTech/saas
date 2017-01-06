@@ -145,7 +145,10 @@
             }, {
                 field: 'icon',
                 align: 'center',
-                title: '菜单图标'
+                title: '菜单图标',
+                formatter: function (value, row) {
+                    return '<i class="'+value+' fa-lg" aria-hidden="true" id="iconi"></i>';
+                }
             }, {
                 field: 'type',
                 align: 'center',

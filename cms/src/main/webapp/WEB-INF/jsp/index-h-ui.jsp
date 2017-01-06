@@ -16,6 +16,7 @@
 <script type="text/javascript" src="${ctx}static/lib/respond.min.js"></script>
 <script type="text/javascript" src="${ctx}static/lib/PIE_IE678.js"></script>
 <![endif]-->
+<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/static/js/plugins/Hui-iconfont/1.0.7/iconfont.css" />
@@ -76,7 +77,7 @@
     <div class="menu_dropdown bk_2">
         <c:forEach items="${menu}" var="item">
             <dl id="menu-article">
-                <dt><i class="Hui-iconfont">${item.icon}</i>${item.name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dt>&nbsp;<i class="fa ${item.icon}" aria-hidden="true"></i>&nbsp;${item.name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                 <dd>
                     <ul>
                         <c:forEach items="${item.childs}" var="child">
@@ -106,16 +107,6 @@
     </div>
 </section>
 
-<div class="contextMenu" id="myMenu1">
-    <ul>
-        <li id="open">Open </li>
-        <li id="email">email </li>
-        <li id="save">save </li>
-        <li id="delete">delete </li>
-    </ul>
-</div>
-
-
 <script type="text/javascript" src="${ctx}/static/js/jquery.min.js?v=2.1.4"></script>
 <script type="text/javascript" src="${ctx}/static/js/plugins/layer/layer.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/plugins/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
@@ -123,22 +114,6 @@
 <script type="text/javascript" src="${ctx}/static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript">
     $(function(){
-        $(".Hui-tabNav-wp").contextMenu('myMenu1', {
-            bindings: {
-                'open': function(t) {
-                    alert('Trigger was '+t.id+'\nAction was Open');
-                },
-                'email': function(t) {
-                    alert('Trigger was '+t.id+'\nAction was Email');
-                },
-                'save': function(t) {
-                    alert('Trigger was '+t.id+'\nAction was Save');
-                },
-                'delete': function(t) {
-                    alert('Trigger was '+t.id+'\nAction was Delete')
-                }
-            }
-        });
     });
     /*资讯-添加*/
     function article_add(title,url){
