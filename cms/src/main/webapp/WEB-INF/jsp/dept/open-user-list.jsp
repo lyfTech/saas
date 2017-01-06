@@ -38,13 +38,13 @@
         save: function () {
             var rows = $("#userTableEvents").bootstrapTable("getSelections");
             if (rows.length < 1) {
-                layer.msg('请选择经理', {icon: 7});
+                layer.msg('请选择部门经理', {icon: 7});
                 return false;
             }
             var id = rows[0].id;
-            var name = rows[0].name;
-            parent.$('#parentId').val(id);
-            parent.$('#parentName').val(name);
+            var name = rows[0].realName;
+            parent.$('#manager').val(id);
+            parent.$('#managerName').val(name);
             parent.layer.close(index);
         },
         init: function () {
@@ -73,7 +73,8 @@
                 return {
                     offset: params.offset,
                     limit: params.limit,
-                    deptInfo: $("#code").val()
+                    code: $("#code").val(),
+                    deptId: ${id}
                 };
             },
             responseHandler: function (res) {
@@ -89,10 +90,6 @@
                 field: 'userName',
                 align: 'center',
                 title: '用户名'
-            }, {
-                field: 'roleName',
-                align: 'center',
-                title: '所属角色'
             }, {
                 field: 'realName',
                 align: 'center',

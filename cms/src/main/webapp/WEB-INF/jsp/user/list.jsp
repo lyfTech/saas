@@ -174,10 +174,6 @@
                 align: 'center',
                 title: '用户名'
             }, {
-                field: 'roleName',
-                align: 'center',
-                title: '所属角色'
-            }, {
                 field: 'realName',
                 align: 'center',
                 title: '真实姓名'
@@ -190,7 +186,7 @@
                 align: 'center',
                 title: '邮箱'
             }, {
-                field: 'departmentName',
+                field: 'deptName',
                 align: 'center',
                 title: '部门'
             }, {

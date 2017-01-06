@@ -3,7 +3,6 @@ package org.saas.cms.controller;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.saas.common.dto.KeyValueDto;
 import org.saas.common.handle.BaseResponseHandle;
 import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
@@ -13,7 +12,6 @@ import org.saas.dao.domain.SysRole;
 import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
 import org.saas.service.system.SysDeptService;
-import org.saas.service.system.SysRoleService;
 import org.saas.service.system.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -35,8 +32,6 @@ public class SysUserController {
     private SysUserService userService;
     @Autowired
     private SysDeptService deptService;
-    @Autowired
-    private SysRoleService roleService;
 
     @RequiresPermissions({"user:list"})
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -185,16 +180,19 @@ public class SysUserController {
     public Page<SysUser> listByDept(@RequestBody Map map) {
         int offset = MapUtils.getIntValue(map, "offset");
         int limit = MapUtils.getIntValue(map, "limit");
-        String userName = MapUtils.getString(map, "username");
-        String deptid = MapUtils.getString(map, "deptid");
+        String code = MapUtils.getString(map, "code");
+        String deptid = MapUtils.getString(map, "deptId");
+        if (StringUtils.isBlank(deptid)){
+            return null;
+        }
         SysUserExample example = new SysUserExample();
         SysUserExample.Criteria criteria = example.createCriteria();
         criteria.andDepartmentIdEqualTo(Long.valueOf(deptid));
-        if (StringUtils.isNotBlank(userName)) {
-            criteria.andUserNameLike("%" + userName + "%");
-            example.or().andRealNameLike("%" + userName + "%");
-            example.or().andMobileLike("%" + userName + "%");
-            example.or().andEmailLike("%" + userName + "%");
+        if (StringUtils.isNotBlank(code)) {
+            criteria.andUserNameLike("%" + code + "%");
+            example.or().andRealNameLike("%" + code + "%");
+            example.or().andMobileLike("%" + code + "%");
+            example.or().andEmailLike("%" + code + "%");
         }
         PageRequest pageRequest = new PageRequest(offset, limit);
         Page<SysUser> page = userService.getAllUserInfo(example, pageRequest);

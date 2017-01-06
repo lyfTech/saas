@@ -32,6 +32,8 @@ public class SysUser implements Serializable {
 
     private Date modifyTime;
 
+    private String deptName;
+
     private static final long serialVersionUID = 1L;
 
     public SysUser() {}
@@ -146,5 +148,13 @@ public class SysUser implements Serializable {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }

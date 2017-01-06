@@ -5,10 +5,7 @@ import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
 import org.saas.common.mybatis.PageRequest;
-import org.saas.dao.domain.SysDepartment;
-import org.saas.dao.domain.SysDepartmentExample;
-import org.saas.dao.domain.SysPerm;
-import org.saas.dao.domain.SysPermExample;
+import org.saas.dao.domain.*;
 import org.saas.dao.mapper.SysDepartmentMapper;
 import org.saas.service.system.SysDeptService;
 import org.saas.service.system.SysUserService;
@@ -65,6 +62,23 @@ public class SysDeptServiceImpl implements SysDeptService {
             handleT.setResult(departments);
         }
         return handleT;
+    }
+
+    public BaseResponseHandle changeState(Long id) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        SysDepartment department = departmentMapper.selectByPrimaryKey(id);
+        if (department != null) {
+            department.setStatus(department.getStatus() == 1 ? 0 : 1);
+            department.setModifier(userService.currentUserInfo().getId().toString());
+            department.setModifyTime(Calendar.getInstance().getTime());
+            int i = departmentMapper.updateByPrimaryKey(department);
+            if (i == 0) {
+                handle.setErrorMessage("用户修改失败");
+            }
+        } else {
+            handle.setErrorMessage("用户不存在");
+        }
+        return handle;
     }
 
     public BaseResponseHandle updateDept(SysDepartment dept) {

@@ -135,12 +135,12 @@
                 $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked", true);
             }
             else {
-                if (l == 0) {
+                /*if (l == 0) {
                     $(this).closest("dl").find("dt input:checkbox").prop("checked", false);
                 }
                 if (l2 == 0) {
                     $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked", false);
-                }
+                }*/
             }
         });
 

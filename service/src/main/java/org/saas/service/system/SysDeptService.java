@@ -20,6 +20,8 @@ public interface SysDeptService {
 
     ResponseHandleT<SysDepartment> getDeptByExample(SysDepartmentExample example);
 
+    BaseResponseHandle changeState(Long id);
+
     BaseResponseHandle updateDept(SysDepartment dept);
 
     BaseResponseHandle addDept(SysDepartment dept);

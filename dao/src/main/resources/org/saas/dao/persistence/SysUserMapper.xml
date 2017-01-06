@@ -16,6 +16,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modifier" property="modifier" jdbcType="BIGINT" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,6 +79,11 @@
   <sql id="Base_Column_List" >
     id, user_name, `password`, real_name, mobile, email, department_id, `status`, is_delete,
     salt, creator, create_time, modifier, modify_time
+  </sql>
+  <sql id="Append_Column_List" >
+    id, user_name, `password`, real_name, mobile, email, department_id, `status`, is_delete,
+    salt, creator, create_time, modifier, modify_time,
+    (select s1.`name` from sys_department s1 where s1.id = s.department_id) as dept_name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.saas.dao.domain.SysUserExample" >
     select
@@ -381,8 +387,8 @@
     <if test="distinct" >
       distinct
     </if>
-    <include refid="Base_Column_List" />
-    from sys_user
+    <include refid="Append_Column_List" />
+    from sys_user s
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>

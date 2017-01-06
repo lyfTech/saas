@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -38,16 +39,16 @@ public class SysDeptController {
     @RequiresPermissions({"dept:list"})
     @RequestMapping(value = "list", method = RequestMethod.POST)
     @ResponseBody
-    public Page<SysDepartment> list(@RequestBody Map map){
+    public Page<SysDepartment> list(@RequestBody Map map) {
         int offset = MapUtils.getIntValue(map, "offset");
         int limit = MapUtils.getIntValue(map, "limit");
         String deptInfo = MapUtils.getString(map, "deptInfo");
         SysDepartmentExample example = new SysDepartmentExample();
-        if (StringUtils.isNotBlank(deptInfo)){
-            example.createCriteria().andNameLike("%"+deptInfo+"%");
-            example.or().andDescriptionLike("%"+deptInfo+"%");
+        if (StringUtils.isNotBlank(deptInfo)) {
+            example.createCriteria().andNameLike("%" + deptInfo + "%");
+            example.or().andDescriptionLike("%" + deptInfo + "%");
         }
-        PageRequest pageRequest = new PageRequest(offset,limit);
+        PageRequest pageRequest = new PageRequest(offset, limit);
         Page<SysDepartment> page = deptService.queryPermPage(example, pageRequest);
         return page;
     }
@@ -62,7 +63,7 @@ public class SysDeptController {
     @RequiresPermissions({"dept:add"})
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseHandle doAdd(@ModelAttribute SysDepartment department) {
+    public BaseResponseHandle add(@ModelAttribute SysDepartment department) {
         BaseResponseHandle handle = new BaseResponseHandle();
         if (org.apache.commons.lang3.StringUtils.isBlank(department.getName())) {
             handle.setErrorMessage("请输入正确的部门名称");
@@ -100,8 +101,44 @@ public class SysDeptController {
         return "dept/open-dept-list";
     }
 
-    @RequestMapping(value = "/open-user-list", method = RequestMethod.GET)
-    public String openUserList() {
+    @RequestMapping(value = "/open-user-list/{id}", method = RequestMethod.GET)
+    public String openUserList(Model model, @PathVariable(value = "id") Long id) {
+        if (id == null) {
+            model.addAttribute("id", id);
+        }
         return "dept/open-user-list";
+    }
+
+    @RequiresPermissions({"dept:edit"})
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(Model model, @PathVariable(value = "id") Long id) {
+        SingleResponseHandleT<SysDepartment> handleT = deptService.getDepartmentById(id);
+        if (handleT.getIsSuccess()) {
+            model.addAttribute("dept", handleT.getResult());
+        }
+        return "dept/edit";
+    }
+
+    @RequiresPermissions({"dept:edit"})
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle edit(@ModelAttribute SysDepartment department) {
+        BaseResponseHandle handle = new BaseResponseHandle();
+        if (org.apache.commons.lang3.StringUtils.isBlank(department.getName())) {
+            handle.setErrorMessage("请输入正确的部门名称");
+            return handle;
+        }
+        handle = deptService.updateDept(department);
+        if (handle.getIsSuccess()) {
+            handle.setMessage("修改部门成功");
+        }
+        return handle;
+    }
+
+    @RequiresPermissions({"perm:state"})
+    @RequestMapping(value = "/changeState", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseHandle changeState(@RequestParam Long id) {
+        return deptService.changeState(id);
     }
 }

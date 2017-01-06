@@ -35,7 +35,7 @@
                 return "${ctx}/dept/list";
             },
             changeState: function () {
-                return "${ctx}/perm/changeState";
+                return "${ctx}/dept/changeState";
             },
             toAdd: function () {
                 return "${ctx}/dept/add";
@@ -45,7 +45,7 @@
             }
         },
         changeState: function (id, msg) {
-            layer.confirm('您确定要' + msg + '该权限吗？', {
+            layer.confirm('您确定要' + msg + '该部门吗？', {
                 btn: ['确定', '再想想']
             }, function () {
                 $.ajax({
@@ -55,9 +55,9 @@
                     async: false,
                     success: function (data) {
                         if (data && data["isSuccess"]) {
-                            layer.msg(msg + "权限成功", {icon: 6});
+                            layer.msg(msg + "部门成功", {icon: 6});
                         } else {
-                            layer.msg(msg + "权限失败[" + data["message"] + "]", {icon: 5});
+                            layer.msg(msg + "部门失败[" + data["message"] + "]", {icon: 5});
                         }
                         $("#exampleTableEvents").bootstrapTable("refresh");
                     }
