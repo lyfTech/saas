@@ -8,8 +8,10 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.apache.shiro.util.ByteSource;
 import org.saas.common.enums.ConsantEnums;
 import org.saas.common.utils.StringUtils;
@@ -19,11 +21,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collection;
+
 /**
  * 自定义的指定Shiro验证用户登录的类
  */
 public class UserRealm extends AuthorizingRealm {
     public static final Logger logger = LoggerFactory.getLogger(UserRealm.class);
+
+    @Autowired
+    private SessionDAO sessionDAO;
 
     @Autowired
     private SysUserService userService;
@@ -39,6 +46,7 @@ public class UserRealm extends AuthorizingRealm {
         Subject currentUser = SecurityUtils.getSubject();
         Session session = currentUser.getSession();
         session.setAttribute(ConsantEnums.CURRENT_USERINFO.getKey(), user);
+        kickoutOnlineUser(username);
         return authorizationInfo;
     }
 
@@ -62,6 +70,20 @@ public class UserRealm extends AuthorizingRealm {
                 getName()  //realm name
         );
         return authenticationInfo;
+    }
+
+    /**
+     * 踢出已在其它地方登录用户
+     * @param loginName
+     */
+    public void kickoutOnlineUser(String loginName) {
+        Collection<Session> sessions = sessionDAO.getActiveSessions();
+        for (Session session : sessions) {
+            if (loginName.equals(String.valueOf(session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY)))) {
+                session.setTimeout(0);//设置session立即失效，即将其踢出系统
+                break;
+            }
+        }
     }
 
 

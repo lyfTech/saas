@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
@@ -91,7 +91,8 @@
         <property name="unauthorizedUrl" value="/login" />
         <!--<property name="filters">
             <util:map>
-                <entry key="authc" value-ref="formAuthenticationFilter" />
+                &lt;!&ndash;<entry key="authc" value-ref="formAuthenticationFilter" />&ndash;&gt;
+                &lt;!&ndash;<entry key="kickout" value-ref="kickoutSessionControlFilter" />&ndash;&gt;
             </util:map>
         </property>-->
         <property name="filterChainDefinitions">

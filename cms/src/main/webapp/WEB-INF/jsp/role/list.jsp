@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="white-bg">
-<nav class="breadcrumb">
+<%--<nav class="breadcrumb">
     <i class="Hui-iconfont">&#xe67f;</i> 角色管理
     <span class="c-gray en">&gt;</span> 角色列表
-</nav>
+</nav>--%>
 <div class="page-container">
     <div class="example">
         <div class="alert alert-info" id="queryParams">
