@@ -46,7 +46,6 @@ public class UserRealm extends AuthorizingRealm {
         Subject currentUser = SecurityUtils.getSubject();
         Session session = currentUser.getSession();
         session.setAttribute(ConsantEnums.CURRENT_USERINFO.getKey(), user);
-        kickoutOnlineUser(username);
         return authorizationInfo;
     }
 

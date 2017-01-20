@@ -80,6 +80,19 @@
         <property name="loginUrl" value="/login" />
     </bean>-->
 
+    <!-- 并发踢出
+            kickoutAfter：是否踢出后来登录的，默认是false
+            kickoutUrl：被踢出后重定向到的地址
+            maxSession：同一个用户最大的会话数，默认1
+     -->
+    <bean id="kickoutSessionControlFilter" class="org.saas.cms.filter.KickoutSessionControlFilter">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="kickoutAfter" value="false"/>
+        <property name="maxSession" value="2"/>
+        <property name="kickoutUrl" value="/login?kickout=1"/>
+    </bean>
+
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
@@ -89,12 +102,12 @@
         <!-- <property name="successUrl" value="/" ></property> -->
         <!-- 用户访问未对其授权的资源时，所显示的连接 但是使用注解的话这段不起作用，需要使用异常处理器重定向页面-->
         <property name="unauthorizedUrl" value="/login" />
-        <!--<property name="filters">
+        <property name="filters">
             <util:map>
-                &lt;!&ndash;<entry key="authc" value-ref="formAuthenticationFilter" />&ndash;&gt;
-                &lt;!&ndash;<entry key="kickout" value-ref="kickoutSessionControlFilter" />&ndash;&gt;
+                <!--<entry key="authc" value-ref="formAuthenticationFilter" />-->
+                <entry key="kickout" value-ref="kickoutSessionControlFilter" />
             </util:map>
-        </property>-->
+        </property>
         <property name="filterChainDefinitions">
             <value>
                 /static/** = anon
