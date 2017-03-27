@@ -1,11 +1,8 @@
 package org.saas.service.system.impl;
 
-import org.apache.ibatis.session.RowBounds;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.saas.common.dto.KeyValueDto;
 import org.saas.common.enums.ConsantEnums;
-import org.saas.common.handle.ResponseHandle;
 import org.saas.common.handle.ResponseHandleT;
 import org.saas.common.handle.SingleResponseHandleT;
 import org.saas.common.mybatis.Page;
@@ -18,6 +15,7 @@ import org.saas.dao.domain.SysUser;
 import org.saas.dao.domain.SysUserExample;
 import org.saas.dao.mapper.SysUserMapper;
 import org.saas.service.system.SysUserService;
+import org.saas.service.system.helper.PasswordHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.security.auth.Subject;
 import java.util.*;
 
 @Service

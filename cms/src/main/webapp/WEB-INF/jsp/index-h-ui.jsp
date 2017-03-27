@@ -102,7 +102,7 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" src="${ctx}/dept/list"></iframe>
+            <iframe scrolling="yes" frameborder="0" src="${ctx}/druid/index.html"></iframe>
         </div>
     </div>
 </section>

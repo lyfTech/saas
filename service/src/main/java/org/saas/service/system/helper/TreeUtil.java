@@ -1,4 +1,4 @@
-package org.saas.service.system.impl;
+package org.saas.service.system.helper;
 
 import org.saas.dao.domain.SysPerm;
 
