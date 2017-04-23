@@ -46,7 +46,6 @@ public class UserRealm extends AuthorizingRealm {
         Subject currentUser = SecurityUtils.getSubject();
         Session session = currentUser.getSession();
         session.setAttribute(ConsantEnums.CURRENT_USERINFO.getKey(), user);
-        kickoutOnlineUser(username);
         return authorizationInfo;
     }
 
@@ -71,21 +70,6 @@ public class UserRealm extends AuthorizingRealm {
         );
         return authenticationInfo;
     }
-
-    /**
-     * 踢出已在其它地方登录用户
-     * @param loginName
-     */
-    public void kickoutOnlineUser(String loginName) {
-        Collection<Session> sessions = sessionDAO.getActiveSessions();
-        for (Session session : sessions) {
-            if (loginName.equals(String.valueOf(session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY)))) {
-                session.setTimeout(0);//设置session立即失效，即将其踢出系统
-                break;
-            }
-        }
-    }
-
 
     @Override
     public void clearCachedAuthorizationInfo(PrincipalCollection principals) {

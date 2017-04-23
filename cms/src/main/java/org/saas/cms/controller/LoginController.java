@@ -64,7 +64,7 @@ public class LoginController {
             currentUser.login(token);
             map.put("type","success");
             //获取登录前的Url
-            String url = "/cms/index";
+            String url = "/saas-cms/index";
             SavedRequest savedRequest = WebUtils.getSavedRequest(request);
             if (savedRequest != null) url = savedRequest.getRequestUrl();
             map.put("redirectUrl", url);
