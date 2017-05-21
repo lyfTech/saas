@@ -45,6 +45,8 @@
         <commons-fileupload.version>1.2</commons-fileupload.version>
         <shiro.version>1.3.2</shiro.version>
         <commons-collections.version>3.2.2</commons-collections.version>
+        <activiti>5.18.0</activiti>
+        <h2.version>1.4.190</h2.version>
     </properties>
 
     <dependencyManagement>
@@ -336,6 +338,24 @@
                 <version>15.3.0.3</version>
             </dependency>
 
+
+            <!-- activiti依赖 -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-engine</artifactId>
+                <version>${activiti}</version>
+            </dependency>
+            <!-- activiti 与 Spring 集成 -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring</artifactId>
+                <version>${activiti}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -39,6 +39,12 @@
         <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
         <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat" />
     </bean>
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->
@@ -61,5 +67,10 @@
 
     <!-- 启用对事务注解的支持 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="mySpringBean" class="org.saas.cms.activiti.MySpringBean">
+        <property name="id" value="65536" />
+        <property name="name" value="shirdrn" />
+    </bean>
 
 </beans>
