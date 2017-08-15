@@ -96,11 +96,11 @@
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="password">支付密码</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="支付密码">
+                            <input type="password" class="form-control" id="payPassword" name="payPassword" placeholder="支付密码">
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="username">红包使用倍数</label>
-                            <input type="text" class="form-control" id="username" name="loginName" placeholder="红包使用倍数">
+                            <input type="number" class="form-control" id="coupon" name="coupon" max="100" placeholder="红包使用倍数">
                         </div>
                         <div class="row">
                             <div class="col-sm-5">

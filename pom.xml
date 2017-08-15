@@ -47,6 +47,9 @@
         <commons-collections.version>3.2.2</commons-collections.version>
         <activiti>5.18.0</activiti>
         <h2.version>1.4.190</h2.version>
+        <httpcore.version>4.4.5</httpcore.version>
+        <fastjson.version>1.2.35</fastjson.version>
+        <jsoup.version>1.10.2</jsoup.version>
     </properties>
 
     <dependencyManagement>
@@ -355,6 +358,23 @@
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcore.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
