@@ -13,41 +13,6 @@
     <meta name="keywords" content="雅堂,雅堂投资,雅堂投资助手,雅堂快速投资助手" />
     <meta name="description" content="雅堂快速投资助手" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- 移动设备 viewport -->
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
-    <meta name="author" content="admui.com">
-    <!-- 360浏览器默认使用Webkit内核 -->
-    <meta name="renderer" content="webkit">
-    <!-- 禁止百度SiteAPP转码 -->
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
-    <link rel="icon" type="image/png" href="/public/images/favicon.png">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Safari浏览器添加到主屏幕（IOS） -->
-    <link rel="icon" sizes="192x192" href="/public/images/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Admui">
-    <!-- Win8标题栏及ICON图标 -->
-    <link rel="apple-touch-icon-precomposed" href="/public/images/apple-touch-icon.png">
-    <meta name="msapplication-TileImage" content="/public/images/app-icon72x72@2x.png">
-    <meta name="msapplication-TileColor" content="#62a8ea">
-    <!-- 样式 -->
-    <link rel="stylesheet" href="/public/themes/classic/base/css/site.css" id="siteStyle">
-    <!--[if lte IE 9]>
-    <meta http-equiv="refresh" content="0; url='http://www.admui.com/ie/'" />
-    <![endif]-->
-    <!--[if lt IE 10]>
-    <script src="/public/vendor/media-match/media.match.min.js"></script>
-    <script src="/public/vendor/respond/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- 自定义 -->
-    <link rel="stylesheet" href="/public/css/login.css">
-    <!-- 插件 -->
-    <link rel="stylesheet" href="/public/vendor/animsition/animsition.css">
-    <!-- 图标 -->
-    <link rel="stylesheet" href="/public/fonts/web-icons/web-icons.css">
     <!-- 插件 -->
     <link rel="stylesheet" href="/public/vendor/bootstrap-select/bootstrap-select.css">
     <link rel="stylesheet" href="/public/vendor/formvalidation/formValidation.css">
@@ -104,7 +69,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
-                                <button type="submit" class="btn btn-primary btn-block margin-top-10">开始抢标</button>
+                                <button onclick="send()" class="btn btn-primary btn-block margin-top-10">开始抢标</button>
                             </div>
                             <div class="col-sm-5">
                                 <button type="submit" class="btn btn-danger btn-block margin-top-10">停止抢标</button>
@@ -124,6 +89,58 @@
 <script src="/public/vendor/bootstrap-select/bootstrap-select.min.js"></script>
 <script src="/public/vendor/formvalidation/formValidation.min.js" data-name="formValidation"></script>
 <script src="/public/vendor/formvalidation/framework/bootstrap.min.js" data-deps="formValidation"></script>
+<script src="/public/vendor/layer/layer.js"></script>
 <%--<script src="/public/js/login.js"></script>--%>
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://localhost:8088/websocket");
+    }
+    else {
+        layer.msg('当前浏览器不支持websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        setMessageInnerHTML("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        setMessageInnerHTML("WebSocket连接成功");
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        setMessageInnerHTML("WebSocket连接关闭");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+        layer.msg(innerHTML);;
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+    //发送消息
+    function send() {
+        var message = document.getElementById('username').value;
+        websocket.send(message);
+    }
+</script>
 </body>
 </html>

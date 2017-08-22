@@ -50,6 +50,7 @@
         <httpcore.version>4.4.5</httpcore.version>
         <fastjson.version>1.2.35</fastjson.version>
         <jsoup.version>1.10.2</jsoup.version>
+        <javaee-api.version>7.0</javaee-api.version>
     </properties>
 
     <dependencyManagement>
@@ -375,6 +376,11 @@
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
