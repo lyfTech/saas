@@ -1,8 +1,11 @@
 package org.saas.service.system.helper;
 
+import org.springframework.web.socket.WebSocketSession;
+
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import javax.jms.TextMessage;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -62,15 +65,20 @@ public class WebSocketHelper {
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println("来自客户端的消息:" + message);
-        //群发消息
-        for(WebSocketHelper item: webSocketSet){
-            try {
-                item.sendMessage(message);
-            } catch (IOException e) {
-                e.printStackTrace();
-                continue;
-            }
+        try {
+            session.getBasicRemote().sendText(message);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        //群发消息
+//        for(WebSocketHelper item: webSocketSet){
+//            try {
+//                item.sendMessage(message);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                continue;
+//            }
+//        }
     }
 
     /**
@@ -92,6 +100,17 @@ public class WebSocketHelper {
     public void sendMessage(String message) throws IOException {
         this.session.getBasicRemote().sendText(message);
         //this.session.getAsyncRemote().sendText(message);
+    }
+
+    public void sendMessageToUsers(String message) {
+        //群发消息
+        for (WebSocketHelper user : webSocketSet) {
+            try {
+                user.sendMessage(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static synchronized int getOnlineCount() {
